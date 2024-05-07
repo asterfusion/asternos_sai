@@ -254,6 +254,48 @@ typedef enum _sai_hostif_trap_type_t
     /** Switch traps custom range start */
     SAI_HOSTIF_TRAP_TYPE_SWITCH_CUSTOM_RANGE_BASE = 0x00001000,
 
+    /**
+     * @brief COPP for ICCP
+     * (default packet action is forward)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_ICCP = 0x00001001,
+
+    /**
+     * @brief COPP for SNP
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_SNP = 0x00001002,
+
+    /**
+     * @brief COPP for TFTP
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_TFTP = 0x00001003,
+
+    /**
+     * @brief COPP for TELNET
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_TELNET = 0x00001004,
+
+    /**
+     * @brief COPP for FTP
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_FTP = 0x00001005,
+
+    /**
+     * @brief COPP for ICMP echo
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_ICMP_ECHO = 0x00001006,
+
+    /**
+     * @brief COPP for ICMP echo
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_ACL_TRAP = 0x00001007,
+
     /* Router traps */
 
     /** Default packet action is forward */

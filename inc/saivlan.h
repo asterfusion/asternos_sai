@@ -47,7 +47,11 @@ typedef enum _sai_vlan_tagging_mode_t
 
     SAI_VLAN_TAGGING_MODE_TAGGED,
 
-    SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED
+    SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED,
+
+    SAI_VLAN_TAGGING_MODE_DOUBLE_TAGGED,
+
+    SAI_VLAN_TAGGING_MODE_CUSTOMER_TAGGED,
 
 } sai_vlan_tagging_mode_t;
 
@@ -407,6 +411,193 @@ typedef enum _sai_vlan_attr_t
 
     /** Custom range base value */
     SAI_VLAN_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief ARP Broadcast flood control type
+     *
+     * @type sai_vlan_flood_control_type_t
+     * @flags CREATE_AND_SET
+     * @default SAI_VLAN_FLOOD_CONTROL_TYPE_ALL
+     */
+    SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE,
+
+    /**
+     * @brief ARP Broadcast flood group.
+     *
+     * Provides control on the set of vlan members on which ARP broadcast
+     * packets need to be flooded. This attribute would be used only when
+     * the SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE is set as
+     * SAI_VLAN_FLOOD_CONTROL_TYPE_L2MC_GROUP.When this attribute's value is
+     * SAI_NULL_OBJECT_ID, then flooding would be disabled.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_L2MC_GROUP
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     * @validonly SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE == SAI_VLAN_FLOOD_CONTROL_TYPE_L2MC_GROUP or SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE == SAI_VLAN_FLOOD_CONTROL_TYPE_COMBINED
+     */
+    SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_GROUP,
+
+    /**
+     * @brief MAC Trigger enable or disable control for VLAN
+     *
+     * MAC Trigger enable control for VLAN. Default is
+     * disabled
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_MAC_TRIGGER_ENABLE,
+
+    /**
+     * @brief Flapping detect for VLAN
+     *
+     * Flapping detect for VLAN. Default is
+     * enabled
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default true
+     */
+    SAI_VLAN_ATTR_CUSTOM_FLAPPING_DETECT,
+
+    /**
+     * @brief Flapping detect level for VLAN
+     *
+     * Flapping detect level for VLAN. Default is
+     * 10
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 10
+     */
+    SAI_VLAN_ATTR_CUSTOM_FLAPPING_DETECT_LEVEL,
+
+    /**
+     * @brief Enable/Disable Mirror session
+     *
+     * Enable egress mirroring by assigning list of mirror session object id as
+     * attribute value Disable egress mirroring by assigning object_count as 0
+     * in objlist.
+     *
+     * @type sai_object_list_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_MIRROR_SESSION
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_INGRESS_MIRROR_SESSION,
+
+    /**
+     * @brief Enable/Disable Mirror session
+     *
+     * Enable egress mirroring by assigning list of mirror session object id as
+     * attribute value Disable egress mirroring by assigning object_count as 0
+     * in objlist.
+     *
+     * @type sai_object_list_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_MIRROR_SESSION
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_EGRESS_MIRROR_SESSION,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_IPSG_ENABLE,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_IPSGV6_ENABLE,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_DAI_ENABLE,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_SAVI_ENABLE,
+
+    /**
+     * @brief IPSG trusted ports
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_IPSG_TRUST_PORTS,
+
+    /**
+     * @brief DAI trusted ports
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_DAI_TRUST_PORTS,
+
+    /**
+     * @brief IPSG v6 trusted ports
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_IPSGV6_TRUST_PORTS,
+
+    /**
+     * @brief SAVI trusted ports
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_SAVI_TRUST_PORTS,
+
+    /**
+     * @brief STP control for VLAN
+     *
+     * Ignore STP for VLAN. Default is
+     * disabled
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_IGNORE_MSTP_ENABLE,
+
+    /**
+     * @brief MLD Snooping enable or disable control for VLAN
+     *
+     * IGMP Snooping enable control for VLAN. Default is
+     * disabled
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_MLD_SNOOPING_ENABLE,
 
     /** End of custom range base */
     SAI_VLAN_ATTR_CUSTOM_RANGE_END

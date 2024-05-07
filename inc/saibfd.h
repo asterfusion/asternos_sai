@@ -129,6 +129,21 @@ typedef struct _sai_bfd_session_state_notification_t
     /** BFD session state */
     sai_bfd_session_state_t session_state;
 
+    /** BFD session remote parameters */
+    uint32_t remote_discriminator;
+
+    uint32_t desired_tx;
+
+    uint32_t required_rx;
+
+    uint32_t required_echo_rx;
+
+    uint32_t  detection_multiplier;
+
+    uint32_t  remote_flags;
+
+    uint32_t  diagnostics;
+
 } sai_bfd_session_state_notification_t;
 
 /**
@@ -508,6 +523,15 @@ typedef enum _sai_bfd_session_attr_t
 
     /** Custom range base value */
     SAI_BFD_SESSION_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief Router interface object id
+     *
+     * @type sai_object_id_t
+     * @flags MANDATORY_ON_CREATE | CREATE_ONLY
+     * @objects SAI_OBJECT_TYPE_ROUTER_INTERFACE
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_RIF,
 
     /** End of custom range base */
     SAI_BFD_SESSION_ATTR_CUSTOM_RANGE_END

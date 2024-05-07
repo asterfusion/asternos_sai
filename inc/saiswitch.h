@@ -134,7 +134,43 @@ typedef enum _sai_packet_action_t
     SAI_PACKET_ACTION_TRANSIT,
 
     /** Do not drop the packet. */
-    SAI_PACKET_ACTION_DONOTDROP
+    SAI_PACKET_ACTION_DONOTDROP,
+
+    /** Forward */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_NONE_E,
+
+    /** Drop */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_DROP_E,
+
+    /** Capture */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_CAPTURE_E,
+
+    /** Add time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_ADD_TIME_E,
+
+    /** Add corrected time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_ADD_CORRECTED_TIME_E,
+
+    /** Capture and add time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_CAPTURE_ADD_TIME_E,
+
+    /** Capture and add corrected time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_CAPTURE_ADD_CORRECTED_TIME_E,
+
+    /** Add ingress time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_ADD_INGRESS_TIME_E,
+
+    /** Capture ingress time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_CAPTURE_INGRESS_TIME_E,
+
+    /** Capture and add ingress time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_CAPTURE_ADD_INGRESS_TIME_E,
+
+    /** Add ingress & egress time */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_ADD_INGRESS_EGRESS_TIME_E,
+
+    /** @brief Action Type ALL, This Value is used for TSU counter configuration only. */
+    SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_ALL_E,
 
 } sai_packet_action_t;
 
@@ -3028,6 +3064,159 @@ typedef enum _sai_switch_attr_t
 
     /** Custom range base value */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief Get specification of FDB table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_FDB_TABLE_SIZE,
+
+    /**
+     * @brief Get real-time used FDB table entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_USED_FDB_ENTRIES,
+
+    /**
+     * @brief Get IPv4 host route table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV4_HOST_ROUTE_TABLE_SIZE,
+
+    /**
+     * @brief Get IPv6 host route table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV6_HOST_ROUTE_TABLE_SIZE,
+
+    /**
+     * @brief Get IPv4 host route used entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV4_HOST_ROUTE_USED_ENTRIES,
+
+    /**
+     * @brief Get IPv6 host route used entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV6_HOST_ROUTE_USED_ENTRIES,
+
+    /**
+     * @brief Get ARP table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_ARP_TABLE_SIZE,
+
+    /**
+     * @brief Get ARP used entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_ARP_USED_ENTRIES,
+
+    /**
+     * @brief Get IPv4 route table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV4_ROUTE_TABLE_SIZE,
+
+    /**
+     * @brief Get IPv4 route used entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV4_ROUTE_USED_ENTRIES,
+
+    /**
+     * @brief Get IPv6 route table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_TABLE_SIZE,
+
+    /**
+     * @brief Get IPv6 route used entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_USED_ENTRIES,
+
+    /**
+     * @brief Get next hop table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_TABLE_SIZE,
+
+    /**
+     * @brief Get next hop used entries
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_USED_ENTRIES,
+
+    /**
+     * @brief Enable ND MAC CHECK function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_SWITCH_ATTR_ND_MAC_CHECK_ENABLE,
+
+    /**
+     * @brief DHCP snooping entry
+     *
+     * Byte0 update/delete
+     * Byte1-2 VLAN ID
+     * Byte3-8 source MAC
+     * Byte9-12 source IP
+     * Byte13 interface ID
+     * Byte14 local flag
+     *
+     * @type sai_u8_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY,
+
+    /**
+     * @brief DHCP IPv6 snooping entry
+     *
+     * Byte0 update/delete
+     * Byte1-2 VLAN ID
+     * Byte3-8 source MAC
+     * Byte9-24 source IP
+     * Byte25 interface ID
+     * Byte26 local flag
+     *
+     * @type sai_u8_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY,
 
     /** End of custom range base */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_END

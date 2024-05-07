@@ -7,11 +7,13 @@ API - Application Program Interface
 ARP - Address Resolution Protocol
 ARS - Adaptiver Routing and Switching
 ASIC - Application Specific Integrated Circuit
+BC - Boundary Clock
 BFD - Bidirectional Forwarding Detection
 BFDV6 - Bidirectional Forwarding Detection for IPv6
 BGP - Border Gateway Protocol
 BMTOR - Behavioral Model Top-of-Rack
 BOS - Bottom Of Stack
+BPDU - Bridge Protocol Data Unit
 BW - Bandwidth
 CAM - Content Addressable Memory
 CAUI - 100 Gigabit Attachment Unit Interface
@@ -22,9 +24,11 @@ CFI - Canonical Format Indicator
 CIDR - Classless Inter Domain Routing
 CIR - Committed Information Rate
 CMIS - Common Management Interface Specification
+COPP - Control Plane Policing
 CPLD - Complex programmable logic device
 CPU - Central Processing Unit
 CRC - Cyclic Redundancy Code
+DAI - test
 DHCP - Dynamic Host Configuration Protocol
 DHCPV6 - Dynamic Host Configuration Protocol for IPv6
 DLD - Dead Lock Detection
@@ -55,6 +59,7 @@ FPGA - Field Programmable Gate Array
 FW  - Firmware
 GCM - Galois Counter Mode
 GENETLINK - Generic Nelink
+GIGA - test
 GMII - Gigabit Media-Independent Interface
 GNMI - gRPC Network Management Interface
 GPB - Google Protocol Buffers
@@ -65,6 +70,7 @@ HTTPCLIENT - Hyper Text Transfer Protocol Client
 HTTPSERVER - Hyper Text Transfer Protocol Server
 HW - Hardware
 I2C - Inter Integrated Circuit
+ICCP - Inter-Control Center Communications Protocol)
 ICMP - Internet Control Message Protocol
 ICMPV6 - Internet Control Message Protocol for IPv6
 IEEE - Institute of Electrical and Electronics Engineers
@@ -79,6 +85,7 @@ IP2ME - IP packets to local router IP
 IPFIX - IP Flow Information Export
 IPG - Inter-Packet Gap
 IPMC - Intelligent Platform Management Controller
+IPSG - test
 L2 - Layer 2
 L2MC - Layer 2 Multi Cast
 L3 - Layer 3
@@ -90,6 +97,7 @@ MAC - Medium Access Control
 MDIO - Management Data Input/Output
 MDIX - Medium Dependent Interface Crossover
 MILLI - milli (1/1000)
+MLD  - Multicast Listener Discover
 MMU - Memory Management Unit
 MPLS - Multi Protocol Label Switching
 MTU - Maximum Transmission Unit
@@ -102,6 +110,7 @@ NTPCLIENT - Network Time Protocol Client
 NTPSERVER - Network Time Protocol Server
 NVGRE - Network Virtualization using Generic Routing Encapsulation
 OAM - Operations Administration and Maintenance
+OC - Ordinary Clock
 OUI - Organizationally Unique Identifier
 P4RT - Programming Protocol-independent Packet Processors Runtime
 PAM4 - Pulse Amplitude Modulation 4-level
@@ -131,6 +140,7 @@ RSPAN - Remote Span
 SA - Secure Association
 SAI - Switch Abstraction Interface
 SAK - Secure Association Key
+SAVI - test
 SC - Secure Channel
 SCI - Secure Channel Identifier
 SDK - Software Development Kit
@@ -141,6 +151,7 @@ SGMII - Serial Gigabit Media Independent Interface
 SNAPT - Source Network Address Port Translation
 SNAT - Source Network Address Translation
 SNMP - Simple Network Management Protocol
+SNP - test
 SNR - Signal to Noise Ratio
 SPAN - Switched Port Analyzer
 SPI - Security Parameter Index
@@ -151,18 +162,22 @@ SSCI - Short Secure Channel Identifier
 SSH - Secure Shell
 SSL - Secure Socket Layer
 STP - Spanning Tree Protocol
+SYNCE - Synchronous Ethernet
 TC - Traffic Control
 TCAM - Ternary Content Addressable Memory
 TCP - Transmission Control Protocol
 TEK - Traffic Encryption Key
+TFTP - test
 TLS - Transport Layer Security
 TOS - Type Of Service
 TPID - Tag Protocol Identifier
+TSU - TimeStamp Unit
 TTL - Time to Leave
 TWAMP - Two-Way Active Measurement Protocol
 UART - Universal Asynchronous Receiver/Transmitter
 UDF - User-Defined Field
 UDP - User Datagram Protocol
+URPF - test
 USD - Ultimate Segment Decapsulation
 USP - Ultimate Segment Pop
 USXGMII - Universal Serial 10 Gigabit Media Independent Interface

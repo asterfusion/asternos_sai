@@ -211,6 +211,21 @@ typedef enum _sai_lag_attr_t
     /** Custom range base value */
     SAI_LAG_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Custom isolation group id for LAG
+     *
+     * Packets ingressing on the LAG should not be forwarded to the
+     * members present in the isolation group.The isolation group type
+     * should be SAI_ISOLATION_GROUP_TYPE_PORT.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_ISOLATION_GROUP
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_LAG_ATTR_CUSTOM_ISOLATION_GROUP,
+
     /** End of custom range base */
     SAI_LAG_ATTR_CUSTOM_RANGE_END
 

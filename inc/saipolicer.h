@@ -217,6 +217,42 @@ typedef enum _sai_policer_attr_t
     /** Custom range base value */
     SAI_POLICER_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief QOS Profile index
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_POLICER_ATTR_CUSTOM_QOS_PROFILE,
+
+    /**
+     * @brief Remark Dot1p
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_POLICER_ATTR_CUSTOM_REMARK_DOT1P,
+
+    /**
+     * @brief Remark DSCP
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_POLICER_ATTR_CUSTOM_REMARK_DSCP,
+
+    /**
+     * @brief Remark Traffic Class
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_POLICER_ATTR_CUSTOM_REMARK_TC,
+
     /** End of custom range base */
     SAI_POLICER_ATTR_CUSTOM_RANGE_END
 

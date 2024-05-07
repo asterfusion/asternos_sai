@@ -782,6 +782,81 @@ typedef enum _sai_tunnel_attr_t
     /** Custom range base value */
     SAI_TUNNEL_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Custom isolation group for tunnel
+     *
+     * Packets ingressing on the tunnel should not be forwarded to the
+     * members present in the isolation group.The isolation group type
+     * should be SAI_ISOLATION_GROUP_TYPE_PORT.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_ISOLATION_GROUP
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_TUNNEL_ATTR_CUSTOM_ISOLATION_GROUP = SAI_TUNNEL_ATTR_CUSTOM_RANGE_START,
+
+    /**
+     * @brief Custom egress ACL for tunnel
+     *
+     * Bind (or unbind) an egress ACL tables or ACL groups on a tunnel. Enable/Update
+     * egress ACL table or ACL group filtering by assigning the list of valid
+     * object id. Disable egress filtering by assigning SAI_NULL_OBJECT_ID
+     * in the attribute value.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_ACL_TABLE, SAI_OBJECT_TYPE_ACL_TABLE_GROUP
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_TUNNEL_ATTR_CUSTOM_EGRESS_ACL,
+
+    /**
+     * @brief Custom ingress ACL for tunnel
+     *
+     * Bind (or unbind) an ingress ACL table or ACL group on a tunnel. Enable/Update
+     * ingress ACL table or ACL group filtering by assigning the list of valid
+     * object id. Disable ingress filtering by assigning SAI_NULL_OBJECT_ID
+     * in the attribute value.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_ACL_TABLE, SAI_OBJECT_TYPE_ACL_TABLE_GROUP
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_TUNNEL_ATTR_CUSTOM_INGRESS_ACL,
+
+    /**
+     * @brief Enable/Disable Mirror session
+     *
+     * Enable egress mirroring by assigning list of mirror session object id as
+     * attribute value Disable egress mirroring by assigning object_count as 0
+     * in objlist.
+     *
+     * @type sai_object_list_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_MIRROR_SESSION
+     * @default empty
+     */
+    SAI_TUNNEL_ATTR_CUSTOM_EGRESS_MIRROR_SESSION,
+
+    /**
+     * @brief Enable/Disable Mirror session
+     *
+     * Enable ingress mirroring by assigning list of mirror session object id as
+     * attribute value Disable egress mirroring by assigning object_count as 0
+     * in objlist.
+     *
+     * @type sai_object_list_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_MIRROR_SESSION
+     * @default empty
+     */
+    SAI_TUNNEL_ATTR_CUSTOM_INGRESS_MIRROR_SESSION,
+
     /** End of custom range base */
     SAI_TUNNEL_ATTR_CUSTOM_RANGE_END
 

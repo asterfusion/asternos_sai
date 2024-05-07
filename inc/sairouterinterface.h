@@ -62,6 +62,21 @@ typedef enum _sai_router_interface_type_t
 } sai_router_interface_type_t;
 
 /**
+ * @brief Attribute data for #SAI_ROUTER_INTERFACE_ATTR_CUSTOM_URPF_MODE
+ */
+typedef enum _sai_router_interface_urpf_mode_t
+{
+    /** Disable URPF */
+    SAI_ROUTER_INTERFACE_URPF_MODE_DISABLE_E,
+
+    /** URPF strict mode */
+    SAI_ROUTER_INTERFACE_URPF_MODE_STRICT_E,
+
+    /** URPF loose mode */
+    SAI_ROUTER_INTERFACE_URPF_MODE_LOOSE_E
+} sai_router_interface_urpf_mode_t;
+
+/**
  * @brief Routing interface attribute IDs
  */
 typedef enum _sai_router_interface_attr_t
@@ -301,6 +316,15 @@ typedef enum _sai_router_interface_attr_t
 
     /** Custom range base value */
     SAI_ROUTER_INTERFACE_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief URPF mode for RIF
+     *
+     * @type sai_router_interface_urpf_mode_t
+     * @flags CREATE_AND_SET
+     * @default SAI_ROUTER_INTERFACE_URPF_MODE_DISABLE_E
+     */
+    SAI_ROUTER_INTERFACE_ATTR_CUSTOM_URPF_MODE = SAI_ROUTER_INTERFACE_ATTR_CUSTOM_RANGE_START,
 
     /** End of custom range base */
     SAI_ROUTER_INTERFACE_ATTR_CUSTOM_RANGE_END

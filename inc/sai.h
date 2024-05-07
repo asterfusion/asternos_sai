@@ -80,6 +80,9 @@
 #include "saitwamp.h"
 #include "saiversion.h"
 #include "saipoe.h"
+#include "saivlanstack.h"
+#include "saiobjectgroup.h"
+#include "saiptp.h"
 
 /**
  * @defgroup SAI SAI - Entry point specific API definitions.
@@ -148,6 +151,9 @@ typedef enum _sai_api_t
     SAI_API_ARS_PROFILE      = 49, /**<sai_ars_api_profile_t */
     SAI_API_TWAMP            = 50, /**< sai_twamp_api_t */
     SAI_API_POE              = 51, /**< sai_poe_api_t */
+    SAI_API_VLAN_STACK       = 52, /**< sai_vlan_stack_api_t */
+    SAI_API_OBJECT_GROUP     = 53, /**< sai_object_group_api_t */
+    SAI_API_PTP              = 54, /**< sai_ptp_api_t */
     SAI_API_MAX,                   /**< total number of APIs */
 
     /** Custom range base value */

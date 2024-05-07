@@ -116,6 +116,15 @@ typedef enum _sai_l2mc_group_member_attr_t
     /** Custom range base value */
     SAI_L2MC_GROUP_MEMBER_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief L2MC output vlan id
+     *
+     * @type sai_object_id_t
+     * @flags MANDATORY_ON_CREATE | CREATE_ONLY
+     * @objects SAI_OBJECT_TYPE_VLAN
+     */
+    SAI_L2MC_GROUP_MEMBER_ATTR_CUSTOM_L2MC_VLAN_ID,
+
     /** End of custom range base */
     SAI_L2MC_GROUP_MEMBER_ATTR_CUSTOM_RANGE_END
 

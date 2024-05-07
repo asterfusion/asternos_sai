@@ -314,6 +314,19 @@ typedef enum _sai_port_ptp_mode_t
 } sai_port_ptp_mode_t;
 
 /**
+ * @brief SYNCE mode
+ */
+typedef enum _sai_port_synce_mode_t
+{
+    /** Slave port mode */
+    SAI_PORT_SYNCE_MODE_SLAVE = 0,
+
+    /** Master port mode */
+    SAI_PORT_SYNCE_MODE_MASTER,
+
+} sai_port_synce_mode_t;
+
+/**
  * @brief Attribute data for #SAI_PORT_ATTR_INTERFACE_TYPE
  * Used for selecting electrical interface with specific electrical pin and signal quality
  */
@@ -2525,10 +2538,349 @@ typedef enum _sai_port_attr_t
     /** Custom range base value */
     SAI_PORT_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Bypass incoming tunnel packets
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_BY_PASS_TUNNEL_VIF,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_IPSG_ENABLE,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_IPSGV6_ENABLE,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_DAI_ENABLE,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_SAVI_ENABLE,
+
+    /**
+     * @brief Flapping Action.
+     *
+     * Flapping Action
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_FLAPPING_ACTION,
+
+    /**
+     * @brief Flapping Delay Time.
+     *
+     * Flapping Delay Time
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_FLAPPING_DELAY_TIME,
+
+    /**
+     * @brief Flapping Auto Recovery.
+     *
+     * Flapping Auto Recovery
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_FLAPPING_AUTO_RECOVERY,
+
+    /**
+     * @brief Learning priority
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_MAC_LEARNING_PRIORITY,
+
+    /**
+     * @brief Allow flapping group
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_ALLOW_FLAPPING_GROUP,
+
+    /**
+     * @brief Attach/Detach egress policer to port
+     *
+     * Set egress policer id = #SAI_NULL_OBJECT_ID to disable policer on port.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_POLICER
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_PORT_ATTR_CUSTOM_EGRESS_POLICER_ID,
+
+    /**
+     * @brief Set router advertisement guard role to port
+     *
+     * @type sai_uint8_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_RAGUARD_ROLE,
+
+    /**
+     * @brief Unknown unicast flood control type
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_UNKNOWN_UNICAST_FLOOD_PACKET_ACTION,
+
+    /**
+     * @brief Unknown multicast flood control type
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_UNKNOWN_MULTICAST_FLOOD_PACKET_ACTION,
+
+    /**
+     * @brief Broadcast flood control type
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_BROADCAST_FLOOD_PACKET_ACTION,
+
+    /**
+     * @brief IGMP Snooping enable or disable control for PORT
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_IGMP_SNOOPING_ENABLE,
+
+    /**
+     * @brief BPDU trap enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default true
+     */
+    SAI_PORT_ATTR_CUSTOM_BPDU_PACKET_TRAP_ENABLE,
+
+    /**
+     * @brief AC5x led mod for POE & non-POE
+     *
+     * @type sai_port_led_mode_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PORT_LED_MODE_DEFAULT
+     */
+    SAI_PORT_ATTR_CUSTOM_LED_MODE,
+
+    /**
+     * @brief Basic enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_BASIC_QINQ_ENABLE,
+
+    /**
+     * @brief MLD Snooping enable or disable control for PORT
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_MLD_SNOOPING_ENABLE,
+
+    /**
+     * @brief Attach/Detach PTP domain entry
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_DOMAIN_ENTRY,
+
+    /**
+     * @brief Set PTP ingress delay
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_INGRESS_DELAY,
+
+    /**
+     * @brief Set PTP egress delay
+     *
+     * @type sai_uint64_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_EGRESS_DELAY,
+
+    /**
+     * @brief PTP announce packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_ANNOUNCE_PACKET_ACTION,
+
+    /**
+     * @brief PTP Sync packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_SYNC_PACKET_ACTION,
+
+    /**
+     * @brief PTP delay request packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_DELAY_REQUEST_PACKET_ACTION,
+
+    /**
+     * @brief PTP delay response packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_DELAY_RESPONSE_PACKET_ACTION,
+
+    /**
+     * @brief PTP peer delay request packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_PDELAY_REQUEST_PACKET_ACTION,
+
+    /**
+     * @brief PTP peer delay response packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_PDELAY_RESPONSE_PACKET_ACTION,
+
+    /**
+     * @brief PTP follow up packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_FOLLOW_UP_PACKET_ACTION,
+
+    /**
+     * @brief PTP peer delay response follow up packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_PDELAY_RESPONSE_FOLLOW_UP_PACKET_ACTION,
+
+    /**
+     * @brief PTP signaling packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_SIGNALING_PACKET_ACTION,
+
+    /**
+     * @brief PTP management packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_PTP_MANMGEMENT_PACKET_ACTION,
+
+    /**
+     * @brief SYNCE enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_SYNCE_ENABLE,
+
+    /**
+     * @brief SYNCE mode
+     *
+     * @type sai_port_synce_mode_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PORT_SYNCE_MODE_SLAVE
+     */
+    SAI_PORT_ATTR_CUSTOM_SYNCE_MODE,
+
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END
 
 } sai_port_attr_t;
+
+typedef enum _sai_port_led_mode_t
+{
+    /** LED depends on GIGA */
+    SAI_PORT_LED_MODE_DEFAULT,
+
+    /** LED on (for POE) */
+    SAI_PORT_LED_MODE_FORCE_ON,
+
+    /** LED off (for POE) */
+    SAI_PORT_LED_MODE_FORCE_OFF
+} sai_port_led_mode_t;
 
 /**
  * @brief Port counter IDs in sai_get_port_stats() call
@@ -3191,6 +3543,18 @@ typedef enum _sai_port_stat_t
 
     /** Count of total bits corrected by FEC. Counter will increment monotonically. */
     SAI_PORT_STAT_IF_IN_FEC_CORRECTED_BITS,
+
+    /** SAI port stat ARP in receives */
+    SAI_PORT_STAT_ARP_IN_RECEIVES,
+
+    /** SAI port stat ARP in octets */
+    SAI_PORT_STAT_ARP_IN_OCTETS,
+
+    /** SAI port stat ARP out packets */
+    SAI_PORT_STAT_ARP_OUT_PKTS,
+
+    /** SAI port stat ARP out octets */
+    SAI_PORT_STAT_ARP_OUT_OCTETS,
 
     /** Port stat in drop reasons range start */
     SAI_PORT_STAT_IN_DROP_REASON_RANGE_BASE = 0x00001000,

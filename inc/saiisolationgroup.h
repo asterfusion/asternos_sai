@@ -112,7 +112,7 @@ typedef enum _sai_isolation_group_member_attr_t
      *
      * @type sai_object_id_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
-     * @objects SAI_OBJECT_TYPE_PORT, SAI_OBJECT_TYPE_BRIDGE_PORT
+     * @objects SAI_OBJECT_TYPE_PORT, SAI_OBJECT_TYPE_BRIDGE_PORT, SAI_OBJECT_TYPE_LAG
      */
     SAI_ISOLATION_GROUP_MEMBER_ATTR_ISOLATION_OBJECT,
 

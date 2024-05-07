@@ -298,6 +298,10 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_POE_DEVICE               = 108,
     SAI_OBJECT_TYPE_POE_PSE                  = 109,
     SAI_OBJECT_TYPE_POE_PORT                 = 110,
+    SAI_OBJECT_TYPE_VLAN_STACK               = 111,
+    SAI_OBJECT_TYPE_OBJECT_GROUP             = 112,
+    SAI_OBJECT_TYPE_PTP_CLOCK                = 113,
+    SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY         = 114,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,

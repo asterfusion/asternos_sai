@@ -3234,6 +3234,25 @@ typedef enum _sai_acl_entry_attr_t
     /** Custom range base value */
     SAI_ACL_ENTRY_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Set Action stop
+     *
+     * @type sai_acl_action_data_t bool
+     * @flags CREATE_AND_SET
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_CUSTOM_ACTION_STOP,
+
+    /**
+     * @brief Redirect flood and to group
+     *
+     * @type sai_acl_action_data_t sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_OBJECT_GROUP
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_CUSTOM_ACTION_REDIRECT_FLOOD_AND_TO_GROUP,
+
     /** End of custom range base */
     SAI_ACL_ENTRY_ATTR_CUSTOM_RANGE_END
 
