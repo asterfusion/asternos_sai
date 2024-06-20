@@ -136,6 +136,9 @@ typedef enum _sai_packet_action_t
     /** Do not drop the packet. */
     SAI_PACKET_ACTION_DONOTDROP,
 
+    /** Remark Packet priority and FORWARD. */
+    SAI_PACKET_ACTION_REMARK,
+
     /** Forward */
     SAI_PACKET_ACTION_CUSTOM_PTP_TS_ACTION_NONE_E,
 
