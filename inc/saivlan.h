@@ -413,33 +413,6 @@ typedef enum _sai_vlan_attr_t
     SAI_VLAN_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
     /**
-     * @brief ARP Broadcast flood control type
-     *
-     * @type sai_vlan_flood_control_type_t
-     * @flags CREATE_AND_SET
-     * @default SAI_VLAN_FLOOD_CONTROL_TYPE_ALL
-     */
-    SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE,
-
-    /**
-     * @brief ARP Broadcast flood group.
-     *
-     * Provides control on the set of vlan members on which ARP broadcast
-     * packets need to be flooded. This attribute would be used only when
-     * the SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE is set as
-     * SAI_VLAN_FLOOD_CONTROL_TYPE_L2MC_GROUP.When this attribute's value is
-     * SAI_NULL_OBJECT_ID, then flooding would be disabled.
-     *
-     * @type sai_object_id_t
-     * @flags CREATE_AND_SET
-     * @objects SAI_OBJECT_TYPE_L2MC_GROUP
-     * @allownull true
-     * @default SAI_NULL_OBJECT_ID
-     * @validonly SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE == SAI_VLAN_FLOOD_CONTROL_TYPE_L2MC_GROUP or SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_CONTROL_TYPE == SAI_VLAN_FLOOD_CONTROL_TYPE_COMBINED
-     */
-    SAI_VLAN_ATTR_CUSTOM_ARP_BROADCAST_FLOOD_GROUP,
-
-    /**
      * @brief MAC Trigger enable or disable control for VLAN
      *
      * MAC Trigger enable control for VLAN. Default is
@@ -450,30 +423,6 @@ typedef enum _sai_vlan_attr_t
      * @default false
      */
     SAI_VLAN_ATTR_CUSTOM_MAC_TRIGGER_ENABLE,
-
-    /**
-     * @brief Flapping detect for VLAN
-     *
-     * Flapping detect for VLAN. Default is
-     * enabled
-     *
-     * @type bool
-     * @flags CREATE_AND_SET
-     * @default true
-     */
-    SAI_VLAN_ATTR_CUSTOM_FLAPPING_DETECT,
-
-    /**
-     * @brief Flapping detect level for VLAN
-     *
-     * Flapping detect level for VLAN. Default is
-     * 10
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 10
-     */
-    SAI_VLAN_ATTR_CUSTOM_FLAPPING_DETECT_LEVEL,
 
     /**
      * @brief Enable/Disable Mirror session

@@ -2539,15 +2539,6 @@ typedef enum _sai_port_attr_t
     SAI_PORT_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
     /**
-     * @brief Bypass incoming tunnel packets
-     *
-     * @type bool
-     * @flags CREATE_AND_SET
-     * @default false
-     */
-    SAI_PORT_ATTR_CUSTOM_BY_PASS_TUNNEL_VIF,
-
-    /**
      * @brief Enable/Disable function
      *
      * @type bool
@@ -2582,57 +2573,6 @@ typedef enum _sai_port_attr_t
      * @default false
      */
     SAI_PORT_ATTR_CUSTOM_SAVI_ENABLE,
-
-    /**
-     * @brief Flapping Action.
-     *
-     * Flapping Action
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_PORT_ATTR_CUSTOM_FLAPPING_ACTION,
-
-    /**
-     * @brief Flapping Delay Time.
-     *
-     * Flapping Delay Time
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_PORT_ATTR_CUSTOM_FLAPPING_DELAY_TIME,
-
-    /**
-     * @brief Flapping Auto Recovery.
-     *
-     * Flapping Auto Recovery
-     *
-     * @type bool
-     * @flags CREATE_AND_SET
-     * @default false
-     */
-    SAI_PORT_ATTR_CUSTOM_FLAPPING_AUTO_RECOVERY,
-
-    /**
-     * @brief Learning priority
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_PORT_ATTR_CUSTOM_MAC_LEARNING_PRIORITY,
-
-    /**
-     * @brief Allow flapping group
-     *
-     * @type sai_uint32_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_PORT_ATTR_CUSTOM_ALLOW_FLAPPING_GROUP,
 
     /**
      * @brief Attach/Detach egress policer to port

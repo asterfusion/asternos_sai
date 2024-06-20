@@ -267,22 +267,10 @@ typedef enum _sai_hostif_trap_type_t
     SAI_HOSTIF_TRAP_TYPE_CUSTOM_SNP = 0x00001002,
 
     /**
-     * @brief COPP for TFTP
-     * (default packet action is trap)
-     */
-    SAI_HOSTIF_TRAP_TYPE_CUSTOM_TFTP = 0x00001003,
-
-    /**
      * @brief COPP for TELNET
      * (default packet action is trap)
      */
     SAI_HOSTIF_TRAP_TYPE_CUSTOM_TELNET = 0x00001004,
-
-    /**
-     * @brief COPP for FTP
-     * (default packet action is trap)
-     */
-    SAI_HOSTIF_TRAP_TYPE_CUSTOM_FTP = 0x00001005,
 
     /**
      * @brief COPP for ICMP echo
