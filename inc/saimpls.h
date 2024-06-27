@@ -81,6 +81,8 @@ typedef enum _sai_inseg_entry_pop_qos_mode_t
 
 /**
  * @brief Attribute Id for SAI in segment
+ *
+ * @flags ranges
  */
 typedef enum _sai_inseg_entry_attr_t
 {
@@ -219,6 +221,15 @@ typedef enum _sai_inseg_entry_attr_t
 
     /** Custom range base value */
     SAI_INSEG_ENTRY_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief Packets stats
+     *
+     * @type sai_uint64_t
+     * @flags READ_ONLY
+     * @default 0
+     */
+    SAI_INSEG_ENTRY_ATTR_CUSTOM_STAT_PACKETS = SAI_INSEG_ENTRY_ATTR_CUSTOM_RANGE_START,
 
     /** End of custom range base */
     SAI_INSEG_ENTRY_ATTR_CUSTOM_RANGE_END
