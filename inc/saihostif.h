@@ -543,6 +543,12 @@ typedef enum _sai_hostif_trap_type_t
     SAI_HOSTIF_TRAP_TYPE_CUSTOM_EXCEPTION_RANGE_BASE = 0x00009000,
 
     /**
+     * @brief COPP for LBDT
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_LBDT = 0x00009007,
+
+    /**
      * @brief End of trap types
      */
     SAI_HOSTIF_TRAP_TYPE_END = 0x0000a000

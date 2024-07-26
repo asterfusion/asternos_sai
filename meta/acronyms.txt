@@ -92,6 +92,7 @@ L2MC - Layer 2 Multi Cast
 L2VPN - Layer 2 Virtual Private Network
 L3 - Layer 3
 LAG - Link Aggregation Group
+LBDT - Loopback Detection
 LDP - Label Distribution Protocol
 LPM - Longest Prefix Match
 LSP - Label Switched Path
