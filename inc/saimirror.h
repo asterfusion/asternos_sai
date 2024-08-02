@@ -79,6 +79,8 @@ typedef enum _sai_mirror_session_congestion_mode_t
 
 /**
  * @brief SAI attributes for mirror session
+ *
+ * @flags Contains flags
  */
 typedef enum _sai_mirror_session_attr_t
 {
@@ -225,8 +227,9 @@ typedef enum _sai_mirror_session_attr_t
      * @brief Tunnel IP header version
      *
      * @type sai_uint8_t
-     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
-     * @condition SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
+     * @flags CREATE_AND_SET
+     * @default 4
+     * @validonly SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
      */
     SAI_MIRROR_SESSION_ATTR_IPHDR_VERSION,
 
@@ -234,8 +237,9 @@ typedef enum _sai_mirror_session_attr_t
      * @brief Tunnel header TOS
      *
      * @type sai_uint8_t
-     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
-     * @condition SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
+     * @flags CREATE_AND_SET
+     * @default 0
+     * @validonly SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
      */
     SAI_MIRROR_SESSION_ATTR_TOS,
 
@@ -270,8 +274,9 @@ typedef enum _sai_mirror_session_attr_t
      * @brief L2 source MAC address
      *
      * @type sai_mac_t
-     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
-     * @condition SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
+     * @flags CREATE_AND_SET
+     * @default vendor
+     * @validonly SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
      */
     SAI_MIRROR_SESSION_ATTR_SRC_MAC_ADDRESS,
 
@@ -279,8 +284,9 @@ typedef enum _sai_mirror_session_attr_t
      * @brief L2 destination MAC address
      *
      * @type sai_mac_t
-     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
-     * @condition SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
+     * @flags CREATE_AND_SET
+     * @default vendor
+     * @validonly SAI_MIRROR_SESSION_ATTR_TYPE == SAI_MIRROR_SESSION_TYPE_ENHANCED_REMOTE
      */
     SAI_MIRROR_SESSION_ATTR_DST_MAC_ADDRESS,
 
@@ -369,6 +375,26 @@ typedef enum _sai_mirror_session_attr_t
 
     /** Custom range base value */
     SAI_MIRROR_SESSION_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief Virtual Router
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_VIRTUAL_ROUTER
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_MIRROR_SESSION_ATTR_CUSTOM_VIRTUAL_ROUTER,
+
+    /**
+     * @brief Hardware lookup valid
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default true
+     */
+    SAI_MIRROR_SESSION_ATTR_CUSTOM_HW_LOOKUP_VALID,
 
     /** End of custom range base */
     SAI_MIRROR_SESSION_ATTR_CUSTOM_RANGE_END
