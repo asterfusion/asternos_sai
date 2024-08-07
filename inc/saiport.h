@@ -2608,6 +2608,15 @@ typedef enum _sai_port_attr_t
     SAI_PORT_ATTR_CUSTOM_RAGUARD_ROLE,
 
     /**
+     * @brief Set DHCP packet action to port
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_FORWARD
+     */
+    SAI_PORT_ATTR_CUSTOM_DHCP_PACKET_ACTION,
+
+    /**
      * @brief Unknown unicast flood control type
      *
      * @type sai_packet_action_t
