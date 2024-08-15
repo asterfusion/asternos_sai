@@ -548,6 +548,24 @@ typedef enum _sai_vlan_attr_t
      */
     SAI_VLAN_ATTR_CUSTOM_MLD_SNOOPING_ENABLE,
 
+    /**
+     * @brief List of vlan members in a VLAN
+     *
+     * @type sai_u8_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_CREATE_PORTS,
+
+    /**
+     * @brief List of vlan members in a VLAN
+     *
+     * @type sai_u8_list_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_VLAN_ATTR_CUSTOM_REMOVE_PORTS,
+
     /** End of custom range base */
     SAI_VLAN_ATTR_CUSTOM_RANGE_END
 
