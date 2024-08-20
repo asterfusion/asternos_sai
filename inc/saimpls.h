@@ -123,7 +123,7 @@ typedef enum _sai_inseg_entry_attr_t
      *
      * @type sai_object_id_t
      * @flags CREATE_AND_SET
-     * @objects SAI_OBJECT_TYPE_NEXT_HOP, SAI_OBJECT_TYPE_NEXT_HOP_GROUP, SAI_OBJECT_TYPE_ROUTER_INTERFACE
+     * @objects SAI_OBJECT_TYPE_NEXT_HOP, SAI_OBJECT_TYPE_NEXT_HOP_GROUP, SAI_OBJECT_TYPE_ROUTER_INTERFACE, SAI_OBJECT_TYPE_VIRTUAL_ROUTER
      * @allownull true
      * @default SAI_NULL_OBJECT_ID
      */
