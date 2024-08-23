@@ -3221,6 +3221,15 @@ typedef enum _sai_switch_attr_t
      */
     SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY,
 
+    /**
+     * @brief Selected SYNCE port
+     *
+     * @type sai_object_id_t
+     * @flags READ_ONLY
+     * @default empty
+     */
+    SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT,
+
     /** End of custom range base */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_END
 

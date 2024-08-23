@@ -321,11 +321,11 @@ typedef enum _sai_port_ptp_mode_t
  */
 typedef enum _sai_port_synce_mode_t
 {
-    /** Slave port mode */
-    SAI_PORT_SYNCE_MODE_SLAVE = 0,
-
     /** Master port mode */
-    SAI_PORT_SYNCE_MODE_MASTER,
+    SAI_PORT_SYNCE_MODE_MASTER = 0,
+
+    /** Slave port mode */
+    SAI_PORT_SYNCE_MODE_SLAVE,
 
 } sai_port_synce_mode_t;
 
@@ -2804,9 +2804,18 @@ typedef enum _sai_port_attr_t
      *
      * @type sai_port_synce_mode_t
      * @flags CREATE_AND_SET
-     * @default SAI_PORT_SYNCE_MODE_SLAVE
+     * @default SAI_PORT_SYNCE_MODE_MASTER
      */
     SAI_PORT_ATTR_CUSTOM_SYNCE_MODE,
+
+    /**
+     * @brief SYNCE priority
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0xFFFF
+     */
+    SAI_PORT_ATTR_CUSTOM_SYNCE_PRIORITY,
 
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END
