@@ -112,7 +112,7 @@ typedef enum _sai_ptp_clock_attr_t
      * @brief PTP packet transport mode
      *
      * @type sai_ptp_clock_transport_mode_t
-     * @flags MANDATORY_ON_CREATE | CREATE_ONLY
+     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
      */
     SAI_PTP_CLOCK_ATTR_TRANSPORT_MODE = SAI_PTP_CLOCK_ATTR_START,
 
