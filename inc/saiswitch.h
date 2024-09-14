@@ -3226,6 +3226,7 @@ typedef enum _sai_switch_attr_t
      *
      * @type sai_object_id_t
      * @flags READ_ONLY
+     * @allownull true
      * @default empty
      */
     SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT,
