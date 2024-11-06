@@ -81,9 +81,27 @@ typedef enum _sai_tunnel_map_type_t
     SAI_TUNNEL_MAP_TYPE_PREFIX_AGG_ID_TO_SRV6_VPN_SID = 0x0000000d,
 
     /** Custom range base value */
-    SAI_TUNNEL_MAP_TYPE_CUSTOM_RANGE_BASE = 0x10000000
+    SAI_TUNNEL_MAP_TYPE_CUSTOM_RANGE_BASE = 0x10000000,
+
+    /** TUNNEL Map for MPLS L2VPN remote label */
+    SAI_TUNNEL_MAP_TYPE_CUSTOM_REMOTE_LABEL,
+
+    /** TUNNEL Map for MPLS L2VPN local label */
+    SAI_TUNNEL_MAP_TYPE_CUSTOM_LOCAL_LABEL,
 
 } sai_tunnel_map_type_t;
+
+/**
+ * @brief Enum defining tunnel map entry MPLS types.
+ */
+typedef enum _sai_tunnel_mpls_type_t
+{
+    /** MPLS VPLS */
+    SAI_TUNNEL_MPLS_TYPE_VPLS,
+
+    /** MPLS VPWS */
+    SAI_TUNNEL_MPLS_TYPE_VPWS
+} sai_tunnel_mpls_type_t;
 
 typedef enum _sai_tunnel_map_entry_attr_t
 {
@@ -266,6 +284,50 @@ typedef enum _sai_tunnel_map_entry_attr_t
 
     /** Custom range base value */
     SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief MPLS Label value
+     *
+     * @type sai_uint32_t
+     * @flags MANDATORY_ON_CREATE | CREATE_ONLY
+     * @condition SAI_TUNNEL_MAP_ENTRY_ATTR_TUNNEL_MAP_TYPE == SAI_TUNNEL_MAP_TYPE_CUSTOM_REMOTE_LABEL or SAI_TUNNEL_MAP_ENTRY_ATTR_TUNNEL_MAP_TYPE == SAI_TUNNEL_MAP_TYPE_CUSTOM_LOCAL_LABEL
+     */
+    SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_MPLS_LABEL_VALUE,
+
+    /**
+     * @brief MPLS destination IP
+     *
+     * @type sai_ip_address_t
+     * @flags MANDATORY_ON_CREATE | CREATE_ONLY
+     * @condition SAI_TUNNEL_MAP_ENTRY_ATTR_TUNNEL_MAP_TYPE == SAI_TUNNEL_MAP_TYPE_CUSTOM_REMOTE_LABEL
+     */
+    SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_MPLS_DST_IP,
+
+    /**
+     * @brief MPLS AC Interface
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_ONLY
+     * @objects SAI_OBJECT_TYPE_PORT, SAI_OBJECT_TYPE_LAG
+     */
+    SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_MPLS_AC_INTERFACE,
+
+    /**
+     * @brief MPLS VLAN ID
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_ONLY
+     * @objects SAI_OBJECT_TYPE_VLAN
+     */
+    SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_MPLS_VLAN_ID,
+
+    /**
+     * @brief MPLS L2VPN type
+     *
+     * @type sai_tunnel_mpls_type_t
+     * @flags CREATE_ONLY
+     */
+    SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_TUNNEL_MPLS_TYPE,
 
     /** End of custom range base */
     SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_RANGE_END
@@ -468,7 +530,7 @@ typedef enum _sai_tunnel_attr_t
      * @type sai_object_id_t
      * @flags MANDATORY_ON_CREATE | CREATE_ONLY
      * @objects SAI_OBJECT_TYPE_ROUTER_INTERFACE
-     * @condition SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP_GRE or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_VXLAN or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_SRV6 or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_NVGRE or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP_ESP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP_UDP_ESP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_VXLAN_UDP_ESP
+     * @condition SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP_GRE or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_VXLAN or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_SRV6 or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_NVGRE or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP_ESP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_IPINIP_UDP_ESP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_VXLAN_UDP_ESP or SAI_TUNNEL_ATTR_TYPE == SAI_TUNNEL_TYPE_MPLS
      */
     SAI_TUNNEL_ATTR_UNDERLAY_INTERFACE,
 

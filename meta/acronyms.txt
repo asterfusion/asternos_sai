@@ -89,6 +89,7 @@ IPMC - Intelligent Platform Management Controller
 IPSG - test
 L2 - Layer 2
 L2MC - Layer 2 Multi Cast
+L2VPN - Layer 2 Virtual Private Network
 L3 - Layer 3
 LAG - Link Aggregation Group
 LDP - Label Distribution Protocol
@@ -186,7 +187,9 @@ VNET - Virtual Network
 VNI - Virtual Network Interface
 VNID - Virtual Network Identifier
 VOQ - Virtual Output Queue
+VPLS - Virtual Private Local Area Network Service
 VPN - Virtual Private Network
+VPWS - Virtual Private Wire Service
 VR - Virtual Router
 VRF - Virtual Route Forwarding
 VRRP - Virtual Router Redundancy Protocol
