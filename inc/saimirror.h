@@ -79,8 +79,6 @@ typedef enum _sai_mirror_session_congestion_mode_t
 
 /**
  * @brief SAI attributes for mirror session
- *
- * @flags Contains flags
  */
 typedef enum _sai_mirror_session_attr_t
 {
