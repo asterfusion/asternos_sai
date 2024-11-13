@@ -156,6 +156,7 @@ typedef enum _sai_api_t
     SAI_API_VLAN_STACK       = 53, /**< sai_vlan_stack_api_t */
     SAI_API_OBJECT_GROUP     = 54, /**< sai_object_group_api_t */
     SAI_API_PTP              = 55, /**< sai_ptp_api_t */
+    SAI_API_PREFIX_COMPRESSION = 56, /**< sai_prefix_compression_api_t */
     SAI_API_MAX,                   /**< total number of APIs */
 
     /**

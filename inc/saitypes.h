@@ -302,6 +302,8 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_VLAN_STACK               = 112,
     SAI_OBJECT_TYPE_OBJECT_GROUP             = 113,
     SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY         = 114,
+    SAI_OBJECT_TYPE_PREFIX_COMPRESSION_TABLE = 115,
+    SAI_OBJECT_TYPE_PREFIX_COMPRESSION_ENTRY = 116,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,
@@ -982,6 +984,35 @@ typedef enum _sai_tam_bind_point_type_t
     SAI_TAM_BIND_POINT_TYPE_BSP,
 
 } sai_tam_bind_point_type_t;
+
+/**
+ * @brief Attribute data for SAI_PREFIX_COMPRESSION_TABLE_ATTR_STAGE
+ */
+typedef enum _sai_prefix_compression_stage_t
+{
+    /** Ingress Stage */
+    SAI_PREFIX_COMPRESSION_STAGE_INGRESS,
+
+    /** Egress Stage */
+    SAI_PREFIX_COMPRESSION_STAGE_EGRESS,
+
+} sai_prefix_compression_stage_t;
+
+/**
+ * @brief Attribute data for SAI_PREFIX_COMPRESSION_TABLE_ATTR_TYPE
+ */
+typedef enum _sai_prefix_compression_type_t
+{
+    /** SRC/DST table type */
+    SAI_PREFIX_COMPRESSION_TYPE_BOTH,
+
+    /** SRC table type */
+    SAI_PREFIX_COMPRESSION_TYPE_SRC,
+
+    /** DST table type */
+    SAI_PREFIX_COMPRESSION_TYPE_DST,
+
+} sai_prefix_compression_type_t;
 
 /**
  * @brief Structure for ACL Resource Count
