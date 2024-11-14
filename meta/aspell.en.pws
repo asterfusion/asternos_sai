@@ -143,6 +143,7 @@ PGs
 PHY
 pkts
 policer
+policers
 Policer
 postcursor
 pre
