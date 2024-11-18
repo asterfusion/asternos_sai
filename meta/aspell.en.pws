@@ -127,6 +127,7 @@ netdevs
 netlink
 nexthop
 nexthopgroup
+nextrelease
 NPUs
 objlist
 offsetof
