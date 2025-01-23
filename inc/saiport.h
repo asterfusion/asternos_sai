@@ -3710,6 +3710,9 @@ typedef enum _sai_port_stat_t
     /** SAI port stat ARP out octets */
     SAI_PORT_STAT_ARP_OUT_OCTETS,
 
+    /** Packets trimmed due to failed shared buffer admission [uint64_t] */
+    SAI_PORT_STAT_TRIM_PACKETS,
+
     /** Port stat in drop reasons range start */
     SAI_PORT_STAT_IN_DROP_REASON_RANGE_BASE = 0x00001000,
 
