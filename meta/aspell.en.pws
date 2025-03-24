@@ -129,6 +129,7 @@ nexthop
 nexthopgroup
 nextrelease
 NPUs
+NRZ
 objlist
 offsetof
 oid
@@ -149,6 +150,7 @@ Policer
 postcursor
 pre
 precursor
+psec
 PVID
 qos
 quantization
