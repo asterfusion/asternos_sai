@@ -89,6 +89,7 @@ IPFIX - IP Flow Information Export
 IPG - Inter-Packet Gap
 IPMC - Intelligent Platform Management Controller
 IPSG - test
+ITU - International Telecommunication Union
 L2 - Layer 2
 L2MC - Layer 2 Multi Cast
 L2VPN - Layer 2 Virtual Private Network
