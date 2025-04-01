@@ -298,8 +298,7 @@ typedef enum _sai_tunnel_map_entry_attr_t
      * @brief MPLS destination IP
      *
      * @type sai_ip_address_t
-     * @flags MANDATORY_ON_CREATE | CREATE_ONLY
-     * @condition SAI_TUNNEL_MAP_ENTRY_ATTR_TUNNEL_MAP_TYPE == SAI_TUNNEL_MAP_TYPE_CUSTOM_REMOTE_LABEL
+     * @flags CREATE_ONLY
      */
     SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_MPLS_DST_IP,
 
@@ -328,6 +327,14 @@ typedef enum _sai_tunnel_map_entry_attr_t
      * @flags CREATE_ONLY
      */
     SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_TUNNEL_MPLS_TYPE,
+
+    /**
+     * @brief MPLS nexthop
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_ONLY
+     */
+    SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_MPLS_NEXTHOP,
 
     /** End of custom range base */
     SAI_TUNNEL_MAP_ENTRY_ATTR_CUSTOM_RANGE_END
