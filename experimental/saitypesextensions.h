@@ -96,6 +96,10 @@ typedef enum _sai_object_type_extensions_t
 
     SAI_OBJECT_TYPE_OUTBOUND_PORT_MAP_PORT_RANGE_ENTRY,
 
+    SAI_OBJECT_TYPE_GLOBAL_TRUSTED_VNI_ENTRY,
+
+    SAI_OBJECT_TYPE_ENI_TRUSTED_VNI_ENTRY,
+
     /* Add new experimental object types above this line */
 
     SAI_OBJECT_TYPE_EXTENSIONS_RANGE_END
@@ -299,6 +303,34 @@ typedef enum _sai_dash_eni_mac_override_type_t
     SAI_DASH_ENI_MAC_OVERRIDE_TYPE_DST_MAC,
 
 } sai_dash_eni_mac_override_type_t;
+
+/**
+ * @brief Defines a list of enums for dash_flow_sync_state
+ */
+typedef enum _sai_dash_flow_sync_state_t
+{
+    SAI_DASH_FLOW_SYNC_STATE_FLOW_MISS,
+
+    SAI_DASH_FLOW_SYNC_STATE_FLOW_CREATED,
+
+    SAI_DASH_FLOW_SYNC_STATE_FLOW_SYNCED,
+
+    SAI_DASH_FLOW_SYNC_STATE_FLOW_PENDING_DELETE,
+
+    SAI_DASH_FLOW_SYNC_STATE_FLOW_PENDING_RESIMULATION,
+
+} sai_dash_flow_sync_state_t;
+
+/**
+ * @brief Defines a list of enums for dash_eni_mode
+ */
+typedef enum _sai_dash_eni_mode_t
+{
+    SAI_DASH_ENI_MODE_VM,
+
+    SAI_DASH_ENI_MODE_FNIC,
+
+} sai_dash_eni_mode_t;
 
 #endif /* __SAITYPESEXTENSIONS_H_ */
 
