@@ -2932,6 +2932,42 @@ typedef enum _sai_port_attr_t
      */
     SAI_PORT_ATTR_CUSTOM_SYNCE_PRIORITY,
 
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_IPSG_PASS,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_IPSGV6_PASS,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_DAI_PASS,
+
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_SAVI_PASS,
+
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END,
 
