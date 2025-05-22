@@ -1,0 +1,115 @@
+| Api | Sai Attribute | Enums | Support | Private |
+| --- | --- | --- | --- | --- |
+| create_bfd_session | SAI_BFD_SESSION_ATTR_TYPE | SAI_BFD_SESSION_TYPE_DEMAND_ACTIVE | yes |  |
+|  |  | SAI_BFD_SESSION_TYPE_DEMAND_PASSIVE | yes |  |
+|  |  | SAI_BFD_SESSION_TYPE_ASYNC_ACTIVE | yes |  |
+|  |  | SAI_BFD_SESSION_TYPE_ASYNC_PASSIVE | yes |  |
+|  | SAI_BFD_SESSION_ATTR_HW_LOOKUP_VALID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VIRTUAL_ROUTER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_PORT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_LOCAL_DISCRIMINATOR |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_REMOTE_DISCRIMINATOR |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_UDP_SRC_PORT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TC |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_TPID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_ID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_PRI |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_CFI |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_HEADER_VALID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_BFD_ENCAPSULATION_TYPE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_IPHDR_VERSION |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TOS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TTL |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_SRC_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_DST_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_TOS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_TTL |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_SRC_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_DST_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_SRC_MAC_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_DST_MAC_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_ECHO_ENABLE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MULTIHOP |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_CBIT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MIN_TX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MIN_RX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MULTIPLIER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_OFFLOAD_TYPE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_SRV6_SIDLIST_ID |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_STATS_COUNT_MODE |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_RIF |  | yes | yes |
+| remove_bfd_session |  |  | yes |  |
+| set_bfd_session_attribute | SAI_BFD_SESSION_ATTR_VIRTUAL_ROUTER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_PORT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TC |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_TPID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_PRI |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_CFI |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_BFD_ENCAPSULATION_TYPE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_IPHDR_VERSION |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TOS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TTL |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_TOS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_TTL |  | yes |  ||
+|  | SAI_BFD_SESSION_ATTR_SRC_MAC_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_DST_MAC_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_ECHO_ENABLE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MIN_TX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MIN_RX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MULTIPLIER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_STATE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_STATS_COUNT_MODE |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_RIF |  | yes | yes |
+| get_bfd_session_attribute | SAI_BFD_SESSION_ATTR_TYPE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_HW_LOOKUP_VALID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VIRTUAL_ROUTER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_PORT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_LOCAL_DISCRIMINATOR |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_REMOTE_DISCRIMINATOR |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_UDP_SRC_PORT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TC |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_TPID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_ID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_PRI |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_CFI |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_VLAN_HEADER_VALID |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_BFD_ENCAPSULATION_TYPE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_IPHDR_VERSION |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TOS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TTL |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_SRC_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_DST_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_TOS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_TTL |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_SRC_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_TUNNEL_DST_IP_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_SRC_MAC_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_DST_MAC_ADDRESS |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_ECHO_ENABLE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MULTIHOP |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_REMOTE_MIN_TX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_REMOTE_MIN_RX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_STATE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_CBIT |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MIN_TX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MIN_RX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_MULTIPLIER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_OFFLOAD_TYPE |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_NEGOTIATED_TX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_NEGOTIATED_RX |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_LOCAL_DIAG |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_REMOTE_DIAG |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_REMOTE_MULTIPLIER |  | yes |  |
+|  | SAI_BFD_SESSION_ATTR_SRV6_SIDLIST_ID |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_STATS_COUNT_MODE |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_RIF |  | yes | yes |
+| get_bfd_session_stats | SAI_BFD_SESSION_STAT_IN_PACKETS |  | yes |  |
+|  | SAI_BFD_SESSION_STAT_OUT_PACKETS |  | yes |  |
+|  | SAI_BFD_SESSION_STAT_DROP_PACKETS |  | yes |  |
+| get_bfd_session_stats_ext |  |  | no |  |
+| clear_bfd_session_stats | SAI_BFD_SESSION_STAT_IN_PACKETS |  | yes |  |
+|  | SAI_BFD_SESSION_STAT_OUT_PACKETS |  | yes |  |
+|  | SAI_BFD_SESSION_STAT_DROP_PACKETS |  | no |  |
