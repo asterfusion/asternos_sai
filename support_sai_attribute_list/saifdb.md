@@ -7,16 +7,16 @@
 |  |  | SAI_PACKET_ACTION_COPY | yes |  |
 |  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
 |  |  | SAI_PACKET_ACTION_TRAP | yes |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
+|  |  | SAI_PACKET_ACTION_LOG | yes |  |
 |  |  | SAI_PACKET_ACTION_DENY | yes |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
 |  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
 |  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_FDB_ENTRY_ATTR_USER_TRAP_ID |  | yes |  |
+|  | SAI_FDB_ENTRY_ATTR_USER_TRAP_ID |  | no |  |
 |  | SAI_FDB_ENTRY_ATTR_BRIDGE_PORT_ID |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_META_DATA |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_ENDPOINT_IP |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_COUNTER_ID |  | yes |  |
+|  | SAI_FDB_ENTRY_ATTR_META_DATA |  | no |  |
+|  | SAI_FDB_ENTRY_ATTR_ENDPOINT_IP |  | no |  |
+|  | SAI_FDB_ENTRY_ATTR_COUNTER_ID |  | no |  |
 |  | SAI_FDB_ENTRY_ATTR_ALLOW_MAC_MOVE |  | no |  |
 | remove_fdb_entry |  |  | yes |  |
 | set_fdb_entry_attribute | SAI_FDB_ENTRY_ATTR_TYPE | SAI_FDB_ENTRY_TYPE_DYNAMIC | yes |  |
@@ -26,24 +26,24 @@
 |  |  | SAI_PACKET_ACTION_COPY | yes |  |
 |  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
 |  |  | SAI_PACKET_ACTION_TRAP | yes |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
+|  |  | SAI_PACKET_ACTION_LOG | yes |  |
 |  |  | SAI_PACKET_ACTION_DENY | yes |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
 |  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
 |  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_FDB_ENTRY_ATTR_USER_TRAP_ID |  | yes |  |
+|  | SAI_FDB_ENTRY_ATTR_USER_TRAP_ID |  | no |  |
 |  | SAI_FDB_ENTRY_ATTR_BRIDGE_PORT_ID |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_META_DATA |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_ENDPOINT_IP |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_COUNTER_ID |  | yes |  |
+|  | SAI_FDB_ENTRY_ATTR_META_DATA |  | no |  |
+|  | SAI_FDB_ENTRY_ATTR_ENDPOINT_IP |  | no |  |
+|  | SAI_FDB_ENTRY_ATTR_COUNTER_ID |  | no |  |
 |  | SAI_FDB_ENTRY_ATTR_ALLOW_MAC_MOVE |  | no |  |
 | get_fdb_entry_attribute | SAI_FDB_ENTRY_ATTR_TYPE |  | yes |  |
 |  | SAI_FDB_ENTRY_ATTR_PACKET_ACTION |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_USER_TRAP_ID |  | yes |  |
+|  | SAI_FDB_ENTRY_ATTR_USER_TRAP_ID |  | no |  |
 |  | SAI_FDB_ENTRY_ATTR_BRIDGE_PORT_ID |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_META_DATA |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_ENDPOINT_IP |  | yes |  |
-|  | SAI_FDB_ENTRY_ATTR_COUNTER_ID |  | yes |  |
+|  | SAI_FDB_ENTRY_ATTR_META_DATA |  | no |  |
+|  | SAI_FDB_ENTRY_ATTR_ENDPOINT_IP |  | no |  |
+|  | SAI_FDB_ENTRY_ATTR_COUNTER_ID |  | no |  |
 |  | SAI_FDB_ENTRY_ATTR_ALLOW_MAC_MOVE |  | no |  |
 | flush_fdb_entries | SAI_FDB_FLUSH_ATTR_BRIDGE_PORT_ID |  | yes |  |
 |  | SAI_FDB_FLUSH_ATTR_BV_ID |  | yes |  |

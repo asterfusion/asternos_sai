@@ -1,26 +1,26 @@
 | Api | Sai Attribute | Enums | Support | Private |
 | --- | --- | --- | --- | --- |
-| create_wred | SAI_WRED_ATTR_GREEN_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_RED_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_RED_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_RED_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_RED_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_WEIGHT |  | no |  |
-|  | SAI_WRED_ATTR_ECN_MARK_MODE | SAI_ECN_MARK_MODE_NONE | no |  |
-|  |  | SAI_ECN_MARK_MODE_GREEN | no |  |
-|  |  | SAI_ECN_MARK_MODE_YELLOW | no |  |
-|  |  | SAI_ECN_MARK_MODE_RED | no |  |
-|  |  | SAI_ECN_MARK_MODE_GREEN_YELLOW | no |  |
-|  |  | SAI_ECN_MARK_MODE_GREEN_RED | no |  |
-|  |  | SAI_ECN_MARK_MODE_YELLOW_RED | no |  |
-|  |  | SAI_ECN_MARK_MODE_ALL | no |  |
+| create_wred | SAI_WRED_ATTR_GREEN_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_RED_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_RED_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_RED_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_RED_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_WEIGHT |  | yes |  |
+|  | SAI_WRED_ATTR_ECN_MARK_MODE | SAI_ECN_MARK_MODE_NONE | yes |  |
+|  |  | SAI_ECN_MARK_MODE_GREEN | yes |  |
+|  |  | SAI_ECN_MARK_MODE_YELLOW | yes |  |
+|  |  | SAI_ECN_MARK_MODE_RED | yes |  |
+|  |  | SAI_ECN_MARK_MODE_GREEN_YELLOW | yes |  |
+|  |  | SAI_ECN_MARK_MODE_GREEN_RED | yes |  |
+|  |  | SAI_ECN_MARK_MODE_YELLOW_RED | yes |  |
+|  |  | SAI_ECN_MARK_MODE_ALL | yes |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MIN_THRESHOLD |  | no |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MAX_THRESHOLD |  | no |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MARK_PROBABILITY |  | no |  |
@@ -48,27 +48,27 @@
 |  | SAI_WRED_ATTR_ECN_COLOR_UNAWARE_MIN_THRESHOLD_64 |  | no |  |
 |  | SAI_WRED_ATTR_ECN_COLOR_UNAWARE_MAX_THRESHOLD_64 |  | no |  |
 | remove_wred |  |  | yes |  |
-| set_wred_attribute | SAI_WRED_ATTR_GREEN_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_RED_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_RED_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_RED_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_RED_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_WEIGHT |  | no |  |
-|  | SAI_WRED_ATTR_ECN_MARK_MODE | SAI_ECN_MARK_MODE_NONE | no |  |
-|  |  | SAI_ECN_MARK_MODE_GREEN | no |  |
-|  |  | SAI_ECN_MARK_MODE_YELLOW | no |  |
-|  |  | SAI_ECN_MARK_MODE_RED | no |  |
-|  |  | SAI_ECN_MARK_MODE_GREEN_YELLOW | no |  |
-|  |  | SAI_ECN_MARK_MODE_GREEN_RED | no |  |
-|  |  | SAI_ECN_MARK_MODE_YELLOW_RED | no |  |
-|  |  | SAI_ECN_MARK_MODE_ALL | no |  |
+| set_wred_attribute | SAI_WRED_ATTR_GREEN_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_RED_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_RED_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_RED_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_RED_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_WEIGHT |  | yes |  |
+|  | SAI_WRED_ATTR_ECN_MARK_MODE | SAI_ECN_MARK_MODE_NONE | yes |  |
+|  |  | SAI_ECN_MARK_MODE_GREEN | yes |  |
+|  |  | SAI_ECN_MARK_MODE_YELLOW | yes |  |
+|  |  | SAI_ECN_MARK_MODE_RED | yes |  |
+|  |  | SAI_ECN_MARK_MODE_GREEN_YELLOW | yes |  |
+|  |  | SAI_ECN_MARK_MODE_GREEN_RED | yes |  |
+|  |  | SAI_ECN_MARK_MODE_YELLOW_RED | yes |  |
+|  |  | SAI_ECN_MARK_MODE_ALL | yes |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MIN_THRESHOLD |  | no |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MAX_THRESHOLD |  | no |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MARK_PROBABILITY |  | no |  |
@@ -95,20 +95,20 @@
 |  | SAI_WRED_ATTR_ECN_RED_MAX_THRESHOLD_64 |  | no |  |
 |  | SAI_WRED_ATTR_ECN_COLOR_UNAWARE_MIN_THRESHOLD_64 |  | no |  |
 |  | SAI_WRED_ATTR_ECN_COLOR_UNAWARE_MAX_THRESHOLD_64 |  | no |  |
-| get_wred_attribute | SAI_WRED_ATTR_GREEN_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_GREEN_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_YELLOW_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_RED_ENABLE |  | no |  |
-|  | SAI_WRED_ATTR_RED_MIN_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_RED_MAX_THRESHOLD |  | no |  |
-|  | SAI_WRED_ATTR_RED_DROP_PROBABILITY |  | no |  |
-|  | SAI_WRED_ATTR_WEIGHT |  | no |  |
-|  | SAI_WRED_ATTR_ECN_MARK_MODE |  | no |  |
+| get_wred_attribute | SAI_WRED_ATTR_GREEN_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_GREEN_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_YELLOW_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_RED_ENABLE |  | yes |  |
+|  | SAI_WRED_ATTR_RED_MIN_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_RED_MAX_THRESHOLD |  | yes |  |
+|  | SAI_WRED_ATTR_RED_DROP_PROBABILITY |  | yes |  |
+|  | SAI_WRED_ATTR_WEIGHT |  | yes |  |
+|  | SAI_WRED_ATTR_ECN_MARK_MODE |  | yes |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MIN_THRESHOLD |  | no |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MAX_THRESHOLD |  | no |  |
 |  | SAI_WRED_ATTR_ECN_GREEN_MARK_PROBABILITY |  | no |  |

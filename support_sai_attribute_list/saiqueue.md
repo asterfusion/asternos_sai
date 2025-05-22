@@ -1,17 +1,17 @@
 | Api | Sai Attribute | Enums | Support | Private |
 | --- | --- | --- | --- | --- |
-| create_queue | SAI_QUEUE_ATTR_TYPE | SAI_QUEUE_TYPE_ALL | no |  |
+| create_queue | SAI_QUEUE_ATTR_TYPE | SAI_QUEUE_TYPE_ALL | yes |  |
 |  |  | SAI_QUEUE_TYPE_UNICAST | no |  |
 |  |  | SAI_QUEUE_TYPE_MULTICAST | no |  |
 |  |  | SAI_QUEUE_TYPE_UNICAST_VOQ | no |  |
 |  |  | SAI_QUEUE_TYPE_MULTICAST_VOQ | no |  |
 |  |  | SAI_QUEUE_TYPE_FABRIC_TX | no |  |
-|  | SAI_QUEUE_ATTR_PORT |  | no |  |
-|  | SAI_QUEUE_ATTR_INDEX |  | no |  |
-|  | SAI_QUEUE_ATTR_PARENT_SCHEDULER_NODE |  | no |  |
-|  | SAI_QUEUE_ATTR_WRED_PROFILE_ID |  | no |  |
-|  | SAI_QUEUE_ATTR_BUFFER_PROFILE_ID |  | no |  |
-|  | SAI_QUEUE_ATTR_SCHEDULER_PROFILE_ID |  | no |  |
+|  | SAI_QUEUE_ATTR_PORT |  | yes |  |
+|  | SAI_QUEUE_ATTR_INDEX |  | yes |  |
+|  | SAI_QUEUE_ATTR_PARENT_SCHEDULER_NODE |  | yes |  |
+|  | SAI_QUEUE_ATTR_WRED_PROFILE_ID |  | yes |  |
+|  | SAI_QUEUE_ATTR_BUFFER_PROFILE_ID |  | yes |  |
+|  | SAI_QUEUE_ATTR_SCHEDULER_PROFILE_ID |  | yes |  |
 |  | SAI_QUEUE_ATTR_ENABLE_PFC_DLDR |  | no |  |
 |  | SAI_QUEUE_ATTR_PFC_DLR_INIT |  | no |  |
 |  | SAI_QUEUE_ATTR_TAM_OBJECT |  | no |  |
@@ -31,10 +31,10 @@
 |  |  | SAI_STATS_COUNT_MODE_NONE | no |  |
 |  | SAI_QUEUE_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
 | remove_queue |  |  | yes |  |
-|set_queue_attribute  | SAI_QUEUE_ATTR_PARENT_SCHEDULER_NODE |  | no |  |
-|  | SAI_QUEUE_ATTR_WRED_PROFILE_ID |  | no |  |
-|  | SAI_QUEUE_ATTR_BUFFER_PROFILE_ID |  | no |  |
-|  | SAI_QUEUE_ATTR_SCHEDULER_PROFILE_ID |  | no |  |
+|set_queue_attribute  | SAI_QUEUE_ATTR_PARENT_SCHEDULER_NODE |  | yes |  |
+|  | SAI_QUEUE_ATTR_WRED_PROFILE_ID |  | yes |  |
+|  | SAI_QUEUE_ATTR_BUFFER_PROFILE_ID |  | yes |  |
+|  | SAI_QUEUE_ATTR_SCHEDULER_PROFILE_ID |  | yes |  |
 |  | SAI_QUEUE_ATTR_ENABLE_PFC_DLDR |  | no |  |
 |  | SAI_QUEUE_ATTR_PFC_DLR_INIT |  | no |  |
 |  | SAI_QUEUE_ATTR_TAM_OBJECT |  | no |  |
@@ -53,13 +53,13 @@
 |  |  | SAI_STATS_COUNT_MODE_BYTE | no |  |
 |  |  | SAI_STATS_COUNT_MODE_NONE | no |  |
 |  | SAI_QUEUE_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
-| get_queue_attribute | SAI_QUEUE_ATTR_TYPE |  | no |  |
-|  | SAI_QUEUE_ATTR_PORT |  | no |  |
-|  | SAI_QUEUE_ATTR_INDEX |  | no |  |
-|  | SAI_QUEUE_ATTR_PARENT_SCHEDULER_NODE |  | no |  |
-|  | SAI_QUEUE_ATTR_WRED_PROFILE_ID |  | no |  |
-|  | SAI_QUEUE_ATTR_BUFFER_PROFILE_ID |  | no |  |
-|  | SAI_QUEUE_ATTR_SCHEDULER_PROFILE_ID |  | no |  |
+| get_queue_attribute | SAI_QUEUE_ATTR_TYPE |  | yes |  |
+|  | SAI_QUEUE_ATTR_PORT |  | yes |  |
+|  | SAI_QUEUE_ATTR_INDEX |  | yes |  |
+|  | SAI_QUEUE_ATTR_PARENT_SCHEDULER_NODE |  | yes |  |
+|  | SAI_QUEUE_ATTR_WRED_PROFILE_ID |  | yes |  |
+|  | SAI_QUEUE_ATTR_BUFFER_PROFILE_ID |  | yes |  |
+|  | SAI_QUEUE_ATTR_SCHEDULER_PROFILE_ID |  | yes |  |
 |  | SAI_QUEUE_ATTR_PAUSE_STATUS |  | no |  |
 |  | SAI_QUEUE_ATTR_ENABLE_PFC_DLDR |  | no |  |
 |  | SAI_QUEUE_ATTR_PFC_DLR_INIT |  | no |  |
@@ -69,9 +69,9 @@
 |  | SAI_QUEUE_ATTR_STATS_COUNT_MODE |  | no |  |
 |  | SAI_QUEUE_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
 | get_queue_stats | SAI_QUEUE_STAT_PACKETS |  | yes |  |
-|  | SAI_QUEUE_STAT_BYTES |  | no |  |
-|  | SAI_QUEUE_STAT_DROPPED_PACKETS |  | no |  |
-|  | SAI_QUEUE_STAT_DROPPED_BYTES |  | no |  |
+|  | SAI_QUEUE_STAT_BYTES |  | yes |  |
+|  | SAI_QUEUE_STAT_DROPPED_PACKETS |  | yes |  |
+|  | SAI_QUEUE_STAT_DROPPED_BYTES |  | yes |  |
 |  | SAI_QUEUE_STAT_GREEN_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_BYTES |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_DROPPED_PACKETS |  | no |  |
@@ -92,9 +92,9 @@
 |  | SAI_QUEUE_STAT_RED_WRED_DROPPED_BYTES |  | no |  |
 |  | SAI_QUEUE_STAT_WRED_DROPPED_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_WRED_DROPPED_BYTES |  | no |  |
-|  | SAI_QUEUE_STAT_CURR_OCCUPANCY_BYTES |  | no |  |
+|  | SAI_QUEUE_STAT_CURR_OCCUPANCY_BYTES |  | yes |  |
 |  | SAI_QUEUE_STAT_WATERMARK_BYTES |  | no |  |
-|  | SAI_QUEUE_STAT_SHARED_CURR_OCCUPANCY_BYTES |  | no |  |
+|  | SAI_QUEUE_STAT_SHARED_CURR_OCCUPANCY_BYTES |  | yes |  |
 |  | SAI_QUEUE_STAT_SHARED_WATERMARK_BYTES |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_WRED_ECN_MARKED_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_WRED_ECN_MARKED_BYTES |  | no |  |
@@ -110,9 +110,9 @@
 |  | SAI_QUEUE_STAT_DELAY_WATERMARK_NS |  | no |  |
 | get_queue_stats_ext |  |  | no |  |
 | clear_queue_stats | SAI_QUEUE_STAT_PACKETS |  | yes |  |
-|  | SAI_QUEUE_STAT_BYTES |  | no |  |
-|  | SAI_QUEUE_STAT_DROPPED_PACKETS |  | no |  |
-|  | SAI_QUEUE_STAT_DROPPED_BYTES |  | no |  |
+|  | SAI_QUEUE_STAT_BYTES |  | yes |  |
+|  | SAI_QUEUE_STAT_DROPPED_PACKETS |  | yes |  |
+|  | SAI_QUEUE_STAT_DROPPED_BYTES |  | yes |  |
 |  | SAI_QUEUE_STAT_GREEN_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_BYTES |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_DROPPED_PACKETS |  | no |  |
@@ -133,9 +133,9 @@
 |  | SAI_QUEUE_STAT_RED_WRED_DROPPED_BYTES |  | no |  |
 |  | SAI_QUEUE_STAT_WRED_DROPPED_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_WRED_DROPPED_BYTES |  | no |  |
-|  | SAI_QUEUE_STAT_CURR_OCCUPANCY_BYTES |  | no |  |
+|  | SAI_QUEUE_STAT_CURR_OCCUPANCY_BYTES |  | yes |  |
 |  | SAI_QUEUE_STAT_WATERMARK_BYTES |  | no |  |
-|  | SAI_QUEUE_STAT_SHARED_CURR_OCCUPANCY_BYTES |  | no |  |
+|  | SAI_QUEUE_STAT_SHARED_CURR_OCCUPANCY_BYTES |  | yes |  |
 |  | SAI_QUEUE_STAT_SHARED_WATERMARK_BYTES |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_WRED_ECN_MARKED_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_GREEN_WRED_ECN_MARKED_BYTES |  | no |  |

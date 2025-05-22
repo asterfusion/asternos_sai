@@ -22,7 +22,7 @@
 | sail2mcgroup | yes |  |
 | sailag | yes |  |
 | saimacsec | no |  |
-| saimcastfdb | yes |  |
+| saimcastfdb | no |  |
 | saimirror | yes |  |
 | saimpls | yes |  |
 | sainat | no |  |
@@ -36,7 +36,7 @@
 | saiqueue | yes |  |
 | sairoute | yes |  |
 | sairouterinterface | yes |  |
-| sairpfgroup | no |  |
+| sairpfgroup | yes |  |
 | saisamplepacket | yes |  |
 | saischeduler | yes |  |
 | saischedulergroup | yes |  |
@@ -47,10 +47,10 @@
 | saitunnel | yes |  |
 | saitwamp | no |  |
 | saiudf | no |  |
-| saivirtualrouter | no |  |
+| saivirtualrouter | yes |  |
 | saivlan | yes |  |
+| saiwred | yes |  |
 | saivlanstack | yes | yes |
-| saiwred | yes | yes |
 | saiobjectgroup | yes | yes |
 | saiptp | yes | yes |
 
