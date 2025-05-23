@@ -129,7 +129,7 @@ typedef enum _sai_vlan_stack_attr_t
      * @flags CREATE_AND_SET
      * @isvlan true
      * @default 0
-     * @validonly SAI_VLAN_STACK_ATTR_ACTION == SAI_VLAN_STACK_ACTION_PUSH
+     * @validonly SAI_VLAN_STACK_ATTR_ACTION == SAI_VLAN_STACK_ACTION_PUSH or SAI_VLAN_STACK_ATTR_ACTION == SAI_VLAN_STACK_ACTION_SWAP
      */
     SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER,
 
@@ -141,7 +141,7 @@ typedef enum _sai_vlan_stack_attr_t
      * @flags CREATE_AND_SET
      * @isvlan true
      * @default 0
-     * @validonly SAI_VLAN_STACK_ATTR_ACTION == SAI_VLAN_STACK_ACTION_PUSH
+     * @validonly SAI_VLAN_STACK_ATTR_ACTION == SAI_VLAN_STACK_ACTION_PUSH or SAI_VLAN_STACK_ATTR_ACTION == SAI_VLAN_STACK_ACTION_SWAP
      */
     SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER,
 
