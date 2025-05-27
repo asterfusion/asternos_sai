@@ -170,7 +170,7 @@
 |  |  | SAI_STATS_COUNT_MODE_BYTE | no |  |
 |  |  | SAI_STATS_COUNT_MODE_NONE | no |  |
 |  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_ND_MAC_CHECK_ENABLE    |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
 | remove_switch |  |  | yes |  |
@@ -323,7 +323,7 @@
 |  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no |  |
 |  | SAI_SWITCH_ATTR_STATS_COUNT_MODE       |  | no |  |
 |  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_ND_MAC_CHECK_ENABLE    |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
 | get_switch_attribute | SAI_SWITCH_ATTR_NUMBER_OF_ACTIVE_PORTS |  | yes |  |
@@ -579,7 +579,7 @@
 |  | SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_USED_ENTRIES |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_TABLE_SIZE |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_ND_MAC_CHECK_ENABLE    |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT |  | yes | yes |
