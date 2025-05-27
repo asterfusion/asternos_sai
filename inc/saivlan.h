@@ -47,11 +47,7 @@ typedef enum _sai_vlan_tagging_mode_t
 
     SAI_VLAN_TAGGING_MODE_TAGGED,
 
-    SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED,
-
-    SAI_VLAN_TAGGING_MODE_DOUBLE_TAGGED,
-
-    SAI_VLAN_TAGGING_MODE_CUSTOMER_TAGGED,
+    SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED
 
 } sai_vlan_tagging_mode_t;
 
@@ -571,7 +567,7 @@ typedef enum _sai_vlan_attr_t
     SAI_VLAN_ATTR_CUSTOM_MLD_SNOOPING_ENABLE,
 
     /**
-     * @brief List of vlan members in a VLAN
+     * @brief List of vlan members to create in a VLAN
      *
      * @type sai_u8_list_t
      * @flags CREATE_AND_SET
@@ -580,7 +576,7 @@ typedef enum _sai_vlan_attr_t
     SAI_VLAN_ATTR_CUSTOM_CREATE_PORTS,
 
     /**
-     * @brief List of vlan members in a VLAN
+     * @brief List of vlan members to remove in a VLAN
      *
      * @type sai_u8_list_t
      * @flags CREATE_AND_SET

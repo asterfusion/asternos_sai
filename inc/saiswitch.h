@@ -3236,7 +3236,7 @@ typedef enum _sai_switch_attr_t
      * @flags CREATE_AND_SET
      * @default false
      */
-    SAI_SWITCH_ATTR_ND_MAC_CHECK_ENABLE,
+    SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE,
 
     /**
      * @brief DHCP snooping entry
