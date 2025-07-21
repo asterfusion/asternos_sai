@@ -495,6 +495,11 @@ typedef enum _sai_attr_value_type_t
      * @brief Attribute value is the POE port consumption data.
      */
     SAI_ATTR_VALUE_TYPE_POE_PORT_POWER_CONSUMPTION,
+
+    /**
+     * @brief Attribute value is port PAM4 eye values list.
+     */
+    SAI_ATTR_VALUE_TYPE_PORT_PAM4_EYE_VALUES_LIST,
 } sai_attr_value_type_t;
 
 /**
@@ -1647,6 +1652,11 @@ typedef struct _sai_object_type_info_t
      * @brief Points to enum sai_OBJECT_TYPE_stat_t if object supports stats.
      */
     const sai_enum_metadata_t* const                statenum;
+
+    /**
+     * @brief Indicates whether object type is custom.
+     */
+    bool                                            iscustom;
 
 } sai_object_type_info_t;
 

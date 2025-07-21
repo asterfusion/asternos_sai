@@ -304,9 +304,15 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY         = 114,
     SAI_OBJECT_TYPE_PREFIX_COMPRESSION_TABLE = 115,
     SAI_OBJECT_TYPE_PREFIX_COMPRESSION_ENTRY = 116,
+    SAI_OBJECT_TYPE_SYNCE_CLOCK              = 117,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,
+
+    /**
+     * @brief Custom range base
+     */
+    SAI_OBJECT_TYPE_CUSTOM_RANGE_BASE = 0x10000000,
 
     SAI_OBJECT_TYPE_EXTENSIONS_RANGE_BASE = 0x20000000,
 } sai_object_type_t;
@@ -1192,6 +1198,39 @@ typedef struct _sai_port_eye_values_list_t
 } sai_port_eye_values_list_t;
 
 /**
+ * @brief Defines the eye height and width for PAM4 SerDes lane
+ * height is in mV
+ * width is in psec. -1 means not available
+ */
+typedef struct _sai_port_pam4_lane_eye_values_t
+{
+    uint32_t lane;
+    int32_t upper_ht;
+    int32_t upper_wd;
+    int32_t middle_ht;
+    int32_t middle_wd;
+    int32_t lower_ht;
+    int32_t lower_wd;
+} sai_port_pam4_lane_eye_values_t;
+
+/**
+ * @brief Defines a port's PAM4 eye values for list of all serdes lanes
+ *
+ * The count defines the number of objects which will be returned to the
+ * caller in the list member. The caller must allocate the buffer for the
+ * list member and set the count member to the size of the allocated objects
+ * in the list member. If the size is not large enough, the callee must set
+ * the count member to the actual number of objects filled in the list member
+ * and return #SAI_STATUS_BUFFER_OVERFLOW. Once the caller gets such a return
+ * code, it may use the returned count member to re-allocate the list and retry.
+ */
+typedef struct _sai_port_pam4_eye_values_list_t
+{
+    uint32_t count;
+    sai_port_pam4_lane_eye_values_t *list;
+} sai_port_pam4_eye_values_list_t;
+
+/**
  * @brief Defines a lane with its frequency offset ppm
  */
 typedef struct _sai_port_frequency_offset_ppm_values_t
@@ -1655,6 +1694,8 @@ typedef union _sai_attribute_value_t
     /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_POE_PORT_POWER_CONSUMPTION */
     sai_poe_port_power_consumption_t portpowerconsumption;
 
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_PORT_PAM4_EYE_VALUES_LIST */
+    sai_port_pam4_eye_values_list_t portpam4eyevalues;
 } sai_attribute_value_t;
 
 /**
@@ -1832,6 +1873,32 @@ typedef struct _sai_stat_capability_list_t
     sai_stat_capability_t *list;
 
 } sai_stat_capability_list_t;
+
+/**
+ * @brief Stat capability under the stream telemetry mode
+ */
+typedef struct _sai_stat_st_capability_t
+{
+    /**
+     * @brief Typical stat capability
+     */
+    sai_stat_capability_t capability;
+
+    /**
+     * @brief Minimal polling interval in nanoseconds
+     *
+     * If polling interval is less than this value, it will be unacceptable.
+     */
+    uint64_t minimal_polling_interval;
+
+} sai_stat_st_capability_t;
+
+typedef struct _sai_stat_st_capability_list_t
+{
+    uint32_t count;
+    sai_stat_st_capability_t *list;
+
+} sai_stat_st_capability_list_t;
 
 typedef enum _sai_stats_count_mode_t
 {

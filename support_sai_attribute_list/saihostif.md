@@ -79,6 +79,7 @@
 |  |  | SAI_HOSTIF_TRAP_TYPE_PTP_TX_EVENT | no |  |
 |  |  | SAI_HOSTIF_TRAP_TYPE_DHCP_L2 | no |  |
 |  |  | SAI_HOSTIF_TRAP_TYPE_DHCPV6_L2 | no |  |
+|  |  | SAI_HOSTIF_TRAP_TYPE_ESMC | no |  |
 |  |  | SAI_HOSTIF_TRAP_TYPE_CUSTOM_ICCP | yes | yes |
 |  |  | SAI_HOSTIF_TRAP_TYPE_CUSTOM_SNP | yes | yes |
 |  |  | SAI_HOSTIF_TRAP_TYPE_CUSTOM_TELNET | yes | yes |

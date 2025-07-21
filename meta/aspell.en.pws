@@ -17,6 +17,7 @@ attrvaluetype
 AUTONEG
 bool
 boolean
+bounceback
 callee
 Callee
 chardata
@@ -129,6 +130,7 @@ nexthop
 nexthopgroup
 nextrelease
 NPUs
+NRZ
 objlist
 offsetof
 oid
@@ -149,6 +151,7 @@ Policer
 postcursor
 pre
 precursor
+psec
 PVID
 qos
 quantization
@@ -221,3 +224,5 @@ Wildcard
 www
 xconnect
 TWAMP
+config
+sys

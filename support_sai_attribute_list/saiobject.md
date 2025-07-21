@@ -7,3 +7,4 @@
 | sai_bulk_object_clear_stats |  |  | no |  |
 | sai_bulk_object_get_stats |  |  | no |  |
 | sai_query_object_stage |  |  | no |  |
+| sai_query_stats_st_capability |  |  | no |  |

@@ -50,6 +50,7 @@
 | saivirtualrouter | yes |  |
 | saivlan | yes |  |
 | saiwred | yes |  |
+| saisynce | no |  |
 | saivlanstack | yes | yes |
 | saiobjectgroup | yes | yes |
 | saiptp | yes | yes |

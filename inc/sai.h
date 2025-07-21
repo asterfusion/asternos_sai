@@ -84,6 +84,7 @@
 #include "saivlanstack.h"
 #include "saiobjectgroup.h"
 #include "saiptp.h"
+#include "saisynce.h"
 
 /**
  * @defgroup SAI SAI - Entry point specific API definitions.
@@ -157,7 +158,13 @@ typedef enum _sai_api_t
     SAI_API_OBJECT_GROUP     = 54, /**< sai_object_group_api_t */
     SAI_API_PTP              = 55, /**< sai_ptp_api_t */
     SAI_API_PREFIX_COMPRESSION = 56, /**< sai_prefix_compression_api_t */
+    SAI_API_SYNCE            = 57, /**< sai_synce_api_t */
     SAI_API_MAX,                   /**< total number of APIs */
+
+    /**
+     * @brief Custom range base
+     */
+    SAI_API_CUSTOM_RANGE_BASE = 0x10000000,
 
     /**
      * @brief Extensions range base

@@ -288,6 +288,22 @@ typedef enum _sai_acl_action_type_t
 
     /** Next Chain Group */
     SAI_ACL_ACTION_TYPE_CHAIN_REDIRECT = 0x00000038,
+
+    /** Disable packet trim */
+    SAI_ACL_ACTION_TYPE_PACKET_TRIM_DISABLE = 0x00000039,
+
+    /** Set Packet inner Src MAC Address */
+    SAI_ACL_ACTION_TYPE_SET_INNER_SRC_MAC = 0x0000003a,
+
+    /** Set Packet inner Dst MAC Address */
+    SAI_ACL_ACTION_TYPE_SET_INNER_DST_MAC = 0x0000003b,
+
+    /** Set ECMP hash algorithm */
+    SAI_ACL_ACTION_TYPE_SET_ECMP_HASH_ALGORITHM = 0x0000003c,
+
+    /** Bind a TAM object */
+    SAI_ACL_ACTION_TYPE_TAM_OBJECT = 0x0000003d,
+
 } sai_acl_action_type_t;
 
 /**
@@ -3290,9 +3306,60 @@ typedef enum _sai_acl_entry_attr_t
     SAI_ACL_ENTRY_ATTR_ACTION_CHAIN_REDIRECT = SAI_ACL_ENTRY_ATTR_ACTION_START + 0x38,
 
     /**
+     * @brief Disable packet trim for a given match condition.
+     *
+     * This rule takes effect only when packet trim is configured on a buffer profile of a queue to which a packet belongs.
+     *
+     * @type sai_acl_action_data_t bool
+     * @flags CREATE_AND_SET
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_ACTION_PACKET_TRIM_DISABLE = SAI_ACL_ENTRY_ATTR_ACTION_START + 0x39,
+
+    /**
+     * @brief Set Packet Inner Src MAC Address
+     *
+     * @type sai_acl_action_data_t sai_mac_t
+     * @flags CREATE_AND_SET
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_ACTION_SET_INNER_SRC_MAC = SAI_ACL_ENTRY_ATTR_ACTION_START + 0x3a,
+
+    /**
+     * @brief Set Packet Inner Dst MAC Address
+     *
+     * @type sai_acl_action_data_t sai_mac_t
+     * @flags CREATE_AND_SET
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_ACTION_SET_INNER_DST_MAC = SAI_ACL_ENTRY_ATTR_ACTION_START + 0x3b,
+
+    /**
+     * @brief Set ECMP hash algorithm
+     *
+     * @type sai_acl_action_data_t sai_hash_algorithm_t
+     * @flags CREATE_AND_SET
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_ACTION_SET_ECMP_HASH_ALGORITHM = SAI_ACL_ENTRY_ATTR_ACTION_START + 0x3c,
+
+    /**
+     * @brief ACL bind point for TAM object
+     *
+     * Bind (or unbind) a TAM object.
+     *
+     * @type sai_acl_action_data_t sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_TAM
+     * @allownull true
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_ACTION_TAM_OBJECT = SAI_ACL_ENTRY_ATTR_ACTION_START + 0x3d,
+
+    /**
      * @brief End of Rule Actions
      */
-    SAI_ACL_ENTRY_ATTR_ACTION_END = SAI_ACL_ENTRY_ATTR_ACTION_CHAIN_REDIRECT,
+    SAI_ACL_ENTRY_ATTR_ACTION_END = SAI_ACL_ENTRY_ATTR_ACTION_TAM_OBJECT,
 
     /**
      * @brief End of ACL Entry attributes
