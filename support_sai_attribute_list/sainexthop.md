@@ -5,6 +5,7 @@
 |  |  | SAI_NEXT_HOP_TYPE_TUNNEL_ENCAP | yes |  |
 |  |  | SAI_NEXT_HOP_TYPE_SRV6_SIDLIST | no |  |
 |  |  | SAI_NEXT_HOP_TYPE_IPMC | no |  |
+|  |  | SAI_NEXT_HOP_TYPE_BRIDGE_PORT | no |  |
 |  | SAI_NEXT_HOP_ATTR_IP |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_ROUTER_INTERFACE_ID |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_ID |  | yes |  |

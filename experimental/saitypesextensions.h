@@ -192,10 +192,32 @@ typedef enum _sai_dash_flow_enabled_key_t
 
 /**
  * @brief Defines a list of enums for dash_flow_action
+ *
+ * @flags strict
  */
 typedef enum _sai_dash_flow_action_t
 {
-    SAI_DASH_FLOW_ACTION_NONE,
+    SAI_DASH_FLOW_ACTION_NONE = 0,
+
+    SAI_DASH_FLOW_ACTION_ENCAP_U0 = 1 << 0,
+
+    SAI_DASH_FLOW_ACTION_ENCAP_U1 = 1 << 1,
+
+    SAI_DASH_FLOW_ACTION_SET_SMAC = 1 << 2,
+
+    SAI_DASH_FLOW_ACTION_SET_DMAC = 1 << 3,
+
+    SAI_DASH_FLOW_ACTION_SNAT = 1 << 4,
+
+    SAI_DASH_FLOW_ACTION_DNAT = 1 << 5,
+
+    SAI_DASH_FLOW_ACTION_NAT46 = 1 << 6,
+
+    SAI_DASH_FLOW_ACTION_NAT64 = 1 << 7,
+
+    SAI_DASH_FLOW_ACTION_SNAT_PORT = 1 << 8,
+
+    SAI_DASH_FLOW_ACTION_DNAT_PORT = 1 << 9,
 
 } sai_dash_flow_action_t;
 

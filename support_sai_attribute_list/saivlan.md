@@ -156,13 +156,22 @@
 |  | SAI_VLAN_MEMBER_ATTR_VLAN_TAGGING_MODE | SAI_VLAN_TAGGING_MODE_UNTAGGED | yes |  |
 |  |  | SAI_VLAN_TAGGING_MODE_TAGGED | yes |  |
 |  |  | SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED | yes |  |
+|  | SAI_VLAN_MEMBER_ATTR_TUNNEL_TERM_BUM_TX_DROP |  | no |  |
+|  | SAI_VLAN_MEMBER_ATTR_RX_DROP |  | no |  |
+|  | SAI_VLAN_MEMBER_ATTR_TX_DROP |  | no |  |
 | remove_vlan_member |  |  | yes |  |
 | set_vlan_member_attribute | SAI_VLAN_MEMBER_ATTR_VLAN_TAGGING_MODE | SAI_VLAN_TAGGING_MODE_UNTAGGED | yes |  |
 |  |  | SAI_VLAN_TAGGING_MODE_TAGGED | yes |  |
 |  |  | SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED | yes |  |
+|  | SAI_VLAN_MEMBER_ATTR_TUNNEL_TERM_BUM_TX_DROP |  | no |  |
+|  | SAI_VLAN_MEMBER_ATTR_RX_DROP |  | no |  |
+|  | SAI_VLAN_MEMBER_ATTR_TX_DROP |  | no |  |
 | get_vlan_member_attribute | SAI_VLAN_MEMBER_ATTR_VLAN_ID |  | yes |  |
 |  | SAI_VLAN_MEMBER_ATTR_BRIDGE_PORT_ID |  | yes |  |
 |  | SAI_VLAN_MEMBER_ATTR_VLAN_TAGGING_MODE |  | yes |  |
+|  | SAI_VLAN_MEMBER_ATTR_TUNNEL_TERM_BUM_TX_DROP |  | no |  |
+|  | SAI_VLAN_MEMBER_ATTR_RX_DROP |  | no |  |
+|  | SAI_VLAN_MEMBER_ATTR_TX_DROP |  | no |  |
 | create_vlan_members |  |  | no |  |
 | remove_vlan_members |  |  | no |  |
 | get_vlan_stats | SAI_VLAN_STAT_IN_OCTETS |  | no |  |

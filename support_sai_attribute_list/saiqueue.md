@@ -108,6 +108,11 @@
 |  | SAI_QUEUE_STAT_WATERMARK_LEVEL |  | no |  |
 |  | SAI_QUEUE_STAT_CREDIT_WD_DELETED_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_DELAY_WATERMARK_NS |  | no |  |
+|  | SAI_QUEUE_STAT_TRIM_PACKETS |  | no |  |
+|  | SAI_QUEUE_STAT_CURR_OCCUPANCY_CELLS |  | no |  |
+|  | SAI_QUEUE_STAT_WATERMARK_CELLS |  | no |  |
+|  | SAI_QUEUE_STAT_SHARED_CURR_OCCUPANCY_CELLS |  | no |  |
+|  | SAI_QUEUE_STAT_SHARED_WATERMARK_CELLS |  | no |  |
 | get_queue_stats_ext |  |  | no |  |
 | clear_queue_stats | SAI_QUEUE_STAT_PACKETS |  | yes |  |
 |  | SAI_QUEUE_STAT_BYTES |  | yes |  |
@@ -149,6 +154,11 @@
 |  | SAI_QUEUE_STAT_WATERMARK_LEVEL |  | no |  |
 |  | SAI_QUEUE_STAT_CREDIT_WD_DELETED_PACKETS |  | no |  |
 |  | SAI_QUEUE_STAT_DELAY_WATERMARK_NS |  | no |  |
+|  | SAI_QUEUE_STAT_TRIM_PACKETS |  | no |  |
+|  | SAI_QUEUE_STAT_CURR_OCCUPANCY_CELLS |  | no |  |
+|  | SAI_QUEUE_STAT_WATERMARK_CELLS |  | no |  |
+|  | SAI_QUEUE_STAT_SHARED_CURR_OCCUPANCY_CELLS |  | no |  |
+|  | SAI_QUEUE_STAT_SHARED_WATERMARK_CELLS |  | no |  |
 | set_queues_attribute |  |  | no |  |
 | get_queues_attribute |  |  | no |  |
 

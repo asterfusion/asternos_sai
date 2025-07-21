@@ -33,6 +33,8 @@
 |  |  | SAI_NATIVE_HASH_FIELD_MPLS_LABEL_3 | no |  |
 |  |  | SAI_NATIVE_HASH_FIELD_MPLS_LABEL_4 | no |  |
 |  |  | SAI_NATIVE_HASH_FIELD_IPV6_FLOW_LABEL | no |  |
+|  |  | SAI_NATIVE_HASH_FIELD_RDMA_BTH_OPCODE | no |  |
+|  |  | SAI_NATIVE_HASH_FIELD_RDMA_BTH_DEST_QP | no |  |
 |  | SAI_HASH_ATTR_UDF_GROUP_LIST |  | no |  |
 |  | SAI_HASH_ATTR_FINE_GRAINED_HASH_FIELD_LIST |  | no |  |
 | remove_hash |  |  | yes |  |
@@ -69,6 +71,8 @@
 |  |  | SAI_NATIVE_HASH_FIELD_MPLS_LABEL_3 | no  |
 |  |  | SAI_NATIVE_HASH_FIELD_MPLS_LABEL_4 | no  |
 |  |  | SAI_NATIVE_HASH_FIELD_IPV6_FLOW_LABEL | no  |
+|  |  | SAI_NATIVE_HASH_FIELD_RDMA_BTH_OPCODE | no |  |
+|  |  | SAI_NATIVE_HASH_FIELD_RDMA_BTH_DEST_QP | no |  |
 |  | SAI_HASH_ATTR_UDF_GROUP_LIST |  | no |  |
 |  | SAI_HASH_ATTR_FINE_GRAINED_HASH_FIELD_LIST |  | no |  |
 | get_hash_attribute | SAI_HASH_ATTR_NATIVE_HASH_FIELD_LIST |  | yes |  |
