@@ -34,6 +34,19 @@
  */
 
 /**
+ * @brief Attribute data for #SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_PRIORITY
+ */
+typedef enum _sai_lag_fdb_learning_priority_t
+{
+    /** Low priority */
+    SAI_LAG_FDB_LEARNING_PRIORITY_LOW,
+
+    /** High priority */
+    SAI_LAG_FDB_LEARNING_PRIORITY_HIGH,
+
+} sai_lag_fdb_learning_priority_t;
+
+/**
  * @brief LAG attribute: List of attributes for LAG object
  */
 typedef enum _sai_lag_attr_t
@@ -235,6 +248,30 @@ typedef enum _sai_lag_attr_t
      * @default SAI_NULL_OBJECT_ID
      */
     SAI_LAG_ATTR_CUSTOM_ISOLATION_GROUP,
+
+    /**
+     * @brief MAC learning priority
+     *
+     * Address movement from low-priority interface to a high-priority interface is always allowed, while
+     * address movement from high-priority interface to a low-priority interface is never allowed.
+     *
+     * @type sai_lag_fdb_learning_priority_t
+     * @flags CREATE_AND_SET
+     * @default SAI_LAG_FDB_LEARNING_PRIORITY_LOW
+     */
+    SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_PRIORITY,
+
+    /**
+     * @brief MAC learning group id
+     *
+     * Address movement between same priority interfaces is allowed only if both interfaces belong to
+     * the same learning group
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_GROUP,
 
     /** End of custom range base */
     SAI_LAG_ATTR_CUSTOM_RANGE_END

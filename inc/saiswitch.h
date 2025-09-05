@@ -3526,6 +3526,17 @@ typedef enum _sai_switch_attr_t
      */
     SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT,
 
+    /**
+     * @brief FDB secure breach event notification callback function passed to the adapter.
+     *
+     * Use sai_custom_fdb_secure_breach_event_notification_fn as notification function.
+     *
+     * @type sai_pointer_t sai_custom_fdb_secure_breach_event_notification_fn
+     * @flags CREATE_AND_SET
+     * @default NULL
+     */
+    SAI_SWITCH_ATTR_CUSTOM_FDB_SECURE_BREACH_EVENT_NOTIFY,
+
     /** End of custom range base */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_END,
 

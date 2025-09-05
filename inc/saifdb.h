@@ -346,6 +346,33 @@ typedef struct _sai_fdb_event_notification_data_t
 } sai_fdb_event_notification_data_t;
 
 /**
+ * @brief Notification data format received from SAI FDB SECURE BREACH EVENT callback
+ */
+typedef struct _sai_fdb_secure_breach_event_notification_data_t
+{
+    /** MAC address */
+    sai_mac_t mac_address;
+
+    /**
+     * @brief Port id.
+     *
+     * @objects SAI_OBJECT_TYPE_PORT, SAI_OBJECT_TYPE_BRIDGE_PORT, SAI_OBJECT_TYPE_LAG
+     */
+    sai_object_id_t port_id;
+
+    /**
+     * @brief Bridge ID. for .1D and Vlan ID for .1Q
+     *
+     * @objects SAI_OBJECT_TYPE_BRIDGE, SAI_OBJECT_TYPE_VLAN
+     */
+    sai_object_id_t vlan_id;
+
+    /** Reason code */
+    uint32_t code;
+
+} sai_fdb_secure_breach_event_notification_data_t;
+
+/**
  * @brief Create FDB entry
  *
  * @param[in] fdb_entry FDB entry
@@ -420,6 +447,18 @@ typedef sai_status_t (*sai_flush_fdb_entries_fn)(
 typedef void (*sai_fdb_event_notification_fn)(
         _In_ uint32_t count,
         _In_ const sai_fdb_event_notification_data_t *data);
+
+/**
+ * @brief FDB secure event notifications
+ *
+ * @count data[count]
+ *
+ * @param[in] count Number of notifications
+ * @param[in] data Pointer to FDB secure breach event notification data array
+ */
+typedef void (*sai_custom_fdb_secure_breach_event_notification_fn)(
+        _In_ uint32_t count,
+        _In_ const sai_fdb_secure_breach_event_notification_data_t *data);
 
 /**
  * @brief Bulk create FDB entry
