@@ -380,6 +380,8 @@
 |  | SAI_PORT_ATTR_CUSTOM_IPSGV6_PASS |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_DAI_PASS |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_SAVI_PASS |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_PRIORITY |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_GROUP |  | yes | yes |
 | remove_port |  |  | yes |  |
 | set_port_attribute | SAI_PORT_ATTR_AUTO_NEG_MODE |  | yes |  |
 |  | SAI_PORT_ATTR_ADMIN_STATE |  | yes |  |
@@ -758,6 +760,8 @@
 |  | SAI_PORT_ATTR_CUSTOM_IPSGV6_PASS |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_DAI_PASS |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_SAVI_PASS |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_PRIORITY |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_GROUP |  | yes | yes |
 | get_port_attribute | SAI_PORT_ATTR_TYPE |  | yes |  |
 |  | SAI_PORT_ATTR_OPER_STATUS |  | yes |  |
 |  | SAI_PORT_ATTR_SUPPORTED_BREAKOUT_MODE_TYPE |  | yes |  |
@@ -976,6 +980,8 @@
 |  | SAI_PORT_ATTR_CUSTOM_IPSGV6_PASS |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_DAI_PASS |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_SAVI_PASS |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_PRIORITY |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_GROUP |  | yes | yes |
 | get_port_stats | SAI_PORT_STAT_IF_IN_OCTETS |  | no |  |
 |  | SAI_PORT_STAT_IF_IN_UCAST_PKTS |  | yes |  |
 |  | SAI_PORT_STAT_IF_IN_NON_UCAST_PKTS |  | yes |  |

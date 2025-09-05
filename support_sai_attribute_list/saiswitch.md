@@ -645,6 +645,7 @@
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FDB_SECURE_BREACH_EVENT_NOTIFY |  | yes | yes |
 | get_switch_stats |  |  | no |  |
 | get_switch_stats_ext |  |  | no |  |
 | clear_switch_stats |  |  | no |  |

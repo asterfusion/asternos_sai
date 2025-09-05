@@ -698,6 +698,19 @@ typedef enum _sai_port_path_tracing_timestamp_type_t
 } sai_port_path_tracing_timestamp_type_t;
 
 /**
+ * @brief Attribute data for #SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_PRIORITY
+ */
+typedef enum _sai_port_fdb_learning_priority_t
+{
+    /** Low priority */
+    SAI_PORT_FDB_LEARNING_PRIORITY_LOW,
+
+    /** High priority */
+    SAI_PORT_FDB_LEARNING_PRIORITY_HIGH,
+
+} sai_port_fdb_learning_priority_t;
+
+/**
  * @brief Attribute Id in sai_set_port_attribute() and
  * sai_get_port_attribute() calls
  */
@@ -3028,6 +3041,30 @@ typedef enum _sai_port_attr_t
      * @default false
      */
     SAI_PORT_ATTR_CUSTOM_SAVI_PASS,
+
+    /**
+     * @brief MAC learning priority
+     *
+     * Address movement from low-priority interface to a high-priority interface is always allowed, while
+     * address movement from high-priority interface to a low-priority interface is never allowed.
+     *
+     * @type sai_port_fdb_learning_priority_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PORT_FDB_LEARNING_PRIORITY_LOW
+     */
+    SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_PRIORITY,
+
+    /**
+     * @brief MAC learning group id
+     *
+     * Address movement between same priority interfaces is allowed only if both interfaces belong to
+     * the same learning group
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_GROUP,
 
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END,

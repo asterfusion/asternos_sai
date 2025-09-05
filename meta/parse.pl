@@ -5494,6 +5494,7 @@ sub ProcessNotificationStruct
         next if $type =~ /^sai_\w+_entry_t/;        # non object id struct
         next if $type =~ /^(uint32_t|bool)$/;
         next if $type =~ /^(sai_twamp_session_stats_data_t)$/;
+        next if $type =~ /^(sai_mac_t)$/;
 
         if ($type =~ /^(sai_object_id_t|sai_attribute_t\*)$/)
         {
