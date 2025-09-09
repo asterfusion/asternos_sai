@@ -3066,6 +3066,69 @@ typedef enum _sai_port_attr_t
      */
     SAI_PORT_ATTR_CUSTOM_FDB_LEARNING_GROUP,
 
+    /**
+     * @brief STP packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_TRAP
+     */
+    SAI_PORT_ATTR_CUSTOM_STP_PACKET_PACKET_ACTION,
+
+    /**
+     * @brief LACP packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_TRAP
+     */
+    SAI_PORT_ATTR_CUSTOM_LACP_PACKET_PACKET_ACTION,
+
+    /**
+     * @brief LLDP packet action
+     *
+     * @type sai_packet_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_PACKET_ACTION_TRAP
+     */
+    SAI_PORT_ATTR_CUSTOM_LLDP_PACKET_PACKET_ACTION,
+
+    /**
+     * @brief L2PT STP packet enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_L2PT_STP_PACKET_ENABLE,
+
+    /**
+     * @brief L2PT LACP packet enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_L2PT_LACP_PACKET_ENABLE,
+
+    /**
+     * @brief L2PT PVSTP packet enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_L2PT_PVSTP_PACKET_ENABLE,
+
+    /**
+     * @brief L2PT CDP packet enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_L2PT_CDP_PACKET_ENABLE,
+
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END,
 

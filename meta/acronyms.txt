@@ -22,6 +22,7 @@ CAUI - 100 Gigabit Attachment Unit Interface
 CB - Callback
 CBS - Committed Burst Size
 CCITT - Comite Consultatif International de Telegraphique et Telephonique
+CDP - Cisco Discovery Protocol
 CFI - Canonical Format Indicator
 CIDR - Classless Inter Domain Routing
 CIR - Committed Information Rate
@@ -92,11 +93,14 @@ IPSG - test
 ITU - International Telecommunication Union
 L2 - Layer 2
 L2MC - Layer 2 Multi Cast
+L2PT - Layer 2 Protocol Tunnel
 L2VPN - Layer 2 Virtual Private Network
 L3 - Layer 3
+LACP - Link Aggregation Control Protocol
 LAG - Link Aggregation Group
 LBDT - Loopback Detection
 LDP - Label Distribution Protocol
+LLDP - Link Layer Discovery Protocol
 LPM - Longest Prefix Match
 LSP - Label Switched Path
 MAC - Medium Access Control
@@ -136,6 +140,7 @@ PSC - PHB Scheduling Class
 PSE - Power Sourcing Equipment
 PSP - Penultimate Segment Pop
 PTP - Precision time protocol
+PVSTP - Per VLAN Spanning Tree Protocol
 QOS - Quality of Service
 RARP - Reverse Address Resolution Protocol
 RDMA - Remote Direct Memory Access
