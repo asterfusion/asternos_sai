@@ -32,6 +32,7 @@ CPLD - Complex programmable logic device
 CPU - Central Processing Unit
 CRC - Cyclic Redundancy Code
 DAI - test
+DFE - Decision Feedback Equalizer
 DHCP - Dynamic Host Configuration Protocol
 DHCPV6 - Dynamic Host Configuration Protocol for IPv6
 DLD - Dead Lock Detection
@@ -59,6 +60,8 @@ FCS - Frame Check Sequence
 FD - File Descriptor
 FDB - Forwarding Data Base
 FEC - Forward Error Correction
+FFE - Feedforward Equalizer
+FIR - Finite Impulse Response
 FPGA - Field Programmable Gate Array
 FW  - Firmware
 GCM - Galois Counter Mode
@@ -194,6 +197,7 @@ URPF - test
 USD - Ultimate Segment Decapsulation
 USP - Ultimate Segment Pop
 USXGMII - Universal Serial 10 Gigabit Media Independent Interface
+VGA - Variable Gain Amplifier
 VNET - Virtual Network
 VNI - Virtual Network Interface
 VNID - Virtual Network Identifier
