@@ -699,6 +699,34 @@ typedef enum _sai_packet_trim_dscp_resolution_mode_t
 } sai_packet_trim_dscp_resolution_mode_t;
 
 /**
+ * @brief Attribute data for #SAI_SWITCH_ATTR_MACSEC_POST_STATUS,
+ */
+typedef enum _sai_switch_macsec_post_status_t
+{
+    SAI_SWITCH_MACSEC_POST_STATUS_UNKNOWN,
+
+    SAI_SWITCH_MACSEC_POST_STATUS_PASS,
+
+    SAI_SWITCH_MACSEC_POST_STATUS_IN_PROGRESS,
+
+    SAI_SWITCH_MACSEC_POST_STATUS_FAIL,
+} sai_switch_macsec_post_status_t;
+
+/**
+ * @brief Attribute data for #SAI_SWITCH_ATTR_IPSEC_POST_STATUS,
+ */
+typedef enum _sai_switch_ipsec_post_status_t
+{
+    SAI_SWITCH_IPSEC_POST_STATUS_UNKNOWN,
+
+    SAI_SWITCH_IPSEC_POST_STATUS_PASS,
+
+    SAI_SWITCH_IPSEC_POST_STATUS_IN_PROGRESS,
+
+    SAI_SWITCH_IPSEC_POST_STATUS_FAIL,
+} sai_switch_ipsec_post_status_t;
+
+/**
  * @brief Attribute Id in sai_set_switch_attribute() and
  * sai_get_switch_attribute() calls.
  */
@@ -765,7 +793,7 @@ typedef enum _sai_switch_attr_t
     SAI_SWITCH_ATTR_MAX_VIRTUAL_ROUTERS,
 
     /**
-     * @brief The size of the FDB Table in bytes
+     * @brief The FDB Table size
      *
      * @type sai_uint32_t
      * @flags READ_ONLY
@@ -3356,6 +3384,122 @@ typedef enum _sai_switch_attr_t
     SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE,
 
     /**
+     * @brief Callback for completion status of all the MACSEC ports serviced by this MACSEC engine
+     *
+     * Use sai_macsec_post_status_notification_fn as notification function.
+     *
+     * @type sai_pointer_t sai_macsec_post_status_notification_fn
+     * @flags CREATE_AND_SET
+     * @default NULL
+     */
+    SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY,
+
+    /**
+     * @brief Callback for completion status of all the IPSEC ports serviced by this IPSEC engine
+     *
+     * Use sai_ipsec_post_status_notification_fn as notification function.
+     *
+     * @type sai_pointer_t sai_ipsec_post_status_notification_fn
+     * @flags CREATE_AND_SET
+     * @default NULL
+     */
+    SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY,
+
+    /**
+     * @brief MACSEC POST status
+     * Attribute to query the status of POST for all the MACSEC engines
+     *
+     * @type sai_switch_macsec_post_status_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_MACSEC_POST_STATUS,
+
+    /**
+     * @brief IPSEC POST status
+     * Attribute to query the status of POST for all the IPSEC engines
+     *
+     * @type sai_switch_ipsec_post_status_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_IPSEC_POST_STATUS,
+
+    /**
+     * @brief Setting the value to true will start the post on all MACSEC engines
+     *
+     * @type bool
+     * @flags CREATE_ONLY
+     * @default false
+     */
+    SAI_SWITCH_ATTR_MACSEC_ENABLE_POST,
+
+    /**
+     * @brief Setting the value to true will start the post on all IPSEC engines
+     *
+     * @type bool
+     * @flags CREATE_ONLY
+     * @default false
+     */
+    SAI_SWITCH_ATTR_IPSEC_ENABLE_POST,
+
+    /**
+     * @brief Callback for completion status of all the MACSEC engines on the switch
+     *
+     * Use sai_switch_macsec_post_status_notification_fn as notification function.
+     *
+     * @type sai_pointer_t sai_switch_macsec_post_status_notification_fn
+     * @flags CREATE_AND_SET
+     * @default NULL
+     */
+    SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY,
+
+    /**
+     * @brief Callback for completion status of all the IPSEC engines on the switch
+     *
+     * Use sai_switch_ipsec_post_status_notification_fn as notification function.
+     *
+     * @type sai_pointer_t sai_switch_ipsec_post_status_notification_fn
+     * @flags CREATE_AND_SET
+     * @default NULL
+     */
+    SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY,
+
+    /**
+     * @brief Default Ingress Buffer Pool for CPU Port usage.
+     *
+     * This object id references an internal SAI-managed default buffer
+     * pool for the CPU Port. It may be used to configure the buffer pool
+     * attributes or reference the buffer pool from other QOS objects.
+     *
+     * The object id is read only, while the object attributes can be modified.
+     * Must return #SAI_NULL_OBJECT_ID if no such internal default buffer pool exists.
+     *
+     * @type sai_object_id_t
+     * @flags READ_ONLY
+     * @objects SAI_OBJECT_TYPE_BUFFER_POOL
+     * @allownull true
+     * @default internal
+     */
+    SAI_SWITCH_ATTR_DEFAULT_CPU_INGRESS_BUFFER_POOL,
+
+    /**
+     * @brief Default Egress Buffer Pool for CPU Port usage.
+     *
+     * This object id references an internal SAI-managed default buffer
+     * pool for the CPU Port. It may be used to configure the buffer pool
+     * attributes or reference the buffer pool from other QOS objects.
+     *
+     * The object id is read only, while the object attributes can be modified.
+     * Must return #SAI_NULL_OBJECT_ID if no such internal default buffer pool exists.
+     *
+     * @type sai_object_id_t
+     * @flags READ_ONLY
+     * @objects SAI_OBJECT_TYPE_BUFFER_POOL
+     * @allownull true
+     * @default internal
+     */
+    SAI_SWITCH_ATTR_DEFAULT_CPU_EGRESS_BUFFER_POOL,
+
+    /**
      * @brief End of attributes
      */
     SAI_SWITCH_ATTR_END,
@@ -3587,6 +3731,15 @@ typedef enum _sai_switch_asic_sdk_health_category_t
  */
 typedef enum _sai_switch_stat_t
 {
+    /** Switch stat range start */
+    SAI_SWITCH_STAT_START,
+
+    /** Global (switch-wise) counter of packets trimmed but dropped due to failed shared buffer admission on a trim queue */
+    SAI_SWITCH_STAT_DROPPED_TRIM_PACKETS = SAI_SWITCH_STAT_START,
+
+    /** Global (switch-wise) counter of packets trimmed and successfully sent on a trim queue */
+    SAI_SWITCH_STAT_TX_TRIM_PACKETS,
+
     /** Switch stat in drop reasons range start */
     SAI_SWITCH_STAT_IN_DROP_REASON_RANGE_BASE = 0x00001000,
 
@@ -3668,6 +3821,12 @@ typedef enum _sai_switch_stat_t
     /** Switch stat fabric drop reasons range end */
     SAI_SWITCH_STAT_FABRIC_DROP_REASON_RANGE_END = 0x00003fff,
 
+    /** Switch stat range end */
+    SAI_SWITCH_STAT_END,
+
+    /** Custom range base value */
+    SAI_SWITCH_STAT_CUSTOM_RANGE_BASE = 0x10000000
+
 } sai_switch_stat_t;
 
 /**
@@ -3683,7 +3842,7 @@ typedef enum _sai_switch_stat_t
  * @note This value needs to be incremented whenever a new switch attribute key
  * is added.
  */
-#define SAI_SWITCH_ATTR_MAX_KEY_COUNT         16
+#define SAI_SWITCH_ATTR_MAX_KEY_COUNT         17
 
 /*
  * List of switch attributes keys that can be set using key=value
@@ -3748,6 +3907,13 @@ typedef enum _sai_switch_stat_t
  * @def SAI_KEY_INIT_CONFIG_FILE
  */
 #define SAI_KEY_INIT_CONFIG_FILE                  "SAI_INIT_CONFIG_FILE"
+
+/**
+ * @def SAI_KEY_NHG_HIERARCHICAL_NEXTHOP
+ * true: Nexthop groups consists of tunnel and IP nexthop
+ * false: Nexthop groups consists of IP nexthop only
+ */
+#define SAI_KEY_NHG_HIERARCHICAL_NEXTHOP          "SAI_NHG_HIERARCHICAL_NEXTHOP"
 
 /**
  * @def SAI_KEY_BOOT_TYPE
@@ -3837,6 +4003,30 @@ typedef void (*sai_switch_shutdown_request_notification_fn)(
 typedef void (*sai_switch_state_change_notification_fn)(
         _In_ sai_object_id_t switch_id,
         _In_ sai_switch_oper_status_t switch_oper_status);
+
+/**
+ * @brief Switch MACSEC post status notification
+ *
+ * @objects switch_id SAI_OBJECT_TYPE_SWITCH
+ *
+ * @param[in] switch_id Switch Id
+ * @param[in] switch_macsec_post_status Switch MACSEC post status
+ */
+typedef void (*sai_switch_macsec_post_status_notification_fn)(
+        _In_ sai_object_id_t switch_id,
+        _In_ sai_switch_macsec_post_status_t switch_macsec_post_status);
+
+/**
+ * @brief Switch IPSEC post status notification
+ *
+ * @objects switch_id SAI_OBJECT_TYPE_SWITCH
+ *
+ * @param[in] switch_id Switch Id
+ * @param[in] switch_ipsec_post_status Switch IPSEC post status
+ */
+typedef void (*sai_switch_ipsec_post_status_notification_fn)(
+        _In_ sai_object_id_t switch_id,
+        _In_ sai_switch_ipsec_post_status_t switch_ipsec_post_status);
 
 /**
  * @brief Platform specific device register read access

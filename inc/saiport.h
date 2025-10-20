@@ -3826,6 +3826,12 @@ typedef enum _sai_port_stat_t
     /** Packets trimmed due to failed shared buffer admission [uint64_t] */
     SAI_PORT_STAT_TRIM_PACKETS,
 
+    /** Packets trimmed but dropped due to failed shared buffer admission on a trim queue */
+    SAI_PORT_STAT_DROPPED_TRIM_PACKETS,
+
+    /** Packets trimmed and successfully transmitted on port */
+    SAI_PORT_STAT_TX_TRIM_PACKETS,
+
     /** Port stat in drop reasons range start */
     SAI_PORT_STAT_IN_DROP_REASON_RANGE_BASE = 0x00001000,
 
@@ -3852,6 +3858,30 @@ typedef enum _sai_port_stat_t
 
     /** Get in port packet drops configured by debug counter API at index 7 */
     SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_7_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 8 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_8_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 9 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_9_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 10 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_10_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 11 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_11_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 12 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_12_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 13 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_13_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 14 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_14_DROPPED_PKTS,
+
+    /** Get in port packet drops configured by debug counter API at index 15 */
+    SAI_PORT_STAT_IN_CONFIGURED_DROP_REASONS_15_DROPPED_PKTS,
 
     /** Port stat in drop reasons range end */
     SAI_PORT_STAT_IN_DROP_REASON_RANGE_END = 0x00001fff,
@@ -4572,6 +4602,45 @@ typedef enum _sai_port_serdes_attr_t
      * @default internal
      */
     SAI_PORT_SERDES_ATTR_RX_PRECODING,
+
+    /**
+     * @brief A collection of custom serdes attributes
+     *
+     * The value is of type sai_json_t, which can include multiple custom serdes
+     * attributes. This allows vendor-specific serdes attributes to be forwarded
+     * in a JSON string without the sender needing to know the details. The
+     * sender simply passes along the data, vendor-defined rules determine which
+     * attributes and values to include in different situations, and the vendor
+     * SDK interprets the JSON accordingly.
+     *
+     * Example of the JSON object:
+     * {
+     * "attributes": [
+     * {
+     *    "attr_xyz": {
+     *        "sai_metadata": {
+     *        "sai_attr_value_type": "SAI_ATTR_VALUE_TYPE_INT32_LIST"
+     *        },
+     *        "value": [10, 10, 10, 10]
+     *    }
+     * },
+     * {
+     *    "attr_abc": {
+     *        "sai_metadata": {
+     *        "sai_attr_value_type": "SAI_ATTR_VALUE_TYPE_INT32_LIST"
+     *        },
+     *        "value": [20, 20, 20, 20]
+     *    }
+     * },
+     * ...
+     * ]
+     * }
+     *
+     * @type sai_json_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_CUSTOM_COLLECTION,
 
     /**
      * @brief End of attributes
