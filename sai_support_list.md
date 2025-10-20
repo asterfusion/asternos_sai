@@ -21,7 +21,7 @@
 | sail2mc | yes |  |
 | sail2mcgroup | yes |  |
 | sailag | yes |  |
-| saimacsec | no |  |
+| saimacsec | yes |  |
 | saimcastfdb | no |  |
 | saimirror | yes |  |
 | saimpls | yes |  |
