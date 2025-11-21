@@ -3389,7 +3389,7 @@ typedef enum _sai_acl_entry_attr_t
     SAI_ACL_ENTRY_ATTR_CUSTOM_ACTION_REDIRECT_FLOOD_AND_TO_GROUP,
 
     /**
-     * @brief Set cpu code for dhcp packets
+     * @brief Set CPU code for DHCP packets
      *
      * @type sai_acl_action_data_t bool
      * @flags CREATE_AND_SET
