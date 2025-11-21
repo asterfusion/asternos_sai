@@ -3388,6 +3388,15 @@ typedef enum _sai_acl_entry_attr_t
      */
     SAI_ACL_ENTRY_ATTR_CUSTOM_ACTION_REDIRECT_FLOOD_AND_TO_GROUP,
 
+    /**
+     * @brief Set cpu code for dhcp packets
+     *
+     * @type sai_acl_action_data_t bool
+     * @flags CREATE_AND_SET
+     * @default disabled
+     */
+    SAI_ACL_ENTRY_ATTR_CUSTOM_ACTION_SET_DHCP_CPU_CODE_ENABLE,
+
     /** End of custom range base */
     SAI_ACL_ENTRY_ATTR_CUSTOM_RANGE_END
 
