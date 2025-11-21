@@ -7,6 +7,7 @@
 |  | SAI_MACSEC_ATTR_STAG_TPID |  | yes |  |
 |  | SAI_MACSEC_ATTR_STATS_MODE |  | yes |  |
 |  | SAI_MACSEC_ATTR_WARM_BOOT_ENABLE |  | no |  |
+|  | SAI_MACSEC_ATTR_ENABLE_POST |  | no |  |
 | remove_macsec |  |  | yes |  |
 | set_macsec_attribute | SAI_MACSEC_ATTR_CTAG_TPID |  | yes |  |
 |  | SAI_MACSEC_ATTR_MAX_VLAN_TAGS_PARSED |  | yes |  |
@@ -40,6 +41,8 @@
 |  | SAI_MACSEC_ATTR_WARM_BOOT_SUPPORTED |  | yes |  |
 |  | SAI_MACSEC_ATTR_PN_32BIT_SUPPORTED |  | yes |  |
 |  | SAI_MACSEC_ATTR_XPN_64BIT_SUPPORTED |  | yes |  |
+|  | SAI_MACSEC_ATTR_POST_STATUS |  | no |  |
+|  | SAI_MACSEC_ATTR_ENABLE_POST |  | no |  |
 | create_macsec_flow | SAI_MACSEC_FLOW_ATTR_MACSEC_DIRECTION |  | yes |  |
 |  | SAI_MACSEC_FLOW_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
 |  | SAI_MACSEC_FLOW_ATTR_STATS_COUNT_MODE |  | no |  |
