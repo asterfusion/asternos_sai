@@ -97,6 +97,15 @@ typedef enum _sai_ptp_domain_entry_attr_t
     SAI_PTP_DOMAIN_ENTRY_ATTR_PTP_DOMAIN_ID,
 
     /**
+     * @brief Query/Configure 1PPS signal process
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PTP_DOMAIN_ENTRY_ATTR_PTP_PPS_RECEPTION,
+
+    /**
      * @brief End of attributes
      */
     SAI_PTP_DOMAIN_ENTRY_ATTR_END,
