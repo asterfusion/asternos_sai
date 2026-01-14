@@ -81,6 +81,24 @@ typedef enum _sai_isolation_group_attr_t
     /** Custom range base value */
     SAI_ISOLATION_GROUP_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Source IP Address, valid when type is SAI_ISOLATION_GROUP_TYPE_CUSTOM_FLOODING_FLOW
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_ISOLATION_GROUP_ATTR_CUSTOM_FLOODING_FLOW_FILTER_OUTER_SRC_IP,
+
+    /**
+     * @brief Source IP Address mask, valid when type is SAI_ISOLATION_GROUP_TYPE_CUSTOM_FLOODING_FLOW
+     *
+     * @type sai_ip_address_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_ISOLATION_GROUP_ATTR_CUSTOM_FLOODING_FLOW_FILTER_OUTER_SRC_IP_MASK,
+
     /** End of custom range base */
     SAI_ISOLATION_GROUP_ATTR_CUSTOM_RANGE_END
 

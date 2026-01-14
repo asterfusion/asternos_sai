@@ -584,6 +584,27 @@ typedef enum _sai_vlan_attr_t
      */
     SAI_VLAN_ATTR_CUSTOM_REMOVE_PORTS,
 
+    /**
+     * @brief Set ARP request action trap
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_TRAP_ARP,
+
+    /**
+     * @brief Counter enable or disable control for VLAN
+     *
+     * Counter enable control for VLAN. Default is
+     * disabled
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_VLAN_ATTR_CUSTOM_COUNTER_ENABLE,
+
     /** End of custom range base */
     SAI_VLAN_ATTR_CUSTOM_RANGE_END
 

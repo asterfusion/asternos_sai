@@ -3129,6 +3129,15 @@ typedef enum _sai_port_attr_t
      */
     SAI_PORT_ATTR_CUSTOM_L2PT_CDP_PACKET_ENABLE,
 
+    /**
+     * @brief Enable/Disable function
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL,
+
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END,
 

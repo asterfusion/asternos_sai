@@ -3,6 +3,8 @@
 | create_isolation_group | SAI_ISOLATION_GROUP_ATTR_TYPE | SAI_ISOLATION_GROUP_TYPE_PORT | no |  |
 |  |  | SAI_ISOLATION_GROUP_TYPE_BRIDGE_PORT | yes |  |
 |  | SAI_ISOLATION_GROUP_ATTR_ISOLATION_MEMBER_LIST |  | yes |  |
+|  | SAI_ISOLATION_GROUP_ATTR_CUSTOM_FLOODING_FLOW_FILTER_OUTER_SRC_IP |  | yes | yes |
+|  | SAI_ISOLATION_GROUP_ATTR_CUSTOM_FLOODING_FLOW_FILTER_OUTER_SRC_IP_MASK |  | yes | yes |
 | remove_isolation_group |  |  | yes |  |
 | set_isolation_group_attribute |  |  | no |  |
 | get_isolation_group_attribute | SAI_ISOLATION_GROUP_ATTR_TYPE |  | yes |  |

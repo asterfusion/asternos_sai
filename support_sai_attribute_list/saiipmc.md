@@ -31,4 +31,5 @@
 |  | SAI_IPMC_ENTRY_ATTR_OUTPUT_GROUP_ID |  | yes |  |
 |  | SAI_IPMC_ENTRY_ATTR_RPF_GROUP_ID |  | yes |  |
 |  | SAI_IPMC_ENTRY_ATTR_COUNTER_ID |  | no |  |
+|  | SAI_IPMC_ENTRY_ATTR_CUSTOM_ACTIVE_STATUS |  | yes |  yes |
 

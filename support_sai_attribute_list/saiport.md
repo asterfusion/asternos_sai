@@ -389,6 +389,7 @@
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_LACP_PACKET_ENABLE |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_PVSTP_PACKET_ENABLE |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_CDP_PACKET_ENABLE |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL |  | yes | yes |
 | remove_port |  |  | yes |  |
 | set_port_attribute | SAI_PORT_ATTR_AUTO_NEG_MODE |  | yes |  |
 |  | SAI_PORT_ATTR_ADMIN_STATE |  | yes |  |
@@ -1003,6 +1004,7 @@
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_LACP_PACKET_ENABLE |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_PVSTP_PACKET_ENABLE |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_CDP_PACKET_ENABLE |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL |  | yes | yes |
 | get_port_stats | SAI_PORT_STAT_IF_IN_OCTETS |  | no |  |
 |  | SAI_PORT_STAT_IF_IN_UCAST_PKTS |  | yes |  |
 |  | SAI_PORT_STAT_IF_IN_NON_UCAST_PKTS |  | yes |  |
@@ -1200,6 +1202,7 @@
 |  | SAI_PORT_STAT_ETHER_OUT_PKTS_1519_TO_2500_OCTETS |  | no |  |
 |  | SAI_PORT_STAT_ETHER_OUT_PKTS_2501_TO_9000_OCTETS |  | no |  |
 |  | SAI_PORT_STAT_ETHER_OUT_PKTS_9001_TO_16383_OCTETS |  | no |  |
+|  | SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL |  | yes | yes |
 | clear_port_stats |  |  | no |  |
 | clear_port_all_stats |  |  | yes |  |
 | create_port_pool |  |  | no |  |

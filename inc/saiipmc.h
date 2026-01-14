@@ -77,6 +77,8 @@ typedef struct _sai_ipmc_entry_t
 
 /**
  * @brief Attribute Id for IPMC entry
+ *
+ * @flags ranges
  */
 typedef enum _sai_ipmc_entry_attr_t
 {
@@ -139,6 +141,15 @@ typedef enum _sai_ipmc_entry_attr_t
 
     /** Custom range base value */
     SAI_IPMC_ENTRY_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief Query IPMC entry active status
+     *
+     * @type bool
+     * @flags READ_ONLY
+     * @isresourcetype true
+     */
+    SAI_IPMC_ENTRY_ATTR_CUSTOM_ACTIVE_STATUS,
 
     /** Custom range base end value */
     SAI_IPMC_ENTRY_ATTR_CUSTOM_RANGE_END
