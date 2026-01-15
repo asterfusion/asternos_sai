@@ -56,6 +56,8 @@
 |  | SAI_VLAN_ATTR_CUSTOM_MLD_SNOOPING_ENABLE |  | yes | yes |
 |  | SAI_VLAN_ATTR_CUSTOM_CREATE_PORTS |  | yes | yes |
 |  | SAI_VLAN_ATTR_CUSTOM_REMOVE_PORTS |  | yes | yes |
+|  | SAI_VLAN_ATTR_CUSTOM_TRAP_ARP     |  | yes | yes |
+|  | SAI_VLAN_ATTR_CUSTOM_COUNTER_ENABLE |  | yes | yes |
 | remove_vlan |  |  | yes |  |
 | set_vlan_attribute | SAI_VLAN_ATTR_MAX_LEARNED_ADDRESSES |  | yes |  |
 |  | SAI_VLAN_ATTR_STP_INSTANCE |  | yes |  |
@@ -112,6 +114,8 @@
 |  | SAI_VLAN_ATTR_CUSTOM_MLD_SNOOPING_ENABLE |  | yes | yes |
 |  | SAI_VLAN_ATTR_CUSTOM_CREATE_PORTS |  | yes | yes |
 |  | SAI_VLAN_ATTR_CUSTOM_REMOVE_PORTS |  | yes | yes |
+|  | SAI_VLAN_ATTR_CUSTOM_TRAP_ARP     |  | yes | yes |
+|  | SAI_VLAN_ATTR_CUSTOM_COUNTER_ENABLE |  | yes | yes |
 | get_vlan_attribute | SAI_VLAN_ATTR_VLAN_ID |  | yes |  |
 |  | SAI_VLAN_ATTR_MEMBER_LIST |  | yes |  |
 |  | SAI_VLAN_ATTR_MAX_LEARNED_ADDRESSES |  | yes |  |
@@ -151,6 +155,8 @@
 |  | SAI_VLAN_ATTR_CUSTOM_MLD_SNOOPING_ENABLE |  | yes | yes |
 |  | SAI_VLAN_ATTR_CUSTOM_CREATE_PORTS |  | yes | yes |
 |  | SAI_VLAN_ATTR_CUSTOM_REMOVE_PORTS |  | yes | yes |
+|  | SAI_VLAN_ATTR_CUSTOM_TRAP_ARP     |  | yes | yes |
+|  | SAI_VLAN_ATTR_CUSTOM_COUNTER_ENABLE |  | yes | yes |
 | create_vlan_member | SAI_VLAN_MEMBER_ATTR_VLAN_ID |  | yes |  |
 |  | SAI_VLAN_MEMBER_ATTR_BRIDGE_PORT_ID |  | yes |  |
 |  | SAI_VLAN_MEMBER_ATTR_VLAN_TAGGING_MODE | SAI_VLAN_TAGGING_MODE_UNTAGGED | yes |  |

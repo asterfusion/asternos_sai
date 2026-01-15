@@ -3681,6 +3681,14 @@ typedef enum _sai_switch_attr_t
      */
     SAI_SWITCH_ATTR_CUSTOM_FDB_SECURE_BREACH_EVENT_NOTIFY,
 
+    /**
+     * @brief Get specification of MAC to me table size
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_SWITCH_ATTR_CUSTOM_MAC2ME_TABLE_SIZE,
+
     /** End of custom range base */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_END,
 

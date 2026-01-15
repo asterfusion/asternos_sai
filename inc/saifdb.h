@@ -91,6 +91,8 @@ typedef enum _sai_fdb_event_t
 
 /**
  * @brief Attribute Id for FDB entry
+ *
+ * @flags ranges
  */
 typedef enum _sai_fdb_entry_attr_t
 {
@@ -135,7 +137,7 @@ typedef enum _sai_fdb_entry_attr_t
      * The port id is only effective when the packet action is one of the
      * following: FORWARD, COPY, LOG, TRANSIT
      *
-     * When it is SAI_NULL_OBJECT_ID, then packet will be dropped.
+     * When it is SAI_NULL_OBJECT_ID and SAI_FDB_ENTRY_ATTR_CUSTOM_BRIDGE_PORT_ID_LIST is empty, then packet will be dropped.
      *
      * @type sai_object_id_t
      * @flags CREATE_AND_SET
@@ -197,6 +199,21 @@ typedef enum _sai_fdb_entry_attr_t
 
     /** Start of custom range base value */
     SAI_FDB_ENTRY_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /**
+     * @brief FDB entry bridge port id list
+     *
+     * The port id is only effective when the packet action is one of the
+     * following: FORWARD, COPY, LOG, TRANSIT
+     *
+     * When it is empty and SAI_FDB_ENTRY_ATTR_CUSTOM_BRIDGE_PORT_ID is SAI_NULL_OBJECT_ID, then packet will be dropped.
+     *
+     * @type sai_object_list_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_BRIDGE_PORT
+     * @default empty
+     */
+    SAI_FDB_ENTRY_ATTR_CUSTOM_BRIDGE_PORT_ID_LIST = 0x10000001,
 
     /** End of custom range */
     SAI_FDB_ENTRY_ATTR_CUSTOM_RANGE_END

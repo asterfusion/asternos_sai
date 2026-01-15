@@ -579,7 +579,6 @@ typedef enum _sai_tunnel_attr_t
      * @type sai_ip_address_t
      * @flags CREATE_ONLY
      * @default 0.0.0.0
-     * @validonly SAI_TUNNEL_ATTR_PEER_MODE == SAI_TUNNEL_PEER_MODE_P2P
      */
     SAI_TUNNEL_ATTR_ENCAP_DST_IP,
 
