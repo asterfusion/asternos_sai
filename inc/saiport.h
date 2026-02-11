@@ -3139,11 +3139,11 @@ typedef enum _sai_port_attr_t
     SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL,
 
     /**
-     * @brief Enable/Disable srv6 bound loopback port function
+     * @brief Enable/Disable SRV6 bound loopback port function
      *
      * @type bool
      * @flags CREATE_AND_SET
-     * @default false SAI_PORT_ATTR_INTERNAL_LOOPBACK_MODE
+     * @default false
      * @condition SAI_PORT_ATTR_INTERNAL_LOOPBACK_MODE == SAI_PORT_INTERNAL_LOOPBACK_MODE_MAC
      */
     SAI_PORT_ATTR_CUSTOM_LOOPBACK_BINDING_SRV6,
