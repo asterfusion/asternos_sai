@@ -3,7 +3,7 @@
 | create_next_hop | SAI_NEXT_HOP_ATTR_TYPE | SAI_NEXT_HOP_TYPE_IP | yes |  |
 |  |  | SAI_NEXT_HOP_TYPE_MPLS | yes |  |
 |  |  | SAI_NEXT_HOP_TYPE_TUNNEL_ENCAP | yes |  |
-|  |  | SAI_NEXT_HOP_TYPE_SRV6_SIDLIST | no |  |
+|  |  | SAI_NEXT_HOP_TYPE_SRV6_SIDLIST | yes |  |
 |  |  | SAI_NEXT_HOP_TYPE_IPMC | no |  |
 |  |  | SAI_NEXT_HOP_TYPE_BRIDGE_PORT | no |  |
 |  | SAI_NEXT_HOP_ATTR_IP |  | yes |  |
@@ -11,7 +11,7 @@
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_ID |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_VNI |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_MAC |  | yes |  |
-|  | SAI_NEXT_HOP_ATTR_SRV6_SIDLIST_ID |  | no |  |
+|  | SAI_NEXT_HOP_ATTR_SRV6_SIDLIST_ID |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_LABELSTACK |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_COUNTER_ID |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_DECREMENT_TTL |  | no |  |
@@ -50,7 +50,7 @@
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_ID |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_VNI |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_MAC |  | no |  |
-|  | SAI_NEXT_HOP_ATTR_SRV6_SIDLIST_ID |  | no |  |
+|  | SAI_NEXT_HOP_ATTR_SRV6_SIDLIST_ID |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_LABELSTACK |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_COUNTER_ID |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_DECREMENT_TTL |  | no |  |

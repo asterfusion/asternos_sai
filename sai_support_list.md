@@ -40,7 +40,7 @@
 | saisamplepacket | yes |  |
 | saischeduler | yes |  |
 | saischedulergroup | yes |  |
-| saisrv6 | no |  |
+| saisrv6 | yes |  |
 | saiswitch | yes |  |
 | saisystemport | no |  |
 | saitam | no |  |
