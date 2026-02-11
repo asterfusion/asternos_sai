@@ -510,7 +510,7 @@
 |  | SAI_SWITCH_ATTR_MIRROR_TC              |  | no |  |
 |  | SAI_SWITCH_ATTR_ACL_STAGE_INGRESS      |  | yes |  |
 |  | SAI_SWITCH_ATTR_ACL_STAGE_EGRESS       |  | yes |  |
-|  | SAI_SWITCH_ATTR_SRV6_MAX_SID_DEPTH     |  | no |  |
+|  | SAI_SWITCH_ATTR_SRV6_MAX_SID_DEPTH     |  | yes |  |
 |  | SAI_SWITCH_ATTR_SRV6_TLV_TYPE          |  | no |  |
 |  | SAI_SWITCH_ATTR_QOS_NUM_LOSSLESS_QUEUES |  | yes |  |
 |  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | no |  |
