@@ -305,6 +305,8 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_PREFIX_COMPRESSION_TABLE = 115,
     SAI_OBJECT_TYPE_PREFIX_COMPRESSION_ENTRY = 116,
     SAI_OBJECT_TYPE_SYNCE_CLOCK              = 117,
+    SAI_OBJECT_TYPE_CFM_MP                   = 118,
+    SAI_OBJECT_TYPE_CFM_PEER                 = 119,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,

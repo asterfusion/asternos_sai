@@ -85,6 +85,7 @@
 #include "saiobjectgroup.h"
 #include "saiptp.h"
 #include "saisynce.h"
+#include "saicfm.h"
 
 /**
  * @defgroup SAI SAI - Entry point specific API definitions.
@@ -159,6 +160,7 @@ typedef enum _sai_api_t
     SAI_API_PTP              = 55, /**< sai_ptp_api_t */
     SAI_API_PREFIX_COMPRESSION = 56, /**< sai_prefix_compression_api_t */
     SAI_API_SYNCE            = 57, /**< sai_synce_api_t */
+    SAI_API_CFM              = 58, /**< sai_cfm_api_t */
     SAI_API_MAX,                   /**< total number of APIs */
 
     /**

@@ -144,6 +144,10 @@ typedef struct _sai_bfd_session_state_notification_t
 
     uint32_t  diagnostics;
 
+    uint8_t   rx_level;
+
+    uint8_t   tx_level;
+
 } sai_bfd_session_state_notification_t;
 
 /**
@@ -574,6 +578,22 @@ typedef enum _sai_bfd_session_attr_t
      * @objects SAI_OBJECT_TYPE_ROUTER_INTERFACE
      */
     SAI_BFD_SESSION_ATTR_CUSTOM_RIF,
+
+    /**
+     * @brief BFD OAM agingPeriodIndex
+     *
+     * @type sai_uint8_t
+     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_RX_LEVEL,
+
+    /**
+     * @brief BFD SDMA TX queue
+     *
+     * @type sai_uint8_t
+     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_TX_LEVEL,
 
     /** End of custom range base */
     SAI_BFD_SESSION_ATTR_CUSTOM_RANGE_END
