@@ -3689,6 +3689,17 @@ typedef enum _sai_switch_attr_t
      */
     SAI_SWITCH_ATTR_CUSTOM_MAC2ME_TABLE_SIZE,
 
+    /**
+     * @brief Set Switch CFM peer state change event notification callback function passed to the adapter.
+     *
+     * Use sai_cfm_peer_state_change_notification_fn as notification function.
+     *
+     * @type sai_pointer_t sai_cfm_peer_state_change_notification_fn
+     * @flags CREATE_AND_SET
+     * @default NULL
+     */
+    SAI_SWITCH_ATTR_CUSTOM_CFM_PEER_STATE_CHANGE_NOTIFY,
+
     /** End of custom range base */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_END,
 

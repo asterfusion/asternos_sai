@@ -41,6 +41,8 @@
 |  | SAI_BFD_SESSION_ATTR_USE_NEXT_HOP |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_NEXT_HOP_ID |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_CUSTOM_RIF |  | yes | yes |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_RX_LEVEL |  | yes | yes |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_TX_LEVEL |  | yes | yes |
 | remove_bfd_session |  |  | yes |  |
 | set_bfd_session_attribute | SAI_BFD_SESSION_ATTR_VIRTUAL_ROUTER |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_PORT |  | no |  |
@@ -65,6 +67,8 @@
 |  | SAI_BFD_SESSION_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_NEXT_HOP_ID |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_CUSTOM_RIF |  | no | yes |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_RX_LEVEL |  | yes | yes |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_TX_LEVEL |  | yes | yes |
 | get_bfd_session_attribute | SAI_BFD_SESSION_ATTR_TYPE |  | yes |  |
 |  | SAI_BFD_SESSION_ATTR_HW_LOOKUP_VALID |  | yes |  |
 |  | SAI_BFD_SESSION_ATTR_VIRTUAL_ROUTER |  | yes |  |
@@ -111,6 +115,8 @@
 |  | SAI_BFD_SESSION_ATTR_USE_NEXT_HOP |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_NEXT_HOP_ID |  | no |  |
 |  | SAI_BFD_SESSION_ATTR_CUSTOM_RIF |  | no | yes |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_RX_LEVEL |  | yes | yes |
+|  | SAI_BFD_SESSION_ATTR_CUSTOM_TX_LEVEL |  | yes | yes |
 | get_bfd_session_stats | SAI_BFD_SESSION_STAT_IN_PACKETS |  | yes |  |
 |  | SAI_BFD_SESSION_STAT_OUT_PACKETS |  | yes |  |
 |  | SAI_BFD_SESSION_STAT_DROP_PACKETS |  | yes |  |
