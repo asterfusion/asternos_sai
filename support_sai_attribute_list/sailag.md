@@ -22,6 +22,7 @@
 |  | SAI_LAG_ATTR_CUSTOM_ISOLATION_GROUP |  | no | yes |
 |  | SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_PRIORITY |  | no | yes |
 |  | SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_GROUP |  | no | yes |
+|  | SAI_LAG_ATTR_CUSTOM_BASIC_QINQ_ENABLE |  | no | yes |
 | remove_lag |  |  | yes |  |
 | set_lag_attribute | SAI_LAG_ATTR_INGRESS_ACL |  | yes |  |
 |  | SAI_LAG_ATTR_EGRESS_ACL |  | yes |  |
@@ -35,6 +36,7 @@
 |  | SAI_LAG_ATTR_CUSTOM_ISOLATION_GROUP |  | no | yes |
 |  | SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_PRIORITY |  | no | yes |
 |  | SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_GROUP |  | no | yes |
+|  | SAI_LAG_ATTR_CUSTOM_BASIC_QINQ_ENABLE |  | no | yes |
 | get_lag_attribute | SAI_LAG_ATTR_PORT_LIST |  | yes |  |
 |  | SAI_LAG_ATTR_INGRESS_ACL |  | yes |  |
 |  | SAI_LAG_ATTR_EGRESS_ACL |  | yes |  |
@@ -52,6 +54,7 @@
 |  | SAI_LAG_ATTR_CUSTOM_ISOLATION_GROUP |  | no | yes |
 |  | SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_PRIORITY |  | no | yes |
 |  | SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_GROUP |  | no | yes |
+|  | SAI_LAG_ATTR_CUSTOM_BASIC_QINQ_ENABLE |  | no | yes |
 | create_lag_member | SAI_LAG_MEMBER_ATTR_LAG_ID |  | yes |  |
 |  | SAI_LAG_MEMBER_ATTR_PORT_ID |  | yes |  |
 |  | SAI_LAG_MEMBER_ATTR_EGRESS_DISABLE |  | yes |  |
