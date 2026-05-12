@@ -47,6 +47,8 @@ typedef enum _sai_vlan_tagging_mode_t
 
     SAI_VLAN_TAGGING_MODE_TAGGED,
 
+    SAI_VLAN_TAGGING_MODE_CUSTOMER_TAGGED,
+
     SAI_VLAN_TAGGING_MODE_PRIORITY_TAGGED
 
 } sai_vlan_tagging_mode_t;
