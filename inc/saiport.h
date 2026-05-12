@@ -123,7 +123,10 @@ typedef enum _sai_port_error_status_t
     SAI_PORT_ERROR_STATUS_SIGNAL_LOCAL_ERROR = 1 << 11,
 
     /** Port is not accepting reachability data units */
-    SAI_PORT_ERROR_STATUS_NO_RX_REACHABILITY = 1 << 12
+    SAI_PORT_ERROR_STATUS_NO_RX_REACHABILITY = 1 << 12,
+
+    /** Port LLR Tx mechanism entering or exiting flush state */
+    SAI_PORT_ERROR_STATUS_LLR_TX_FLUSH = 1 << 13
 } sai_port_error_status_t;
 
 /**
@@ -709,6 +712,97 @@ typedef enum _sai_port_fdb_learning_priority_t
     SAI_PORT_FDB_LEARNING_PRIORITY_HIGH,
 
 } sai_port_fdb_learning_priority_t;
+
+/**
+ * @brief Serdes Rx Error Correcting Decoder/Maximum Likelihood
+ * Sequence Estimation control state
+ */
+typedef enum _sai_port_serdes_rx_ecd_mlse_state_t
+{
+    /** Disable */
+    SAI_PORT_SERDES_RX_ECD_MLSE_STATE_DISABLE,
+    /** Enable */
+    SAI_PORT_SERDES_RX_ECD_MLSE_STATE_ENABLE
+
+} sai_port_serdes_rx_ecd_mlse_state_t;
+
+/**
+ * @brief Serdes polarity setting value
+ */
+typedef enum _sai_port_serdes_polarity_t
+{
+    /** Normal polarity */
+    SAI_PORT_SERDES_POLARITY_NORMAL,
+    /** Inverted polarity */
+    SAI_PORT_SERDES_POLARITY_INVERTED
+
+} sai_port_serdes_polarity_t;
+
+/**
+ * @brief LLR Tx status value
+ */
+typedef enum _sai_port_llr_tx_status_t
+{
+    /** LLR_TX_ENABLE is false */
+    SAI_PORT_LLR_TX_STATUS_OFF,
+
+    /**
+     * @brief LLR Tx is enabled and sending periodic INIT messages.
+     * Waiting for INIT_ECHO to be received from link partner
+     */
+    SAI_PORT_LLR_TX_STATUS_INIT,
+
+    /** LLR Tx in normal operation, and no replay is in progress */
+    SAI_PORT_LLR_TX_STATUS_ADVANCE,
+
+    /** LLR Tx Replay is in progress */
+    SAI_PORT_LLR_TX_STATUS_REPLAY,
+
+    /** LLR mechanism is in flush state */
+    SAI_PORT_LLR_TX_STATUS_FLUSH
+
+} sai_port_llr_tx_status_t;
+
+/**
+ * @brief LLR Rx status value
+ */
+typedef enum _sai_port_llr_rx_status_t
+{
+    /** LLR_RX_ENABLE is false */
+    SAI_PORT_LLR_RX_STATUS_OFF,
+
+    /**
+     * @brief LLR receive is in normal operation and sending ACK.
+     * No missing/bad frames have been received
+     */
+    SAI_PORT_LLR_RX_STATUS_SEND_ACKS,
+
+    /**
+     * @brief LLR detected a missing frame or received a bad frame,
+     * and is in the process of sending the NACK
+     */
+    SAI_PORT_LLR_RX_STATUS_SEND_NACK,
+
+    /** LLR sent a NACK and is waiting for the expected frame */
+    SAI_PORT_LLR_RX_STATUS_NACK_SENT
+
+} sai_port_llr_rx_status_t;
+
+/**
+ * @brief LLR frame action
+ */
+typedef enum _sai_llr_frame_action_t
+{
+    /** Frames are dropped. */
+    SAI_LLR_FRAME_ACTION_DISCARD,
+
+    /** Blocks transmission requests from higher layers to the MAC. */
+    SAI_LLR_FRAME_ACTION_BLOCK,
+
+    /** Frames are treated as regular packets and are transmitted. */
+    SAI_LLR_FRAME_ACTION_BEST_EFFORT
+
+} sai_llr_frame_action_t;
 
 /**
  * @brief Attribute Id in sai_set_port_attribute() and
@@ -2714,6 +2808,138 @@ typedef enum _sai_port_attr_t
     SAI_PORT_ATTR_PAM4_EYE_VALUES,
 
     /**
+     * @brief Enables the fast link-up for a port on port/link recovery. Vendors can use to reduce linkup time on remote link failure
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_FAST_LINKUP_ENABLED,
+
+    /**
+     * @brief Get port SerDes firmware revision
+     *
+     * Standard attribute to collect port SerDes firmware rev.
+     *
+     * @type sai_s8_list_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_SERDES_FW_REVISION,
+
+    /**
+     * @brief Per Lane PRBS Lock Status
+     *
+     * Per lane list of lock status for PRBS.
+     * The values are of type sai_port_lane_latch_status_list where the count is the number of lanes in
+     * a port and the list specifies list of lane id and lock status for each lane
+     * Lock status will have both lock status and changed status.
+     *
+     * @type sai_port_lane_latch_status_list_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_PRBS_PER_LANE_LOCK_STATUS_LIST,
+
+    /**
+     * @brief Per Lane PRBS Rx Status
+     *
+     * Per lane list of Rx status for PRBS.
+     * The values are of type sai_prbs_per_lane_rx_status_list_t where the count is the number of lanes in
+     * a port and the list specifies list of values of type sai_port_prbs_rx_status_t and the lane id
+     * for each lane.
+     *
+     * @type sai_prbs_per_lane_rx_status_list_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_PRBS_PER_LANE_RX_STATUS_LIST,
+
+    /**
+     * @brief Per Lane PRBS Rx State
+     *
+     * Per lane list of Rx state for PRBS.
+     * The values are of type sai_prbs_per_lane_rx_state_list_t where the count is the number
+     * of lanes in a port and the list specifies list of values of type sai_prbs_rx_state_t
+     * for each lane and its lane id.
+     * Used for clear on read status/count register.
+     * Adapter should return SAI_STATUS_NOT_SUPPORTED if not supported.
+     *
+     * @type sai_prbs_per_lane_rx_state_list_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_PRBS_PER_LANE_RX_STATE_LIST,
+
+    /**
+     * @brief Per Lane PRBS Bit Error Rate (BER)
+     *
+     * Per lane list of PRBS Bit Error Rate (BER).
+     * The values are of type sai_prbs_per_lane_bit_error_rate_list_t where the count is the number
+     * of lanes in a port and the list specifies list of values of type sai_prbs_bit_error_rate_t
+     * and lane id for each lane.
+     * BER will be (error count/bits transmitted) = BER.mantissa * (10^-BER.exponent)
+     *
+     * @type sai_prbs_per_lane_bit_error_rate_list_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_PRBS_PER_LANE_BER_LIST,
+
+    /**
+     * @brief Packet drop status for all PGs of a port.
+     *
+     * The key is the PG index and the status value (clear-on-read) for each PG
+     * is from {0, 1}, where 0 indicates no drops were observed and 1 indicates
+     * packet drops.
+     *
+     * @type sai_map_list_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_PORT_PG_PKT_DROP_STATUS,
+
+    /**
+     * @brief Enable the port to start receiving LLR INIT messages.
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_LLR_MODE_LOCAL,
+
+    /**
+     * @brief Enable the port to start sending LLR INIT messages.
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_ATTR_LLR_MODE_REMOTE,
+
+    /**
+     * @brief The LLR profile to configure the port's LLR mechanism.
+     * Mandatory when LLR_MODE_LOCAL and/or LLR_MODE_REMOTE are true.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_PORT_LLR_PROFILE
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_PORT_ATTR_LLR_PROFILE,
+
+    /**
+     * @brief Port LLR TX status
+     *
+     * @type sai_port_llr_tx_status_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_LLR_TX_STATUS,
+
+    /**
+     * @brief Port LLR RX status
+     *
+     * @type sai_port_llr_rx_status_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_ATTR_LLR_RX_STATUS,
+
+    /**
      * @brief End of attributes
      */
     SAI_PORT_ATTR_END,
@@ -3851,6 +4077,76 @@ typedef enum _sai_port_stat_t
     /** Packets trimmed and successfully transmitted on port */
     SAI_PORT_STAT_TX_TRIM_PACKETS,
 
+    /** Number of LLR_INIT control ordered sets transmitted */
+    SAI_PORT_STAT_LLR_TX_INIT_CTL_OS,
+
+    /** Number of LLR_INIT_ECHO control ordered sets transmitted */
+    SAI_PORT_STAT_LLR_TX_INIT_ECHO_CTL_OS,
+
+    /** Number of LLR_ACK control ordered sets transmitted */
+    SAI_PORT_STAT_LLR_TX_ACK_CTL_OS,
+
+    /** Number of LLR_NACK control ordered sets transmitted */
+    SAI_PORT_STAT_LLR_TX_NACK_CTL_OS,
+
+    /**
+     * @brief Number of LLR-eligible frames discarded by the LLR TX when
+     * the TX state machine is in the INIT state and the llr_init_behavior is set to DISCARD, or
+     * the TX state machine is in the FLUSH state and the llr_flush_behavior is set to DISCARD
+     */
+    SAI_PORT_STAT_LLR_TX_DISCARD,
+
+    /** Number of LLR-eligible frames transmitted with a good FCS */
+    SAI_PORT_STAT_LLR_TX_OK,
+
+    /** Number of LLR-eligible frames transmitted with a poisoned FCS */
+    SAI_PORT_STAT_LLR_TX_POISONED,
+
+    /** Number of times that LLR Tx completed a replay operation */
+    SAI_PORT_STAT_LLR_TX_REPLAY,
+
+    /** Number of LLR_INIT control ordered sets received */
+    SAI_PORT_STAT_LLR_RX_INIT_CTL_OS,
+
+    /** Number of LLR_INIT_ECHO control ordered sets received */
+    SAI_PORT_STAT_LLR_RX_INIT_ECHO_CTL_OS,
+
+    /** Number of LLR_ACK control ordered sets received */
+    SAI_PORT_STAT_LLR_RX_ACK_CTL_OS,
+
+    /** Number of LLR_NACK control ordered sets received */
+    SAI_PORT_STAT_LLR_RX_NACK_CTL_OS,
+
+    /** Number of LLR_ACK/LLR_NACK sequence number errors. The counter is incremented each time an LLR_ACK or LLR_NACK is received with an unexpected sequence number */
+    SAI_PORT_STAT_LLR_RX_ACK_NACK_SEQ_ERROR,
+
+    /** Number of LLR-eligible frames received with a good FCS */
+    SAI_PORT_STAT_LLR_RX_OK,
+
+    /** Number of LLR-eligible frames received with a poisoned FCS */
+    SAI_PORT_STAT_LLR_RX_POISONED,
+
+    /** Number of LLR-eligible frames received with a bad FCS */
+    SAI_PORT_STAT_LLR_RX_BAD,
+
+    /** Number of LLR-eligible frames received with a good FCS and with the expected sequence number */
+    SAI_PORT_STAT_LLR_RX_EXPECTED_SEQ_GOOD,
+
+    /** Number of LLR-eligible frames received with a poisoned FCS and with the expected sequence number */
+    SAI_PORT_STAT_LLR_RX_EXPECTED_SEQ_POISONED,
+
+    /** Number of LLR-eligible frames received with a bad FCS and with the expected sequence number */
+    SAI_PORT_STAT_LLR_RX_EXPECTED_SEQ_BAD,
+
+    /** Number of LLR-eligible frames received with a sequence number that indicated a missing LLR-eligible frame in the sequence, irrespective of FCS status */
+    SAI_PORT_STAT_LLR_RX_MISSING_SEQ,
+
+    /** Number of LLR-eligible frames received with a duplicate sequence number, irrespective of FCS status */
+    SAI_PORT_STAT_LLR_RX_DUPLICATE_SEQ,
+
+    /** Number of times that LLR Rx detected the start of a replay */
+    SAI_PORT_STAT_LLR_RX_REPLAY,
+
     /** Port stat in drop reasons range start */
     SAI_PORT_STAT_IN_DROP_REASON_RANGE_BASE = 0x00001000,
 
@@ -3958,6 +4254,60 @@ typedef enum _sai_port_stat_t
 
     /** SAI port stat ether out pkts 9001 to 16383 octets */
     SAI_PORT_STAT_ETHER_OUT_PKTS_9001_TO_16383_OCTETS,
+
+    /** Per Lane PRBS Error Count Range Start */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_RANGE_BASE = 0x00004000,
+
+    /** Per Lane PRBS Error Count For lane in index 0 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_0 = SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_RANGE_BASE,
+
+    /** Per Lane PRBS Error Count For lane in index 1 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_1,
+
+    /** Per Lane PRBS Error Count For lane in index 2 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_2,
+
+    /** Per Lane PRBS Error Count For lane in index 3 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_3,
+
+    /** Per Lane PRBS Error Count For lane in index 4 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_4,
+
+    /** Per Lane PRBS Error Count For lane in index 5 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_5,
+
+    /** Per Lane PRBS Error Count For lane in index 6 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_6,
+
+    /** Per Lane PRBS Error Count For lane in index 7 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_7,
+
+    /** Per Lane PRBS Error Count For lane in index 8 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_8,
+
+    /** Per Lane PRBS Error Count For lane in index 9 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_9,
+
+    /** Per Lane PRBS Error Count For lane in index 10 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_10,
+
+    /** Per Lane PRBS Error Count For lane in index 11 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_11,
+
+    /** Per Lane PRBS Error Count For lane in index 12 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_12,
+
+    /** Per Lane PRBS Error Count For lane in index 13 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_13,
+
+    /** Per Lane PRBS Error Count For lane in index 14 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_14,
+
+    /** Per Lane PRBS Error Count For lane in index 15 */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_15,
+
+    /** Per Lane PRBS Error Count Range End */
+    SAI_PORT_STAT_PRBS_ERROR_COUNT_LANE_RANGE_END = 0x00004fff,
 
     /** Port stat range end */
     SAI_PORT_STAT_END,
@@ -4417,7 +4767,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR PRE1 filter
      *
-     * List of port serdes TX fir precursor1 tap-filter values.
+     * List of port serdes TX FIR precursor1 tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4430,7 +4780,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR PRE2 filter
      *
-     * List of port serdes TX fir precursor2 tap-filter values.
+     * List of port serdes TX FIR precursor2 tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4443,7 +4793,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR PRE3 filter
      *
-     * List of port serdes TX fir precursor3 tap-filter values.
+     * List of port serdes TX FIR precursor3 tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4456,7 +4806,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR MAIN filter
      *
-     * List of port serdes TX fir maincursor tap-filter values.
+     * List of port serdes TX FIR maincursor tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4469,7 +4819,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR POST1 filter
      *
-     * List of port serdes TX fir postcursor1 tap-filter values.
+     * List of port serdes TX FIR postcursor1 tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4482,7 +4832,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR POST2 filter
      *
-     * List of port serdes TX fir postcursor2 tap-filter values.
+     * List of port serdes TX FIR postcursor2 tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4495,7 +4845,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR POST3 filter
      *
-     * List of port serdes TX fir postcursor3 tap-filter values.
+     * List of port serdes TX FIR postcursor3 tap-filter values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4508,7 +4858,7 @@ typedef enum _sai_port_serdes_attr_t
     /**
      * @brief Port serdes control TX FIR attenuation
      *
-     * List of port serdes TX fir attn values.
+     * List of port serdes TX FIR attn values.
      * The values are of type sai_s32_list_t where the count is number lanes in
      * a port and the list specifies list of values to be applied to each lane.
      *
@@ -4660,6 +5010,144 @@ typedef enum _sai_port_serdes_attr_t
      * @default internal
      */
     SAI_PORT_SERDES_ATTR_CUSTOM_COLLECTION,
+
+    /**
+     * @brief Port serdes Tx upper eye non linear compensation percentage value
+     *
+     * List of port serdes Tx upper eye non linear compensation percentage value
+     * The values are of type sai_u32_list_t where the count is number of lanes
+     * in a port and the list specifies list of values to be applied to each
+     * lane.
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_TX_NLC_PERCENTAGE,
+
+    /**
+     * @brief Port serdes Tx lower eye non linear compensation percentage value
+     *
+     * List of port serdes Tx lower eye non linear compensation percentage value
+     * The values are of type sai_u32_list_t where the count is number of lanes
+     * in a port and the list specifies list of values to be applied to each
+     * lane.
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_TX_NLC_LOWER_EYE_PERCENTAGE,
+
+    /**
+     * @brief Port serdes Rx Error Correcting Decoder/Maximum Likelihood
+     * Sequence Estimation control
+     *
+     * To enable/disable Rx ECD for a port with back plane media type.
+     *
+     * @type sai_s32_list_t sai_port_serdes_rx_ecd_mlse_state_t
+     * @flags CREATE_AND_SET
+     * @default empty
+     */
+    SAI_PORT_SERDES_ATTR_RX_ECD_MLSE_STATE,
+
+    /**
+     * @brief Port serdes control for inverted TX polarity setting
+     *
+     * TX polarity setting value
+     * The values are of type sai_s32_list_t where the count is number of lanes in
+     * a port and the list specifies list of values to be applied to each lane.
+     * This extension is added to support both create and set operations.
+     *
+     * @type sai_s32_list_t sai_port_serdes_polarity_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_TX_POLARITY,
+
+    /**
+     * @brief Port serdes control for inverted RX polarity setting
+     *
+     * RX polarity setting value
+     * The values are of type sai_s32_list_t where the count is number of lanes in
+     * a port and the list specifies list of values to be applied to each lane.
+     * This extension is added to support both create and set operations.
+     *
+     * @type sai_s32_list_t sai_port_serdes_polarity_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_RX_POLARITY,
+
+    /**
+     * @brief Total number of RX FFE taps supported
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_SERDES_ATTR_RX_FFE_COUNT,
+
+    /**
+     * @brief Total number of TX FIR taps supported
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_SERDES_ATTR_TX_FIR_COUNT,
+
+    /**
+     * @brief Total number of RX DFE taps supported
+     *
+     * @type sai_uint32_t
+     * @flags READ_ONLY
+     */
+    SAI_PORT_SERDES_ATTR_RX_DFE_COUNT,
+
+    /**
+     * @brief Port serdes RX FFE taps
+     *
+     * List of port serdes RX FFE tap values
+     *
+     * @type sai_taps_list_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_RX_FFE_TAPS_LIST,
+
+    /**
+     * @brief Port serdes TX FIR taps
+     *
+     * List of port serdes TX FIR tap values
+     *
+     * @type sai_taps_list_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_TX_FIR_TAPS_LIST,
+
+    /**
+     * @brief Port serdes DFE taps
+     *
+     * List of port serdes RX DFE tap values
+     *
+     * @type sai_taps_list_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_RX_DFE_TAPS_LIST,
+
+    /**
+     * @brief Port serdes VGA settings
+     *
+     * List of port serdes VGA settings values
+     * The values are of type sai_u32_list_t where the count is number of lanes
+     * in a port and the list specifies list of VGA settings for each lane.
+     *
+     * @type sai_u32_list_t
+     * @flags CREATE_AND_SET
+     * @default internal
+     */
+    SAI_PORT_SERDES_ATTR_RX_VGA,
 
     /**
      * @brief End of attributes
@@ -4852,6 +5340,175 @@ typedef sai_status_t (*sai_get_port_connector_attribute_fn)(
         _Inout_ sai_attribute_t *attr_list);
 
 /**
+ * @brief List of Port LLR profile attributes
+ */
+typedef enum _sai_port_llr_profile_attr_t
+{
+    /**
+     * @brief Start of attributes
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_START,
+
+    /**
+     * @brief Limit on the number of unacknowledged frames.
+     *
+     * @type sai_uint32_t
+     * @flags MANDATORY_ON_CREATE|CREATE_ONLY
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_OUTSTANDING_FRAMES_MAX = SAI_PORT_LLR_PROFILE_ATTR_START,
+
+    /**
+     * @brief Limit on the number of unacknowledged bytes.
+     *
+     * @type sai_uint32_t
+     * @flags MANDATORY_ON_CREATE|CREATE_ONLY
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_OUTSTANDING_BYTES_MAX,
+
+    /**
+     * @brief A configuration parameter that sets the maximum timer value in nanoseconds.
+     * When this timer expires, a replay is initiated.
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_REPLAY_TIMER_MAX,
+
+    /**
+     * @brief Limit on the number of replays if no further LLR_ACKs are received.
+     * Once the limit is reached, LLR enters a 'FLUSH' state.
+     * A value of 255 indicates that there is no maximum.
+     *
+     * @type sai_uint8_t
+     * @flags CREATE_AND_SET
+     * @default 1
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_REPLAY_COUNT_MAX,
+
+    /**
+     * @brief If the port PCS status is false for this duration, LLR enters a 'FLUSH' state.
+     * The value is specified in nanoseconds.
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_PCS_LOST_TIMEOUT,
+
+    /**
+     * @brief Limit of the time a frame can reside in the replay buffer.
+     * The value is specified in nanoseconds.
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_DATA_AGE_TIMEOUT,
+
+    /**
+     * @brief The action to be taken on frames received from the higher layers when the LLR mechanism enters the 'INIT' state.
+     *
+     * @type sai_llr_frame_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_LLR_FRAME_ACTION_BEST_EFFORT
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_INIT_LLR_FRAME_ACTION,
+
+    /**
+     * @brief The action to be taken on frames received from the higher layers when the LLR mechanism enters the 'FLUSH' state.
+     *
+     * @type sai_llr_frame_action_t
+     * @flags CREATE_AND_SET
+     * @default SAI_LLR_FRAME_ACTION_BEST_EFFORT
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_FLUSH_LLR_FRAME_ACTION,
+
+    /**
+     * @brief Indicates that the LLR mechanism must reinitialize LLR when it enters the 'FLUSH' State.
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_RE_INIT_ON_FLUSH,
+
+    /**
+     * @brief Desired spacing between CtlOS messages in bytes between transmission of successive LLR_ACK / LLR_NACK CtlOS.
+     *
+     * @type sai_uint16_t
+     * @flags CREATE_AND_SET
+     * @isvlan false
+     * @default 2048
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_CTLOS_TARGET_SPACING,
+
+    /**
+     * @brief End of attributes
+     */
+    SAI_PORT_LLR_PROFILE_ATTR_END,
+
+    /** Custom range base value */
+    SAI_PORT_LLR_PROFILE_ATTR_CUSTOM_RANGE_START = 0x10000000,
+
+    /** End of custom range base */
+    SAI_PORT_LLR_PROFILE_ATTR_CUSTOM_RANGE_END
+
+} sai_port_llr_profile_attr_t;
+
+/**
+ * @brief Create Port LLR Profile
+ *
+ * @param[out] port_llr_profile_id Port LLR Profile id
+ * @param[in] switch_id Switch id
+ * @param[in] attr_count Number of attributes
+ * @param[in] attr_list Array of attributes
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_create_port_llr_profile_fn)(
+        _Out_ sai_object_id_t *port_llr_profile_id,
+        _In_ sai_object_id_t switch_id,
+        _In_ uint32_t attr_count,
+        _In_ const sai_attribute_t *attr_list);
+
+/**
+ * @brief Remove Port LLR Profile
+ *
+ * @param[in] port_llr_profile_id Port LLR Profile id
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_remove_port_llr_profile_fn)(
+        _In_ sai_object_id_t port_llr_profile_id);
+
+/**
+ * @brief Set Port LLR Profile attribute value.
+ *
+ * @param[in] port_llr_profile_id Port LLR Profile id
+ * @param[in] attr Attribute
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_set_port_llr_profile_attribute_fn)(
+        _In_ sai_object_id_t port_llr_profile_id,
+        _In_ const sai_attribute_t *attr);
+
+/**
+ * @brief Get Port LLR Profile attribute value.
+ *
+ * @param[in] port_llr_profile_id Port LLR Profile id
+ * @param[in] attr_count Number of attributes
+ * @param[inout] attr_list Array of attributes
+ *
+ * @return #SAI_STATUS_SUCCESS on success, failure status code on error
+ */
+typedef sai_status_t (*sai_get_port_llr_profile_attribute_fn)(
+        _In_ sai_object_id_t port_llr_profile_id,
+        _In_ uint32_t attr_count,
+        _Inout_ sai_attribute_t *attr_list);
+
+/**
  * @brief Port methods table retrieved with sai_api_query()
  */
 typedef struct _sai_port_api_t
@@ -4887,6 +5544,10 @@ typedef struct _sai_port_api_t
     sai_bulk_object_remove_fn              remove_port_serdess;
     sai_bulk_object_set_attribute_fn       set_port_serdess_attribute;
     sai_bulk_object_get_attribute_fn       get_port_serdess_attribute;
+    sai_create_port_llr_profile_fn         create_port_llr_profile;
+    sai_remove_port_llr_profile_fn         remove_port_llr_profile;
+    sai_set_port_llr_profile_attribute_fn  set_port_llr_profile_attribute;
+    sai_get_port_llr_profile_attribute_fn  get_port_llr_profile_attribute;
 } sai_port_api_t;
 
 /**

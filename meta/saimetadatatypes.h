@@ -500,6 +500,36 @@ typedef enum _sai_attr_value_type_t
      * @brief Attribute value is port PAM4 eye values list.
      */
     SAI_ATTR_VALUE_TYPE_PORT_PAM4_EYE_VALUES_LIST,
+
+    /**
+     * @brief Attribute value is port SerDes tap values list.
+     */
+    SAI_ATTR_VALUE_TYPE_TAPS_LIST,
+
+    /**
+     * @brief Attribute value is 16bit unsigned integer range.
+     */
+    SAI_ATTR_VALUE_TYPE_UINT16_RANGE,
+
+    /**
+     * @brief Attribute value is a list of rx status for all lanes in a port.
+     */
+    SAI_ATTR_VALUE_TYPE_PRBS_PER_LANE_RX_STATUS_LIST,
+
+    /**
+     * @brief Attribute value is a list of rx state for all lanes in a port.
+     */
+    SAI_ATTR_VALUE_TYPE_PRBS_PER_LANE_RX_STATE_LIST,
+
+    /**
+     * @brief Attribute value is bit error rate.
+     */
+    SAI_ATTR_VALUE_TYPE_PRBS_BIT_ERROR_RATE,
+
+    /**
+     * @brief Attribute value is a list of bit error rates for all lanes in a port.
+     */
+    SAI_ATTR_VALUE_TYPE_PRBS_PER_LANE_BIT_ERROR_RATE_LIST
 } sai_attr_value_type_t;
 
 /**

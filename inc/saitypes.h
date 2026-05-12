@@ -299,12 +299,13 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_POE_PSE                  = 109,
     SAI_OBJECT_TYPE_POE_PORT                 = 110,
     SAI_OBJECT_TYPE_ICMP_ECHO_SESSION        = 111,
-    SAI_OBJECT_TYPE_VLAN_STACK               = 112,
-    SAI_OBJECT_TYPE_OBJECT_GROUP             = 113,
-    SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY         = 114,
-    SAI_OBJECT_TYPE_PREFIX_COMPRESSION_TABLE = 115,
-    SAI_OBJECT_TYPE_PREFIX_COMPRESSION_ENTRY = 116,
-    SAI_OBJECT_TYPE_SYNCE_CLOCK              = 117,
+    SAI_OBJECT_TYPE_PREFIX_COMPRESSION_TABLE = 112,
+    SAI_OBJECT_TYPE_PREFIX_COMPRESSION_ENTRY = 113,
+    SAI_OBJECT_TYPE_SYNCE_CLOCK              = 114,
+    SAI_OBJECT_TYPE_PORT_LLR_PROFILE         = 115,
+    SAI_OBJECT_TYPE_VLAN_STACK               = 116,
+    SAI_OBJECT_TYPE_OBJECT_GROUP             = 117,
+    SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY         = 118,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,
@@ -395,6 +396,18 @@ typedef struct _sai_vlan_list_t
 
 } sai_vlan_list_t;
 
+/**
+ * @brief Defines a list of FIR/FFE/DFE taps
+ */
+typedef struct _sai_taps_list_t
+{
+    /** Number of taps */
+    uint32_t count;
+
+    /** List of tap values */
+    sai_s32_list_t *list;
+} sai_taps_list_t;
+
 typedef enum _sai_ip_addr_family_t
 {
     SAI_IP_ADDR_FAMILY_IPV4,
@@ -465,6 +478,18 @@ typedef enum _sai_port_prbs_rx_status_t
 
 } sai_port_prbs_rx_status_t;
 
+typedef struct _sai_prbs_per_lane_rx_status_t
+{
+    uint32_t lane;
+    sai_port_prbs_rx_status_t rx_status;
+} sai_prbs_per_lane_rx_status_t;
+
+typedef struct _sai_prbs_per_lane_rx_status_list_t
+{
+    uint32_t count;
+    sai_prbs_per_lane_rx_status_t *list;
+} sai_prbs_per_lane_rx_status_list_t;
+
 typedef struct _sai_prbs_rx_state_t
 {
     sai_port_prbs_rx_status_t rx_status;
@@ -481,6 +506,30 @@ typedef struct _sai_latch_status_t
     bool changed;
 } sai_latch_status_t;
 
+/**
+ * @brief Represents BER as mantissa x 10^(-exponent)
+ */
+typedef struct _sai_prbs_bit_error_rate_t
+{
+    /** Negative exponent as in 10^-exponent */
+    uint8_t  exponent;
+
+    /** Significant digits of the BER, to be multiplied by 10^(-exponent) */
+    uint64_t mantissa;
+} sai_prbs_bit_error_rate_t;
+
+typedef struct _sai_prbs_per_lane_bit_error_rate_t
+{
+    uint32_t lane;
+    sai_prbs_bit_error_rate_t ber;
+} sai_prbs_per_lane_bit_error_rate_t;
+
+typedef struct _sai_prbs_per_lane_bit_error_rate_list_t
+{
+    uint32_t count;
+    sai_prbs_per_lane_bit_error_rate_t *list;
+} sai_prbs_per_lane_bit_error_rate_list_t;
+
 typedef struct _sai_port_lane_latch_status_t
 {
     uint32_t lane;
@@ -492,6 +541,21 @@ typedef struct _sai_port_lane_latch_status_list_t
     uint32_t count;
     sai_port_lane_latch_status_t *list;
 } sai_port_lane_latch_status_list_t;
+
+typedef struct _sai_prbs_per_lane_rx_state_t
+{
+    uint32_t lane;
+    sai_prbs_rx_state_t rx_state;
+} sai_prbs_per_lane_rx_state_t;
+
+/**
+ * @brief Defines PRBS Rx states for list of all serdes lanes
+ */
+typedef struct _sai_prbs_per_lane_rx_state_list_t
+{
+    uint32_t count;
+    sai_prbs_per_lane_rx_state_t *list;
+} sai_prbs_per_lane_rx_state_list_t;
 
 /**
  * @brief Field match mask
@@ -1699,6 +1763,25 @@ typedef union _sai_attribute_value_t
 
     /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_PORT_PAM4_EYE_VALUES_LIST */
     sai_port_pam4_eye_values_list_t portpam4eyevalues;
+
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_TAPS_LIST */
+    sai_taps_list_t portserdestaps;
+
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_UINT16_RANGE */
+    sai_u16_range_t u16range;
+
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_PRBS_PER_LANE_RX_STATUS_LIST */
+    sai_prbs_per_lane_rx_status_list_t prbs_rx_status_list;
+
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_PRBS_PER_LANE_RX_STATE_LIST */
+    sai_prbs_per_lane_rx_state_list_t prbs_rx_state_list;
+
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_PRBS_BIT_ERROR_RATE */
+    sai_prbs_bit_error_rate_t prbs_ber;
+
+    /** @validonly meta->attrvaluetype == SAI_ATTR_VALUE_TYPE_PRBS_PER_LANE_BIT_ERROR_RATE_LIST */
+    sai_prbs_per_lane_bit_error_rate_list_t prbs_ber_list;
+
 } sai_attribute_value_t;
 
 /**
