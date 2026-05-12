@@ -273,6 +273,15 @@ typedef enum _sai_lag_attr_t
      */
     SAI_LAG_ATTR_CUSTOM_FDB_LEARNING_GROUP,
 
+    /**
+     * @brief Basic enable
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_LAG_ATTR_CUSTOM_BASIC_QINQ_ENABLE,
+
     /** End of custom range base */
     SAI_LAG_ATTR_CUSTOM_RANGE_END
 
