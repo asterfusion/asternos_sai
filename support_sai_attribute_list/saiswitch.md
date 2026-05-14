@@ -203,6 +203,7 @@
 |  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | yes |
 | remove_switch |  |  | yes |  |
 | set_switch_attribute | SAI_SWITCH_ATTR_INGRESS_ACL            |  | yes |  |
 |  | SAI_SWITCH_ATTR_EGRESS_ACL             |  | no |  |
@@ -382,6 +383,7 @@
 |  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | yes |
 | get_switch_attribute | SAI_SWITCH_ATTR_NUMBER_OF_ACTIVE_PORTS |  | yes |  |
 |  | SAI_SWITCH_ATTR_PORT_NUMBER |  | no |  |
 |  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_SUPPORTED_PORTS |  | no |  |
@@ -669,6 +671,7 @@
 |  | SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_FDB_SECURE_BREACH_EVENT_NOTIFY |  | yes | yes |
 |  | SAI_SWITCH_ATTR_CUSTOM_MAC2ME_TABLE_SIZE |  | yes | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | yes |
 | get_switch_stats |  |  | no |  |
 | get_switch_stats_ext |  |  | no |  |
 | clear_switch_stats |  |  | no |  |
