@@ -3689,6 +3689,15 @@ typedef enum _sai_switch_attr_t
      */
     SAI_SWITCH_ATTR_CUSTOM_MAC2ME_TABLE_SIZE,
 
+    /**
+     * @brief Enable forwarding IP packet with error header
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET,
+
     /** End of custom range base */
     SAI_SWITCH_ATTR_CUSTOM_RANGE_END,
 
