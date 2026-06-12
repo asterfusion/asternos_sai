@@ -28,6 +28,7 @@
 |  |  | SAI_HASH_ALGORITHM_NONE | no |  |
 |  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_LABEL |  | no |  |
+|  | SAI_NEXT_HOP_GROUP_ATTR_ADMIN_ROLE |  | no |  |
 | remove_next_hop_group |  |  | yes |  |
 | set_next_hop_group_attribute | SAI_NEXT_HOP_GROUP_ATTR_SET_SWITCHOVER |  | no |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_COUNTER_ID |  | no |  |
@@ -37,6 +38,7 @@
 |  | SAI_NEXT_HOP_GROUP_ATTR_NEXT_HOP_MEMBER_WEIGHT_LIST |  | no |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_NEXT_HOP_MEMBER_COUNTER_LIST |  | no |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_LABEL |  | no |  |
+|  | SAI_NEXT_HOP_GROUP_ATTR_ADMIN_ROLE |  | no |  |
 | get_next_hop_group_attribute | SAI_NEXT_HOP_GROUP_ATTR_NEXT_HOP_COUNT |  | yes |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_NEXT_HOP_MEMBER_LIST |  | yes |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_TYPE |  | yes |  |
@@ -55,6 +57,7 @@
 |  | SAI_NEXT_HOP_GROUP_ATTR_NEXT_HOP_MEMBER_COUNTER_LIST |  | no |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_HASH_ALGORITHM |  | no |  |
 |  | SAI_NEXT_HOP_GROUP_ATTR_LABEL |  | no |  |
+|  | SAI_NEXT_HOP_GROUP_ATTR_ADMIN_ROLE |  | no |  |
 | create_next_hop_group_member | SAI_NEXT_HOP_GROUP_MEMBER_ATTR_NEXT_HOP_GROUP_ID |  | yes |  |
 |  | SAI_NEXT_HOP_GROUP_MEMBER_ATTR_NEXT_HOP_ID |  | yes |  |
 |  | SAI_NEXT_HOP_GROUP_MEMBER_ATTR_WEIGHT |  | yes |  |

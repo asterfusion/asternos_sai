@@ -27,6 +27,7 @@
 |  | SAI_NEXT_HOP_ATTR_DISABLE_SRC_MAC_REWRITE |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_DST_MAC_REWRITE |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_VLAN_REWRITE |  | no |  |
+|  | SAI_NEXT_HOP_ATTR_META_DATA |  | no |  |
 | remove_next_hop |  |  | yes |  |
 | set_next_hop_attribute | SAI_NEXT_HOP_ATTR_TUNNEL_VNI |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_TUNNEL_MAC |  | no |  |
@@ -44,6 +45,7 @@
 |  | SAI_NEXT_HOP_ATTR_DISABLE_SRC_MAC_REWRITE |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_DST_MAC_REWRITE |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_VLAN_REWRITE |  | no |  |
+|  | SAI_NEXT_HOP_ATTR_META_DATA |  | no |  |
 | get_next_hop_attribute | SAI_NEXT_HOP_ATTR_TYPE |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_IP |  | yes |  |
 |  | SAI_NEXT_HOP_ATTR_ROUTER_INTERFACE_ID |  | yes |  |
@@ -63,6 +65,7 @@
 |  | SAI_NEXT_HOP_ATTR_DISABLE_SRC_MAC_REWRITE |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_DST_MAC_REWRITE |  | no |  |
 |  | SAI_NEXT_HOP_ATTR_DISABLE_VLAN_REWRITE |  | no |  |
+|  | SAI_NEXT_HOP_ATTR_META_DATA |  | no |  |
 | create_next_hops |  |  | no |  |
 | remove_next_hops |  |  | no |  |
 | set_next_hops_attribute |  |  | no |  |
