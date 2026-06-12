@@ -14,3 +14,7 @@
 | set_ipmc_group_member_attribute |  |  | no |  |
 | get_ipmc_group_member_attribute | SAI_IPMC_GROUP_MEMBER_ATTR_IPMC_GROUP_ID |  | yes |  |
 |  | SAI_IPMC_GROUP_MEMBER_ATTR_IPMC_OUTPUT_ID |  | yes |  |
+| create_ipmc_groups |  |  | no |  |
+| remove_ipmc_groups |  |  | no |  |
+| set_ipmc_groups_attribute |  |  | no |  |
+| get_ipmc_groups_attribute |  |  | no |  |
