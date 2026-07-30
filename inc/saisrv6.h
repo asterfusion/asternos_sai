@@ -452,6 +452,15 @@ typedef enum _sai_my_sid_entry_attr_t
     /** Custom range base value */
     SAI_MY_SID_ENTRY_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Indicates that the My SID is a gSID
+     *
+     * @type bool
+     * @flags CREATE_ONLY
+     * @default false
+     */
+    SAI_MY_SID_ENTRY_ATTR_CUSTOM_IS_GSID,
+
     /** End of custom range base */
     SAI_MY_SID_ENTRY_ATTR_CUSTOM_RANGE_END
 

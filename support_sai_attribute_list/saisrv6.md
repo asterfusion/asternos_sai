@@ -139,6 +139,7 @@
 |  | SAI_MY_SID_ENTRY_ATTR_TUNNEL_ID |  | no |  |
 |  | SAI_MY_SID_ENTRY_ATTR_VRF |  | yes |  |
 |  | SAI_MY_SID_ENTRY_ATTR_COUNTER_ID |  | yes |  |
+|  | SAI_MY_SID_ENTRY_ATTR_CUSTOM_IS_GSID |  | yes | yes |
 | get_my_sid_entry_attribute | SAI_MY_SID_ENTRY_ATTR_ENDPOINT_BEHAVIOR |  | yes |  |
 |  | SAI_MY_SID_ENTRY_ATTR_TRAP_PRIORITY |  | no |  |
 |  | SAI_MY_SID_ENTRY_ATTR_NEXT_HOP_ID |  | yes |  |
