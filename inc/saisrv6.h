@@ -233,6 +233,15 @@ typedef enum _sai_srv6_sidlist_attr_t
     /** Custom range base value */
     SAI_SRV6_SIDLIST_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Indicates that all SID of the SID List are gSID
+     *
+     * @type bool
+     * @flags CREATE_ONLY
+     * @default false
+     */
+    SAI_SRV6_SIDLIST_ATTR_CUSTOM_IS_GSID,
+
     /** End of custom range base */
     SAI_SRV6_SIDLIST_ATTR_CUSTOM_RANGE_END
 } sai_srv6_sidlist_attr_t;
