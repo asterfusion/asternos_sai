@@ -120,6 +120,15 @@ typedef enum _sai_my_sid_entry_endpoint_behavior_t
     /** Custom range base value */
     SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_RANGE_START = 0x10000000,
 
+    /** Endpoint with decapsulation and L2 cross-connect (E-LINE, direct egress) */
+    SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_DX2,
+
+    /** Endpoint with decapsulation and L2 unicast lookup (bridge/FDB) */
+    SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_DT2U,
+
+    /** Endpoint with decapsulation and L2 flood (bridge/FDB) */
+    SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_DT2M,
+
     /** End of Custom range base */
     SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_RANGE_END
 
@@ -460,6 +469,26 @@ typedef enum _sai_my_sid_entry_attr_t
      * @default false
      */
     SAI_MY_SID_ENTRY_ATTR_CUSTOM_IS_GSID,
+
+    /**
+     * @brief Vlan ID value
+     *
+     * @type sai_uint16_t
+     * @flags CREATE_ONLY
+     * @isvlan true
+     * @validonly SAI_MY_SID_ENTRY_ATTR_ENDPOINT_BEHAVIOR == SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_DT2U or SAI_MY_SID_ENTRY_ATTR_ENDPOINT_BEHAVIOR == SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_DT2M
+     */
+    SAI_MY_SID_ENTRY_ATTR_CUSTOM_VLAN_ID,
+
+    /**
+     * @brief AC Port ID
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_ONLY
+     * @objects SAI_OBJECT_TYPE_PORT, SAI_OBJECT_TYPE_LAG
+     * @validonly SAI_MY_SID_ENTRY_ATTR_ENDPOINT_BEHAVIOR == SAI_MY_SID_ENTRY_ENDPOINT_BEHAVIOR_CUSTOM_DX2
+     */
+    SAI_MY_SID_ENTRY_ATTR_CUSTOM_AC_PORT_ID,
 
     /** End of custom range base */
     SAI_MY_SID_ENTRY_ATTR_CUSTOM_RANGE_END

@@ -362,6 +362,16 @@ typedef enum _sai_bridge_port_attr_t
     /** Custom range base value */
     SAI_BRIDGE_PORT_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief Associated SRV6 SID list id
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_ONLY
+     * @objects SAI_OBJECT_TYPE_SRV6_SIDLIST
+     * @condition SAI_BRIDGE_PORT_ATTR_TYPE == SAI_BRIDGE_PORT_TYPE_TUNNEL
+     */
+    SAI_BRIDGE_PORT_ATTR_CUSTOM_SRV6_SIDLIST_ID,
+
     /** End of custom range base */
     SAI_BRIDGE_PORT_ATTR_CUSTOM_RANGE_END
 
