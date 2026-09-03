@@ -3100,7 +3100,7 @@ typedef enum _sai_port_attr_t
     /**
      * @brief Set PTP ingress delay
      *
-     * @type sai_uint64_t
+     * @type sai_int32_t
      * @flags CREATE_AND_SET
      * @default 0
      */
@@ -3109,7 +3109,7 @@ typedef enum _sai_port_attr_t
     /**
      * @brief Set PTP egress delay
      *
-     * @type sai_uint64_t
+     * @type sai_uint32_t
      * @flags CREATE_AND_SET
      * @default 0
      */
