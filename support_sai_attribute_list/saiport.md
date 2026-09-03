@@ -391,6 +391,7 @@
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_CDP_PACKET_ENABLE |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_LOOPBACK_BINDING_SRV6 |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_SRV6_BRIDGE_PORT_ID |  | yes | yes |
 | remove_port |  |  | yes |  |
 | set_port_attribute | SAI_PORT_ATTR_AUTO_NEG_MODE |  | yes |  |
 |  | SAI_PORT_ATTR_ADMIN_STATE |  | yes |  |
@@ -1019,6 +1020,7 @@
 |  | SAI_PORT_ATTR_CUSTOM_L2PT_CDP_PACKET_ENABLE |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_DOT1Q_TUNNEL |  | yes | yes |
 |  | SAI_PORT_ATTR_CUSTOM_LOOPBACK_BINDING_SRV6 |  | yes | yes |
+|  | SAI_PORT_ATTR_CUSTOM_SRV6_BRIDGE_PORT_ID |  | yes | yes |
 | get_port_stats | SAI_PORT_STAT_IF_IN_OCTETS |  | no |  |
 |  | SAI_PORT_STAT_IF_IN_UCAST_PKTS |  | yes |  |
 |  | SAI_PORT_STAT_IF_IN_NON_UCAST_PKTS |  | yes |  |

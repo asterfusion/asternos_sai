@@ -3374,6 +3374,22 @@ typedef enum _sai_port_attr_t
      */
     SAI_PORT_ATTR_CUSTOM_LOOPBACK_BINDING_SRV6,
 
+    /**
+     * @brief SRV6 VPWS access-circuit binding bridge port.
+     *
+     * Bind this port directly to an SRV6 tunnel bridge port so that ALL
+     * frames entering this port (L2 or L3) are SRV6-encapsulated and sent
+     * out, without relying on VLAN / flooding. Value = the SRV6 tunnel
+     * bridge port object id; SAI_NULL_OBJECT_ID removes the binding.
+     *
+     * @type sai_object_id_t
+     * @flags CREATE_AND_SET
+     * @objects SAI_OBJECT_TYPE_BRIDGE_PORT
+     * @allownull true
+     * @default SAI_NULL_OBJECT_ID
+     */
+    SAI_PORT_ATTR_CUSTOM_SRV6_BRIDGE_PORT_ID,
+
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END,
 
