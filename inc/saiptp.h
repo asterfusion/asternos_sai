@@ -106,6 +106,15 @@ typedef enum _sai_ptp_domain_entry_attr_t
     SAI_PTP_DOMAIN_ENTRY_ATTR_PTP_PPS_RECEPTION,
 
     /**
+     * @brief Query/Configure PPS Delay
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_PTP_DOMAIN_ENTRY_ATTR_PTP_PPS_DELAY,
+
+    /**
      * @brief End of attributes
      */
     SAI_PTP_DOMAIN_ENTRY_ATTR_END,
