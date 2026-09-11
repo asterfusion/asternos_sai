@@ -34,7 +34,8 @@ fi
 
 TEMP_DIR="tmp"
 
-COMMIT=origin/master # should be corresponding branch HEAD
+# COMMIT=origin/master # should be corresponding branch HEAD
+COMMIT=${COMMIT:-HEAD} # use current commit
 
 rm -rf $TEMP_DIR
 
