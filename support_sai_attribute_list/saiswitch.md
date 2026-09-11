@@ -1,691 +1,691 @@
-| Api | Sai Attribute | Enums | Support | Private |
-| --- | --- | --- | --- | --- |
-| create_switch | SAI_SWITCH_ATTR_INGRESS_ACL            |  | yes |  |
-|  | SAI_SWITCH_ATTR_EGRESS_ACL             |  | no |  |
-|  | SAI_SWITCH_ATTR_RESTART_WARM           |  | yes |  |
-|  | SAI_SWITCH_ATTR_WARM_RECOVER           |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCHING_MODE         | SAI_SWITCH_SWITCHING_MODE_CUT_THROUGH | yes |  |
-|  |  | SAI_SWITCH_SWITCHING_MODE_STORE_AND_FORWARD | yes |  |
-|  | SAI_SWITCH_ATTR_BCAST_CPU_FLOOD_ENABLE |  | yes |  |
-|  | SAI_SWITCH_ATTR_MCAST_CPU_FLOOD_ENABLE |  | yes |  |
-|  | SAI_SWITCH_ATTR_SRC_MAC_ADDRESS        |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_LEARNED_ADDRESSES  |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_AGING_TIME         |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_UNICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | yes |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | yes |  |
-|  |  | SAI_PACKET_ACTION_COPY | yes |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | yes |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_SWITCH_ATTR_FDB_BROADCAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | no |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_SWITCH_ATTR_FDB_MULTICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | no |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes |  |
-|  |  | SAI_HASH_ALGORITHM_XOR | yes |  |
-|  |  | SAI_HASH_ALGORITHM_RANDOM | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no |  |
-|  |  | SAI_HASH_ALGORITHM_NONE | no |  |
-|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_SEED |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_OFFSET |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_SYMMETRIC_HASH |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4         |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_IN_IPV4 |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6         |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes |  |
-|  |  | SAI_HASH_ALGORITHM_XOR | yes |  |
-|  |  | SAI_HASH_ALGORITHM_RANDOM | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no |  |
-|  |  | SAI_HASH_ALGORITHM_NONE | no |  |
-|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_SEED  |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_OFFSET |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_SYMMETRIC_HASH |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4          |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_IN_IPV4  |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6          |  | yes |  |
-|  | SAI_SWITCH_ATTR_COUNTER_REFRESH_INTERVAL |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_DEFAULT_TC         |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_TC_MAP    |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_COLOR_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_TC_MAP     |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_COLOR_MAP  |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_TO_QUEUE_MAP    |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DOT1P_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DSCP_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_SHELL_ENABLE    |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_PROFILE_ID      |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_HARDWARE_INFO   |  | yes |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_PATH_NAME     |  | yes |  |
-|  | SAI_SWITCH_ATTR_INIT_SWITCH            |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_SHUTDOWN_REQUEST_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_SHUTDOWN_REQUEST_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_EVENT_NOTIFY       |  | yes |  |
-|  | SAI_SWITCH_ATTR_PORT_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_PACKET_EVENT_NOTIFY    |  | yes |  |
-|  | SAI_SWITCH_ATTR_FAST_API_ENABLE        |  | no |  |
-|  | SAI_SWITCH_ATTR_MIRROR_TC              |  | no |  |
-|  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_PFC_DLR_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | no |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL    |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL    |  | no |  |
-|  | SAI_SWITCH_ATTR_TPID_OUTER_VLAN        |  | no |  |
-|  | SAI_SWITCH_ATTR_TPID_INNER_VLAN        |  | no |  |
-|  | SAI_SWITCH_ATTR_CRC_CHECK_ENABLE       |  | no |  |
-|  | SAI_SWITCH_ATTR_CRC_RECALCULATION_ENABLE |  | no |  |
-|  | SAI_SWITCH_ATTR_BFD_SESSION_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECN_ECT_THRESHOLD_ENABLE |  | no |  |
-|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_ROUTER_MAC |  | no |  |
-|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_PORT     |  | no |  |
-|  | SAI_SWITCH_ATTR_UNINIT_DATA_PLANE_ON_REMOVAL |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_OBJECT_ID          |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_EVENT_NOTIFY       |  | no |  |
-|  | SAI_SWITCH_ATTR_PRE_SHUTDOWN           |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_ZONE_COUNTER_OBJECT_ID |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_ENABLE             |  | no |  |
-|  | SAI_SWITCH_ATTR_HARDWARE_ACCESS_BUS    |  | no |  |
-|  | SAI_SWITCH_ATTR_PLATFROM_CONTEXT       |  | no |  |
-|  | SAI_SWITCH_ATTR_REGISTER_READ          |  | no |  |
-|  | SAI_SWITCH_ATTR_REGISTER_WRITE         |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_BROADCAST |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_METHOD   |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_TYPE     |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_EXECUTE |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_BROADCAST_STOP |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_VERIFY_AND_INIT_SWITCH |  | no |  |
-|  | SAI_SWITCH_ATTR_TYPE | SAI_SWITCH_TYPE_NPU | no |  |
-|  |  | SAI_SWITCH_TYPE_PHY | no |  |
-|  |  | SAI_SWITCH_TYPE_VOQ | no |  |
-|  |  | SAI_SWITCH_TYPE_FABRIC | no |  |
-|  |  | SAI_SWITCH_TYPE_POE | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_OBJECT_LIST     |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_TC_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_COLOR_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_MPLS_EXP_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ID              |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_SYSTEM_CORES       |  | no |  |
-|  | SAI_SWITCH_ATTR_SYSTEM_PORT_CONFIG_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_FAILOVER_CONFIG_MODE | SAI_SWITCH_FAILOVER_CONFIG_MODE_NO_HITLESS | no |  |
-|  |  | SAI_SWITCH_FAILOVER_CONFIG_MODE_HITLESS | no |  |
-|  | SAI_SWITCH_ATTR_TUNNEL_OBJECTS_LIST    |  | no |  |
-|  | SAI_SWITCH_ATTR_PRE_INGRESS_ACL        |  | no |  |
-|  | SAI_SWITCH_ATTR_SLAVE_MDIO_ADDR_LIST   |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_FORWARDING_CLASS_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_FORWARDING_CLASS_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_OBJECT_ID        |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_SA_TAG_TPID      |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_SA_STATUS_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_EVENT_NOTIFY       |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_MEMBER_COUNT      |  | no |  |
-|  | SAI_SWITCH_ATTR_ARS_PROFILE            |  | no |  |
-|  | SAI_SWITCH_ATTR_CREDIT_WD              |  | no |  |
-|  | SAI_SWITCH_ATTR_CREDIT_WD_TIMER        |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ISOLATE         |  | no |  |
-|  | SAI_SWITCH_ATTR_HOSTIF_OPER_STATUS_UPDATE_MODE | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_APPLICATION | no |  |
-|  |  | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_SAI_ADAPTER | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ASIC_SDK_HEALTH_EVENT_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_FATAL_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_WARNING_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_NOTICE_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_HOST_TX_READY_NOTIFY |  | no |  |
+| Api | Sai Attribute | Enums | Marvell Support | Clonix Support | Private |
+| --- | --- | --- | --- | --- | --- |
+| create_switch | SAI_SWITCH_ATTR_INGRESS_ACL |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_EGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_RESTART_WARM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_WARM_RECOVER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCHING_MODE | SAI_SWITCH_SWITCHING_MODE_CUT_THROUGH | yes | yes |  |
+|  |  | SAI_SWITCH_SWITCHING_MODE_STORE_AND_FORWARD | yes | no |  |
+|  | SAI_SWITCH_ATTR_BCAST_CPU_FLOOD_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MCAST_CPU_FLOOD_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SRC_MAC_ADDRESS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_LEARNED_ADDRESSES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_AGING_TIME |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_UNICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | yes | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | yes | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | yes | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | yes | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_FDB_BROADCAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_FDB_MULTICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_XOR | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_RANDOM | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_NONE | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_SEED |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_OFFSET |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_SYMMETRIC_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_IN_IPV4 |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_XOR | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_RANDOM | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_NONE | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_SEED |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_OFFSET |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_SYMMETRIC_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_IN_IPV4 |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_COUNTER_REFRESH_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DEFAULT_TC |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_TC_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_COLOR_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_TC_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_COLOR_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_TO_QUEUE_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DOT1P_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DSCP_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_SHELL_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_PROFILE_ID |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_HARDWARE_INFO |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_PATH_NAME |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_INIT_SWITCH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_SHUTDOWN_REQUEST_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SHUTDOWN_REQUEST_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_EVENT_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PACKET_EVENT_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FAST_API_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MIRROR_TC |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_DLR_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TPID_OUTER_VLAN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TPID_INNER_VLAN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CRC_CHECK_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CRC_RECALCULATION_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_BFD_SESSION_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECN_ECT_THRESHOLD_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_ROUTER_MAC |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_PORT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_UNINIT_DATA_PLANE_ON_REMOVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TAM_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TAM_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PRE_SHUTDOWN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_ZONE_COUNTER_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_HARDWARE_ACCESS_BUS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PLATFROM_CONTEXT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REGISTER_READ |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REGISTER_WRITE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_BROADCAST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_METHOD |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_TYPE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_EXECUTE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_BROADCAST_STOP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_VERIFY_AND_INIT_SWITCH |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TYPE | SAI_SWITCH_TYPE_NPU | no | yes |  |
+|  |  | SAI_SWITCH_TYPE_PHY | no | no |  |
+|  |  | SAI_SWITCH_TYPE_VOQ | no | no |  |
+|  |  | SAI_SWITCH_TYPE_FABRIC | no | no |  |
+|  |  | SAI_SWITCH_TYPE_POE | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_OBJECT_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_TC_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_COLOR_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_MPLS_EXP_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_SYSTEM_CORES |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SYSTEM_PORT_CONFIG_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FAILOVER_CONFIG_MODE | SAI_SWITCH_FAILOVER_CONFIG_MODE_NO_HITLESS | no | no |  |
+|  |  | SAI_SWITCH_FAILOVER_CONFIG_MODE_HITLESS | no | no |  |
+|  | SAI_SWITCH_ATTR_TUNNEL_OBJECTS_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PRE_INGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SLAVE_MDIO_ADDR_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_FORWARDING_CLASS_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_FORWARDING_CLASS_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_SA_TAG_TPID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_SA_STATUS_CHANGE_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_MEMBER_COUNT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ARS_PROFILE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CREDIT_WD |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CREDIT_WD_TIMER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ISOLATE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_HOSTIF_OPER_STATUS_UPDATE_MODE | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_APPLICATION | no | yes |  |
+|  |  | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_SAI_ADAPTER | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ASIC_SDK_HEALTH_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_FATAL_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_WARNING_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_NOTICE_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_HOST_TX_READY_NOTIFY |  | no | yes |  |
 |  | 
-|  | SAI_SWITCH_ATTR_TWAMP_SESSION_EVENT_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_POE_DEVICE_LIST        |  | no |  |
-|  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_STATS_COUNT_MODE | SAI_STATS_COUNT_MODE_PACKET_AND_BYTE | no |  |
-|  |  | SAI_STATS_COUNT_MODE_PACKET | no |  |
-|  |  | SAI_STATS_COUNT_MODE_BYTE | no |  |
-|  |  | SAI_STATS_COUNT_MODE_NONE | no |  |
-|  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_EXTENDED_PORT_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_ST_REPORT_CHUNK_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_ST_CHUNK_COUNT |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_TEL_TYPE_CONFIG_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_VALUE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_RESOLUTION_MODE | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_STATIC | no |  |
-|  |  | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_DYNAMIC | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_INDEX |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_PTP_MODE | SAI_PORT_PTP_MODE_NONE | no |  |
-|  |  | SAI_PORT_PTP_MODE_SINGLE_STEP_TIMESTAMP | no |  |
-|  |  | SAI_PORT_PTP_MODE_TWO_STEP_TIMESTAMP | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_TC_VALUE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_DSCP_VALUE | no |  |
-|  |  | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_FROM_TC | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_ENABLE_POST    |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_ENABLE_POST    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | yes |
-| remove_switch |  |  | yes |  |
-| set_switch_attribute | SAI_SWITCH_ATTR_INGRESS_ACL            |  | yes |  |
-|  | SAI_SWITCH_ATTR_EGRESS_ACL             |  | no |  |
-|  | SAI_SWITCH_ATTR_RESTART_WARM           |  | yes |  |
-|  | SAI_SWITCH_ATTR_WARM_RECOVER           |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCHING_MODE         | SAI_SWITCH_SWITCHING_MODE_CUT_THROUGH | yes |  |
-|  |  | SAI_SWITCH_SWITCHING_MODE_STORE_AND_FORWARD | yes |  |
-|  | SAI_SWITCH_ATTR_BCAST_CPU_FLOOD_ENABLE |  | yes |  |
-|  | SAI_SWITCH_ATTR_MCAST_CPU_FLOOD_ENABLE |  | yes |  |
-|  | SAI_SWITCH_ATTR_SRC_MAC_ADDRESS        |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_LEARNED_ADDRESSES  |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_AGING_TIME         |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_UNICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | yes |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | yes |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  
-|  | SAI_SWITCH_ATTR_FDB_BROADCAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | no |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  
-|  | SAI_SWITCH_ATTR_FDB_MULTICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | no |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes |  |
-|  |  | SAI_HASH_ALGORITHM_XOR | yes |  |
-|  |  | SAI_HASH_ALGORITHM_RANDOM | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no |  |
-|  |  | SAI_HASH_ALGORITHM_NONE | no |  |
-|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_SEED |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_OFFSET |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_SYMMETRIC_HASH |  | noyes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4         |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_IN_IPV4 |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6         |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes |  |
-|  |  | SAI_HASH_ALGORITHM_XOR | yes |  |
-|  |  | SAI_HASH_ALGORITHM_RANDOM | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no |  |
-|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no |  |  |
-|  |  | SAI_HASH_ALGORITHM_NONE | no |  |
-|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_SEED  |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_OFFSET |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_SYMMETRIC_HASH |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4          |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_IN_IPV4  |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6          |  | yes |  |
-|  | SAI_SWITCH_ATTR_COUNTER_REFRESH_INTERVAL |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_DEFAULT_TC         |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_TC_MAP    |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_COLOR_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_TC_MAP     |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_COLOR_MAP  |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_TO_QUEUE_MAP    |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DOT1P_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DSCP_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_SHELL_ENABLE    |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_SHUTDOWN_REQUEST_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_SHUTDOWN_REQUEST_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_EVENT_NOTIFY       |  | yes |  |
-|  | SAI_SWITCH_ATTR_PORT_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_PACKET_EVENT_NOTIFY    |  | yes |  |
-|  | SAI_SWITCH_ATTR_FAST_API_ENABLE        |  | no |  |
-|  | SAI_SWITCH_ATTR_MIRROR_TC              |  | no |  |
-|  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_PFC_DLR_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no |  |
-|  |  | SAI_PACKET_ACTION_FORWARD | no |  |
-|  |  | SAI_PACKET_ACTION_COPY | no |  |
-|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no |  |
-|  |  | SAI_PACKET_ACTION_TRAP | no |  |
-|  |  | SAI_PACKET_ACTION_LOG | no |  |
-|  |  | SAI_PACKET_ACTION_DENY | no |  |
-|  |  | SAI_PACKET_ACTION_TRANSIT | no |  |
-|  |  | SAI_PACKET_ACTION_DONOTDROP | no |  |
-|  |  | SAI_PACKET_ACTION_REMARK | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL    |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL    |  | no |  |
-|  | SAI_SWITCH_ATTR_TPID_OUTER_VLAN        |  | no |  |
-|  | SAI_SWITCH_ATTR_TPID_INNER_VLAN        |  | no |  |
-|  | SAI_SWITCH_ATTR_CRC_CHECK_ENABLE       |  | no |  |
-|  | SAI_SWITCH_ATTR_CRC_RECALCULATION_ENABLE |  | no |  |
-|  | SAI_SWITCH_ATTR_BFD_SESSION_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_ECN_ECT_THRESHOLD_ENABLE |  | no |  |
-|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_ROUTER_MAC |  | no |  |
-|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_PORT     |  | no |  |
-|  | SAI_SWITCH_ATTR_UNINIT_DATA_PLANE_ON_REMOVAL |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_OBJECT_ID          |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_EVENT_NOTIFY       |  | no |  |
-|  | SAI_SWITCH_ATTR_PRE_SHUTDOWN           |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_ZONE_COUNTER_OBJECT_ID |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_ENABLE             |  | no |  |
-|  | SAI_SWITCH_ATTR_REGISTER_READ          |  | no |  |
-|  | SAI_SWITCH_ATTR_REGISTER_WRITE         |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_EXECUTE |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_BROADCAST_STOP |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_VERIFY_AND_INIT_SWITCH |  | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_OBJECT_LIST     |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_TC_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_COLOR_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_MPLS_EXP_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_FAILOVER_CONFIG_MODE | SAI_SWITCH_FAILOVER_CONFIG_MODE_NO_HITLESS | no |  |
-|  |  | SAI_SWITCH_FAILOVER_CONFIG_MODE_HITLESS | no |  |
-|  | SAI_SWITCH_ATTR_TUNNEL_OBJECTS_LIST    |  | no |  |
-|  | SAI_SWITCH_ATTR_PRE_INGRESS_ACL        |  | no |  ||
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_FORWARDING_CLASS_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_FORWARDING_CLASS_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_OBJECT_ID        |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_SA_TAG_TPID      |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_SA_STATUS_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_EVENT_NOTIFY       |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_MEMBER_COUNT      |  | no |  |
-|  | SAI_SWITCH_ATTR_ARS_PROFILE            |  | no |  |
-|  | SAI_SWITCH_ATTR_CREDIT_WD              |  | no |  |
-|  | SAI_SWITCH_ATTR_CREDIT_WD_TIMER        |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ISOLATE         |  | no |  |
-|  | SAI_SWITCH_ATTR_HOSTIF_OPER_STATUS_UPDATE_MODE | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_APPLICATION | no |  |
-|  |  | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_SAI_ADAPTER | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ASIC_SDK_HEALTH_EVENT_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_FATAL_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_WARNING_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_NOTICE_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_HOST_TX_READY_NOTIFY |  | no |  |
+|  | SAI_SWITCH_ATTR_TWAMP_SESSION_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_POE_DEVICE_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_STATS_COUNT_MODE | SAI_STATS_COUNT_MODE_PACKET_AND_BYTE | no | no |  |
+|  |  | SAI_STATS_COUNT_MODE_PACKET | no | no |  |
+|  |  | SAI_STATS_COUNT_MODE_BYTE | no | no |  |
+|  |  | SAI_STATS_COUNT_MODE_NONE | no | no |  |
+|  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_EXTENDED_PORT_STATE_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_ST_REPORT_CHUNK_SIZE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_ST_CHUNK_COUNT |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_TEL_TYPE_CONFIG_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_SIZE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_VALUE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_RESOLUTION_MODE | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_STATIC | no | no |  |
+|  |  | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_DYNAMIC | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_INDEX |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PORT_PTP_MODE | SAI_PORT_PTP_MODE_NONE | no | no |  |
+|  |  | SAI_PORT_PTP_MODE_SINGLE_STEP_TIMESTAMP | no | no |  |
+|  |  | SAI_PORT_PTP_MODE_TWO_STEP_TIMESTAMP | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_TC_VALUE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_DSCP_VALUE | no | no |  |
+|  |  | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_FROM_TC | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_ENABLE_POST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_IPSEC_ENABLE_POST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | no | yes |
+| remove_switch |  |  | yes | yes |  |
+| set_switch_attribute | SAI_SWITCH_ATTR_INGRESS_ACL |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_EGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_RESTART_WARM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_WARM_RECOVER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCHING_MODE | SAI_SWITCH_SWITCHING_MODE_CUT_THROUGH | yes | yes |  |
+|  |  | SAI_SWITCH_SWITCHING_MODE_STORE_AND_FORWARD | yes | no |  |
+|  | SAI_SWITCH_ATTR_BCAST_CPU_FLOOD_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MCAST_CPU_FLOOD_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SRC_MAC_ADDRESS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_LEARNED_ADDRESSES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_AGING_TIME |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_UNICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | yes | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | yes | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_FDB_BROADCAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_FDB_MULTICAST_MISS_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_XOR | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_RANDOM | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_NONE | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_SEED |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_OFFSET |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_SYMMETRIC_HASH |  | noyes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_IN_IPV4 |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_ALGORITHM | SAI_HASH_ALGORITHM_CRC | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_XOR | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_RANDOM | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32LO | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_32HI | yes | yes |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_CCITT | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_CRC_XOR | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_NONE | no | no |  |
+|  |  | SAI_HASH_ALGORITHM_ROUND_ROBIN | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_SEED |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_OFFSET |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_SYMMETRIC_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_IN_IPV4 |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_COUNTER_REFRESH_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DEFAULT_TC |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_TC_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_COLOR_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_TC_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_COLOR_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_TO_QUEUE_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DOT1P_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DSCP_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_SHELL_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_SHUTDOWN_REQUEST_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SHUTDOWN_REQUEST_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_EVENT_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PACKET_EVENT_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FAST_API_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MIRROR_TC |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_DLR_PACKET_ACTION | SAI_PACKET_ACTION_DROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_FORWARD | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_COPY_CANCEL | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRAP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_LOG | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DENY | no | yes |  |
+|  |  | SAI_PACKET_ACTION_TRANSIT | no | yes |  |
+|  |  | SAI_PACKET_ACTION_DONOTDROP | no | yes |  |
+|  |  | SAI_PACKET_ACTION_REMARK | no | no |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TPID_OUTER_VLAN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TPID_INNER_VLAN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CRC_CHECK_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CRC_RECALCULATION_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_BFD_SESSION_STATE_CHANGE_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECN_ECT_THRESHOLD_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_ROUTER_MAC |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_PORT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_UNINIT_DATA_PLANE_ON_REMOVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TAM_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TAM_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PRE_SHUTDOWN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_ZONE_COUNTER_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REGISTER_READ |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REGISTER_WRITE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_EXECUTE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_BROADCAST_STOP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_VERIFY_AND_INIT_SWITCH |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MACSEC_OBJECT_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_TC_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_COLOR_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_MPLS_EXP_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FAILOVER_CONFIG_MODE | SAI_SWITCH_FAILOVER_CONFIG_MODE_NO_HITLESS | no | no |  |
+|  |  | SAI_SWITCH_FAILOVER_CONFIG_MODE_HITLESS | no | no |  |
+|  | SAI_SWITCH_ATTR_TUNNEL_OBJECTS_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PRE_INGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_FORWARDING_CLASS_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_FORWARDING_CLASS_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_SA_TAG_TPID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_SA_STATUS_CHANGE_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_MEMBER_COUNT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ARS_PROFILE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CREDIT_WD |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CREDIT_WD_TIMER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ISOLATE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_HOSTIF_OPER_STATUS_UPDATE_MODE | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_APPLICATION | no | yes |  |
+|  |  | SAI_SWITCH_HOSTIF_OPER_STATUS_UPDATE_MODE_SAI_ADAPTER | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ASIC_SDK_HEALTH_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_FATAL_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_WARNING_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_NOTICE_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_HOST_TX_READY_NOTIFY |  | no | yes |  |
 |  |
-|  | SAI_SWITCH_ATTR_TWAMP_SESSION_EVENT_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_POE_DEVICE_LIST        |  | no |  |
-|  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_STATS_COUNT_MODE       |  | no |  |
-|  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_EXTENDED_PORT_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_TEL_TYPE_CONFIG_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_VALUE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_RESOLUTION_MODE | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_STATIC | no |  |
-|  |  | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_DYNAMIC | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_INDEX |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_PTP_MODE | SAI_PORT_PTP_MODE_NONE | no |  |
-|  |  | SAI_PORT_PTP_MODE_SINGLE_STEP_TIMESTAMP | no |  |
-|  |  | SAI_PORT_PTP_MODE_TWO_STEP_TIMESTAMP | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_TC_VALUE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_DSCP_VALUE | no |  |
-|  |  | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_FROM_TC | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | yes |
-| get_switch_attribute | SAI_SWITCH_ATTR_NUMBER_OF_ACTIVE_PORTS |  | yes |  |
-|  | SAI_SWITCH_ATTR_PORT_NUMBER |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_SUPPORTED_PORTS |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_LIST |  | yes |  |
-|  | SAI_SWITCH_ATTR_PORT_MAX_MTU |  | yes |  |
-|  | SAI_SWITCH_ATTR_CPU_PORT               |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_VIRTUAL_ROUTERS    |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_TABLE_SIZE         |  | yes |  |
-|  | SAI_SWITCH_ATTR_L3_NEIGHBOR_TABLE_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_L3_ROUTE_TABLE_SIZE    |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_MEMBERS            |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_LAGS         |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_MEMBERS           |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_ECMP_GROUPS  |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_UNICAST_QUEUES |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_MULTICAST_QUEUES |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_QUEUES       |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_CPU_QUEUES   |  | yes |  |
-|  | SAI_SWITCH_ATTR_ON_LINK_ROUTE_SUPPORTED |  | no |  |
-|  | SAI_SWITCH_ATTR_OPER_STATUS            |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_TEMP_SENSORS |  | yes |  |
-|  | SAI_SWITCH_ATTR_TEMP_LIST              |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_TEMP               |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVERAGE_TEMP           |  | yes |  |
-|  | SAI_SWITCH_ATTR_ACL_TABLE_MINIMUM_PRIORITY |  | yes |  |
-|  | SAI_SWITCH_ATTR_ACL_TABLE_MAXIMUM_PRIORITY |  | yes |  |
-|  | SAI_SWITCH_ATTR_ACL_ENTRY_MINIMUM_PRIORITY |  | yes |  |
-|  | SAI_SWITCH_ATTR_ACL_ENTRY_MAXIMUM_PRIORITY |  | yes |  |
-|  | SAI_SWITCH_ATTR_ACL_TABLE_GROUP_MINIMUM_PRIORITY |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_TABLE_GROUP_MAXIMUM_PRIORITY |  | no |  |
-|  | SAI_SWITCH_ATTR_FDB_DST_USER_META_DATA_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_ROUTE_DST_USER_META_DATA_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_NEIGHBOR_DST_USER_META_DATA_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_USER_META_DATA_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_VLAN_USER_META_DATA_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_USER_META_DATA_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_USER_TRAP_ID_RANGE |  | yes |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_VLAN_ID        |  | yes |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_STP_INST_ID    |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_STP_INSTANCE       |  | no |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_VIRTUAL_ROUTER_ID |  | yes |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_OVERRIDE_VIRTUAL_ROUTER_ID |  | no |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_1Q_BRIDGE_ID   |  | yes |  |
-|  | SAI_SWITCH_ATTR_INGRESS_ACL            |  | no |  |
-|  | SAI_SWITCH_ATTR_EGRESS_ACL             |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_TRAFFIC_CLASSES |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_SCHEDULER_GROUP_HIERARCHY_LEVELS |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_SCHEDULER_GROUPS_PER_HIERARCHY_LEVEL |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_CHILDS_PER_SCHEDULER_GROUP |  | yes |  |
-|  | SAI_SWITCH_ATTR_TOTAL_BUFFER_SIZE      |  | yes |  |
-|  | SAI_SWITCH_ATTR_INGRESS_BUFFER_POOL_NUM |  | yes |  |
-|  | SAI_SWITCH_ATTR_EGRESS_BUFFER_POOL_NUM |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPV4_ROUTE_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPV6_ROUTE_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPV4_NEXTHOP_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPV6_NEXTHOP_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPV4_NEIGHBOR_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPV6_NEIGHBOR_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_NEXT_HOP_GROUP_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_NEXT_HOP_GROUP_MEMBER_ENTRY |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_FDB_ENTRY    |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_L2MC_ENTRY   |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IPMC_ENTRY   |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_SNAT_ENTRY   |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_DNAT_ENTRY   |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_DOUBLE_NAT_ENTRY |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_ACL_TABLE    |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_ACL_TABLE_GROUP |  | yes |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_MY_SID_ENTRY |  | no |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_TRAP_GROUP     |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH              |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH               |  | yes |  |
-|  | SAI_SWITCH_ATTR_RESTART_WARM           |  | yes |  |
-|  | SAI_SWITCH_ATTR_WARM_RECOVER           |  | no |  |
-|  | SAI_SWITCH_ATTR_RESTART_TYPE           |  | yes |  |
-|  | SAI_SWITCH_ATTR_MIN_PLANNED_RESTART_INTERVAL |  | yes |  |
-|  | SAI_SWITCH_ATTR_NV_STORAGE_SIZE        |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_ACL_ACTION_COUNT   |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_ACL_RANGE_COUNT    |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_CAPABILITY         |  | no |  |
-|  | SAI_SWITCH_ATTR_MCAST_SNOOPING_CAPABILITY |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCHING_MODE         |  | yes |  |
-|  | SAI_SWITCH_ATTR_BCAST_CPU_FLOOD_ENABLE |  | yes |  |
-|  | SAI_SWITCH_ATTR_MCAST_CPU_FLOOD_ENABLE |  | yes |  |
-|  | SAI_SWITCH_ATTR_SRC_MAC_ADDRESS        |  | yes |  |
-|  | SAI_SWITCH_ATTR_MAX_LEARNED_ADDRESSES  |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_AGING_TIME         |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_UNICAST_MISS_PACKET_ACTION |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_BROADCAST_MISS_PACKET_ACTION |  | no |  |
-|  | SAI_SWITCH_ATTR_FDB_MULTICAST_MISS_PACKET_ACTION |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_ALGORITHM |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_SEED |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_OFFSET |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_SYMMETRIC_HASH |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4         |  | yes |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_IN_IPV4 |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6         |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_ALGORITHM |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_SEED  |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_OFFSET |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_DEFAULT_SYMMETRIC_HASH |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4          |  | yes |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_IN_IPV4  |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6          |  | yes |  |
-|  | SAI_SWITCH_ATTR_COUNTER_REFRESH_INTERVAL |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_DEFAULT_TC         |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_TC_MAP    |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_COLOR_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_TC_MAP     |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_COLOR_MAP  |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_TO_QUEUE_MAP    |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DOT1P_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DSCP_MAP |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_SHELL_ENABLE    |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_PROFILE_ID      |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_HARDWARE_INFO   |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_PATH_NAME     |  | no |  |
-|  | SAI_SWITCH_ATTR_INIT_SWITCH            |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_SWITCH_SHUTDOWN_REQUEST_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_SHUTDOWN_REQUEST_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_FDB_EVENT_NOTIFY       |  | yes |  |
-|  | SAI_SWITCH_ATTR_PORT_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_PACKET_EVENT_NOTIFY    |  | yes |  |
-|  | SAI_SWITCH_ATTR_FAST_API_ENABLE        |  | no |  |
-|  | SAI_SWITCH_ATTR_MIRROR_TC              |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_STAGE_INGRESS      |  | yes |  |
-|  | SAI_SWITCH_ATTR_ACL_STAGE_EGRESS       |  | yes |  |
-|  | SAI_SWITCH_ATTR_SRV6_MAX_SID_DEPTH     |  | yes |  |
-|  | SAI_SWITCH_ATTR_SRV6_TLV_TYPE          |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_NUM_LOSSLESS_QUEUES |  | yes |  |
-|  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_DLR_PACKET_ACTION  |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL    |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL_RANGE |  | no |  |
-|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL    |  | no |  |
-|  | SAI_SWITCH_ATTR_SUPPORTED_PROTECTED_OBJECT_TYPE |  | no |  |
-|  | SAI_SWITCH_ATTR_TPID_OUTER_VLAN        |  | no |  |
-|  | SAI_SWITCH_ATTR_TPID_INNER_VLAN        |  | no |  |
-|  | SAI_SWITCH_ATTR_CRC_CHECK_ENABLE       |  | no |  |
-|  | SAI_SWITCH_ATTR_CRC_RECALCULATION_ENABLE |  | no |  |
-|  | SAI_SWITCH_ATTR_BFD_SESSION_STATE_CHANGE_NOTIFY |  | yes |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_BFD_SESSION  |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_BFD_SESSION        |  | no |  |
-|  | SAI_SWITCH_ATTR_SUPPORTED_IPV4_BFD_SESSION_OFFLOAD_TYPE |  | no |  |
-|  | SAI_SWITCH_ATTR_SUPPORTED_IPV6_BFD_SESSION_OFFLOAD_TYPE |  | no |  |
-|  | SAI_SWITCH_ATTR_MIN_BFD_RX             |  | no |  |
-|  | SAI_SWITCH_ATTR_MIN_BFD_TX             |  | no |  |
-|  | SAI_SWITCH_ATTR_ECN_ECT_THRESHOLD_ENABLE |  | no |  |
-|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_ROUTER_MAC |  | no |  |
-|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_PORT     |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_MIRROR_SESSION     |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_SAMPLED_MIRROR_SESSION |  | no |  |
-|  | SAI_SWITCH_ATTR_SUPPORTED_EXTENDED_STATS_MODE |  | no |  |
-|  | SAI_SWITCH_ATTR_UNINIT_DATA_PLANE_ON_REMOVAL |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_OBJECT_ID          |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_EVENT_NOTIFY       |  | no |  |
-|  | SAI_SWITCH_ATTR_SUPPORTED_OBJECT_TYPE_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_PRE_SHUTDOWN           |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_ZONE_COUNTER_OBJECT_ID |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_ENABLE             |  | no |  |
-|  | SAI_SWITCH_ATTR_HARDWARE_ACCESS_BUS    |  | no |  |
-|  | SAI_SWITCH_ATTR_PLATFROM_CONTEXT       |  | no |  |
-|  | SAI_SWITCH_ATTR_REGISTER_READ          |  | no |  |
-|  | SAI_SWITCH_ATTR_REGISTER_WRITE         |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_BROADCAST |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_METHOD   |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_TYPE     |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_EXECUTE |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_BROADCAST_STOP |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_VERIFY_AND_INIT_SWITCH |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_STATUS        |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_MAJOR_VERSION |  | no |  |
-|  | SAI_SWITCH_ATTR_FIRMWARE_MINOR_VERSION |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_CONNECTOR_LIST    |  | no |  |
-|  | SAI_SWITCH_ATTR_PROPOGATE_PORT_STATE_FROM_LINE_TO_SYSTEM_PORT_SUPPORT |  | no |  |
-|  | SAI_SWITCH_ATTR_TYPE                   |  | yes |  |
-|  | SAI_SWITCH_ATTR_MACSEC_OBJECT_LIST     |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_TC_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_COLOR_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_MPLS_EXP_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ID              |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_SYSTEM_CORES       |  | no |  |
-|  | SAI_SWITCH_ATTR_SYSTEM_PORT_CONFIG_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_SYSTEM_PORTS |  | no |  |
-|  | SAI_SWITCH_ATTR_SYSTEM_PORT_LIST       |  | no |  |
-|  | SAI_SWITCH_ATTR_NUMBER_OF_FABRIC_PORTS |  | no |  |
-|  | SAI_SWITCH_ATTR_FABRIC_PORT_LIST       |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_DMA_MEMORY_POOL_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_FAILOVER_CONFIG_MODE   |  | no |  |
-|  | SAI_SWITCH_ATTR_SUPPORTED_FAILOVER_MODE |  | no |  |
-|  | SAI_SWITCH_ATTR_TUNNEL_OBJECTS_LIST    |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_AVAILABLE_DMA_MEMORY_POOL_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_PRE_INGRESS_ACL        |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_SNAPT_ENTRY  |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_DNAPT_ENTRY  |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_DOUBLE_NAPT_ENTRY |  | no |  |
-|  | SAI_SWITCH_ATTR_SLAVE_MDIO_ADDR_LIST   |  | no |  |
-|  | SAI_SWITCH_ATTR_MY_MAC_TABLE_MINIMUM_PRIORITY |  | no |  |
-|  | SAI_SWITCH_ATTR_MY_MAC_TABLE_MAXIMUM_PRIORITY |  | no |  |
-|  | SAI_SWITCH_ATTR_MY_MAC_LIST            |  | no |  |
-|  | SAI_SWITCH_ATTR_INSTALLED_MY_MAC_ENTRIES |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_MY_MAC_ENTRIES |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_FORWARDING_CLASSES |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_FORWARDING_CLASS_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_FORWARDING_CLASS_MAP |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_OBJECT_ID        |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_SA_TAG_TPID      |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_SA_STATUS_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_NAT_EVENT_NOTIFY       |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_ECMP_MEMBER_COUNT  |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_MEMBER_COUNT      |  | no |  |
-|  | SAI_SWITCH_ATTR_ARS_PROFILE            |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_STAGE_POST_INGRESS |  | no |  |
-|  | SAI_SWITCH_ATTR_CREDIT_WD              |  | no |  |
-|  | SAI_SWITCH_ATTR_CREDIT_WD_TIMER        |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ISOLATE         |  | no |  |
-|  | SAI_SWITCH_ATTR_HOSTIF_OPER_STATUS_UPDATE_MODE |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_ASIC_SDK_HEALTH_EVENT_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_FATAL_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_WARNING_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_REG_NOTICE_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_CHAIN_LIST         |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_HOST_TX_READY_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_TUNNEL_TERM_TABLE_ENTRY_MINIMUM_PRIORITY |  | no |  |
-|  | SAI_SWITCH_ATTR_TUNNEL_TERM_TABLE_ENTRY_MAXIMUM_PRIORITY |  | no |  |
-|  | SAI_SWITCH_ATTR_TWAMP_SESSION_EVENT_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_TWAMP_SESSION |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_TWAMP_SESSION      |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_IP_NEXT_HOP_GROUP_MEMBER_ENTRY |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_SYSTEM_VOQS  |  | no |  |
-|  | SAI_SWITCH_ATTR_ACL_STAGE_PRE_INGRESS  |  | no |  |
-|  | SAI_SWITCH_ATTR_POE_DEVICE_LIST        |  | no |  |
-|  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_AVAILABLE_ICMP_ECHO_SESSION |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_ICMP_ECHO_SESSION  |  | no |  |
-|  | SAI_SWITCH_ATTR_STATS_COUNT_MODE       |  | no |  |
-|  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_EXTENDED_PORT_STATE_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_ST_REPORT_CHUNK_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_ST_CHUNK_COUNT |  | no |  |
-|  | SAI_SWITCH_ATTR_TAM_TEL_TYPE_CONFIG_CHANGE_NOTIFY |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_VALUE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_RESOLUTION_MODE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_INDEX |  | no |  |
-|  | SAI_SWITCH_ATTR_SHARED_BUFFER_CELL_SIZE |  | no |  |
-|  | SAI_SWITCH_ATTR_PORT_PTP_MODE |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6_RDMA |  | no |  |
-|  | SAI_SWITCH_ATTR_MAX_SYNCE_CLOCK_COUNT |  | no |  |
-|  | SAI_SWITCH_ATTR_SYNCE_CLOCK_LIST |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_TC_VALUE |  | no |  |
-|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE |  | no |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_CPU_INGRESS_BUFFER_POOL |  | no |  |
-|  | SAI_SWITCH_ATTR_DEFAULT_CPU_EGRESS_BUFFER_POOL |  | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS    |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS    |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_MACSEC_ENABLE_POST    |  | no |  |
-|  | SAI_SWITCH_ATTR_IPSEC_ENABLE_POST    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY    |  | no |  |
-|  | SAI_SWITCH_ATTR_NEXT_HOP_USER_META_DATA_RANGE    |  | no |  |
-|  | SAI_SWITCH_ATTR_FAST_LINKUP_POLLING_TIMEOUT_RANGE    |  | no |  |
-|  | SAI_SWITCH_ATTR_FAST_LINKUP_POLLING_TIMEOUT    |  | no |  |
-|  | SAI_SWITCH_ATTR_FAST_LINKUP_GUARD_TIMEOUT_RANGE    |  | no |  |
-|  | SAI_SWITCH_ATTR_FAST_LINKUP_GUARD_TIMEOUT    |  | no |  |
-|  | SAI_SWITCH_ATTR_FAST_LINKUP_BER_THRESHOLD    |  | no |  |
-|  | SAI_SWITCH_ATTR_CUSTOM_FDB_TABLE_SIZE  |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_USED_FDB_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_HOST_ROUTE_TABLE_SIZE |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_HOST_ROUTE_TABLE_SIZE |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_HOST_ROUTE_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_HOST_ROUTE_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_ARP_TABLE_SIZE  |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_ARP_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_ROUTE_TABLE_SIZE |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_ROUTE_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_TABLE_SIZE |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_TABLE_SIZE |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_USED_ENTRIES |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE    |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY      |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY      |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_FDB_SECURE_BREACH_EVENT_NOTIFY |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_MAC2ME_TABLE_SIZE |  | yes | yes |
-|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | yes |
-| get_switch_stats |  |  | no |  |
-| get_switch_stats_ext |  |  | no |  |
-| clear_switch_stats |  |  | no |  |
-| switch_mdio_read |  |  | no |  |
-| switch_mdio_write |  |  | no |  |
-| create_switch_tunnel |  |  | no |  |
-| remove_switch_tunnel |  |  | no |  |
-| set_switch_tunnel_attribute |  |  | no |  |
-| get_switch_tunnel_attribute |  |  | no |  |
-| switch_mdio_cl22_read |  |  | no |  |
-| switch_mdio_cl22_write |  |  | no |  |
+|  | SAI_SWITCH_ATTR_TWAMP_SESSION_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_POE_DEVICE_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_STATS_COUNT_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_EXTENDED_PORT_STATE_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_TEL_TYPE_CONFIG_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_SIZE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_VALUE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_RESOLUTION_MODE | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_STATIC | no | no |  |
+|  |  | SAI_PACKET_TRIM_QUEUE_RESOLUTION_MODE_DYNAMIC | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_INDEX |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PORT_PTP_MODE | SAI_PORT_PTP_MODE_NONE | no | no |  |
+|  |  | SAI_PORT_PTP_MODE_SINGLE_STEP_TIMESTAMP | no | no |  |
+|  |  | SAI_PORT_PTP_MODE_TWO_STEP_TIMESTAMP | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_TC_VALUE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_DSCP_VALUE | no | no |  |
+|  |  | SAI_PACKET_TRIM_DSCP_RESOLUTION_MODE_FROM_TC | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | no | yes |
+| get_switch_attribute | SAI_SWITCH_ATTR_NUMBER_OF_ACTIVE_PORTS |  | yes | no |  |
+|  | SAI_SWITCH_ATTR_PORT_NUMBER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_SUPPORTED_PORTS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_LIST |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_MAX_MTU |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_CPU_PORT |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_VIRTUAL_ROUTERS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_TABLE_SIZE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_L3_NEIGHBOR_TABLE_SIZE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_L3_ROUTE_TABLE_SIZE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_MEMBERS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_LAGS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_MEMBERS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_ECMP_GROUPS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_UNICAST_QUEUES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_MULTICAST_QUEUES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_QUEUES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_CPU_QUEUES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ON_LINK_ROUTE_SUPPORTED |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_OPER_STATUS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_TEMP_SENSORS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_TEMP_LIST |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_TEMP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVERAGE_TEMP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_TABLE_MINIMUM_PRIORITY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_TABLE_MAXIMUM_PRIORITY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_ENTRY_MINIMUM_PRIORITY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_ENTRY_MAXIMUM_PRIORITY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_TABLE_GROUP_MINIMUM_PRIORITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_TABLE_GROUP_MAXIMUM_PRIORITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_DST_USER_META_DATA_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ROUTE_DST_USER_META_DATA_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NEIGHBOR_DST_USER_META_DATA_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_USER_META_DATA_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VLAN_USER_META_DATA_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_USER_META_DATA_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_USER_TRAP_ID_RANGE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_VLAN_ID |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_STP_INST_ID |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_STP_INSTANCE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_VIRTUAL_ROUTER_ID |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_OVERRIDE_VIRTUAL_ROUTER_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_1Q_BRIDGE_ID |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_INGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_EGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_TRAFFIC_CLASSES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_SCHEDULER_GROUP_HIERARCHY_LEVELS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_SCHEDULER_GROUPS_PER_HIERARCHY_LEVEL |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MAX_NUMBER_OF_CHILDS_PER_SCHEDULER_GROUP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_TOTAL_BUFFER_SIZE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_INGRESS_BUFFER_POOL_NUM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_EGRESS_BUFFER_POOL_NUM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPV4_ROUTE_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPV6_ROUTE_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPV4_NEXTHOP_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPV6_NEXTHOP_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPV4_NEIGHBOR_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPV6_NEIGHBOR_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_NEXT_HOP_GROUP_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_NEXT_HOP_GROUP_MEMBER_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_FDB_ENTRY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_L2MC_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IPMC_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_SNAT_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_DNAT_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_DOUBLE_NAT_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_ACL_TABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_ACL_TABLE_GROUP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_MY_SID_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_TRAP_GROUP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_RESTART_WARM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_WARM_RECOVER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_RESTART_TYPE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MIN_PLANNED_RESTART_INTERVAL |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NV_STORAGE_SIZE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_ACL_ACTION_COUNT |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_ACL_RANGE_COUNT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_CAPABILITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MCAST_SNOOPING_CAPABILITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCHING_MODE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_BCAST_CPU_FLOOD_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MCAST_CPU_FLOOD_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SRC_MAC_ADDRESS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_LEARNED_ADDRESSES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_AGING_TIME |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_UNICAST_MISS_PACKET_ACTION |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_BROADCAST_MISS_PACKET_ACTION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_MULTICAST_MISS_PACKET_ACTION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_ALGORITHM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_SEED |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_HASH_OFFSET |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_DEFAULT_SYMMETRIC_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_IN_IPV4 |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_ALGORITHM |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_SEED |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_HASH_OFFSET |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_DEFAULT_SYMMETRIC_HASH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_IN_IPV4 |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6 |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_COUNTER_REFRESH_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DEFAULT_TC |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_TC_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DOT1P_TO_COLOR_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_TC_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_COLOR_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_TO_QUEUE_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DOT1P_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_DSCP_MAP |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_SHELL_ENABLE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_PROFILE_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_HARDWARE_INFO |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_PATH_NAME |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_INIT_SWITCH |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_SHUTDOWN_REQUEST_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SHUTDOWN_REQUEST_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FDB_EVENT_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_PACKET_EVENT_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_FAST_API_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MIRROR_TC |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_STAGE_INGRESS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_STAGE_EGRESS |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SRV6_MAX_SID_DEPTH |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_SRV6_TLV_TYPE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_NUM_LOSSLESS_QUEUES |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_QUEUE_PFC_DEADLOCK_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_DLR_PACKET_ACTION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLD_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL_RANGE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PFC_TC_DLR_INTERVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SUPPORTED_PROTECTED_OBJECT_TYPE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TPID_OUTER_VLAN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TPID_INNER_VLAN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CRC_CHECK_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CRC_RECALCULATION_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_BFD_SESSION_STATE_CHANGE_NOTIFY |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_BFD_SESSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_BFD_SESSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SUPPORTED_IPV4_BFD_SESSION_OFFLOAD_TYPE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SUPPORTED_IPV6_BFD_SESSION_OFFLOAD_TYPE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MIN_BFD_RX |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MIN_BFD_TX |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECN_ECT_THRESHOLD_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_ROUTER_MAC |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_VXLAN_DEFAULT_PORT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_MIRROR_SESSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_SAMPLED_MIRROR_SESSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SUPPORTED_EXTENDED_STATS_MODE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_UNINIT_DATA_PLANE_ON_REMOVAL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TAM_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TAM_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SUPPORTED_OBJECT_TYPE_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PRE_SHUTDOWN |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_ZONE_COUNTER_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_ENABLE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_HARDWARE_ACCESS_BUS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PLATFROM_CONTEXT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REGISTER_READ |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REGISTER_WRITE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_BROADCAST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_METHOD |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_LOAD_TYPE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_DOWNLOAD_EXECUTE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_BROADCAST_STOP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_VERIFY_AND_INIT_SWITCH |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_STATUS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_MAJOR_VERSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FIRMWARE_MINOR_VERSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_CONNECTOR_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PROPOGATE_PORT_STATE_FROM_LINE_TO_SYSTEM_PORT_SUPPORT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TYPE |  | yes | yes |  |
+|  | SAI_SWITCH_ATTR_MACSEC_OBJECT_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_TC_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_COLOR_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_TC_AND_COLOR_TO_MPLS_EXP_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_SYSTEM_CORES |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SYSTEM_PORT_CONFIG_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_SYSTEM_PORTS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SYSTEM_PORT_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NUMBER_OF_FABRIC_PORTS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FABRIC_PORT_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PACKET_DMA_MEMORY_POOL_SIZE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_FAILOVER_CONFIG_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SUPPORTED_FAILOVER_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TUNNEL_OBJECTS_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PACKET_AVAILABLE_DMA_MEMORY_POOL_SIZE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PRE_INGRESS_ACL |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_SNAPT_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_DNAPT_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_DOUBLE_NAPT_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SLAVE_MDIO_ADDR_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MY_MAC_TABLE_MINIMUM_PRIORITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MY_MAC_TABLE_MAXIMUM_PRIORITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MY_MAC_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_INSTALLED_MY_MAC_ENTRIES |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_MY_MAC_ENTRIES |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_NUMBER_OF_FORWARDING_CLASSES |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_DSCP_TO_FORWARDING_CLASS_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_QOS_MPLS_EXP_TO_FORWARDING_CLASS_MAP |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_OBJECT_ID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_SA_TAG_TPID |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_IPSEC_SA_STATUS_CHANGE_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_NAT_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_ECMP_MEMBER_COUNT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ECMP_MEMBER_COUNT |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ARS_PROFILE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_STAGE_POST_INGRESS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CREDIT_WD |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_CREDIT_WD_TIMER |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ISOLATE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_HOSTIF_OPER_STATUS_UPDATE_MODE |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_SWITCH_ASIC_SDK_HEALTH_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_FATAL_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_WARNING_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_REG_NOTICE_SWITCH_ASIC_SDK_HEALTH_CATEGORY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_CHAIN_LIST |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_PORT_HOST_TX_READY_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TUNNEL_TERM_TABLE_ENTRY_MINIMUM_PRIORITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TUNNEL_TERM_TABLE_ENTRY_MAXIMUM_PRIORITY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_TWAMP_SESSION_EVENT_NOTIFY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_TWAMP_SESSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_MAX_TWAMP_SESSION |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_IP_NEXT_HOP_GROUP_MEMBER_ENTRY |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_SYSTEM_VOQS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_ACL_STAGE_PRE_INGRESS |  | no | yes |  |
+|  | SAI_SWITCH_ATTR_POE_DEVICE_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ICMP_ECHO_SESSION_STATE_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_AVAILABLE_ICMP_ECHO_SESSION |  | no | no |  |
+|  | SAI_SWITCH_ATTR_MAX_ICMP_ECHO_SESSION |  | no | no |  |
+|  | SAI_SWITCH_ATTR_STATS_COUNT_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SELECTIVE_COUNTER_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_EXTENDED_PORT_STATE_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_ST_REPORT_CHUNK_SIZE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_ST_CHUNK_COUNT |  | no | no |  |
+|  | SAI_SWITCH_ATTR_TAM_TEL_TYPE_CONFIG_CHANGE_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_SIZE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_VALUE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_RESOLUTION_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_QUEUE_INDEX |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SHARED_BUFFER_CELL_SIZE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PORT_PTP_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV4_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_ECMP_HASH_IPV6_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV4_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_LAG_HASH_IPV6_RDMA |  | no | no |  |
+|  | SAI_SWITCH_ATTR_MAX_SYNCE_CLOCK_COUNT |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SYNCE_CLOCK_LIST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_TC_VALUE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_PACKET_TRIM_DSCP_RESOLUTION_MODE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_CPU_INGRESS_BUFFER_POOL |  | no | no |  |
+|  | SAI_SWITCH_ATTR_DEFAULT_CPU_EGRESS_BUFFER_POOL |  | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_POST_STATUS |  | no | no |  |
+|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS |  | no | no |  |
+|  | SAI_SWITCH_ATTR_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_MACSEC_ENABLE_POST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_IPSEC_ENABLE_POST |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_MACSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_SWITCH_IPSEC_POST_STATUS_NOTIFY |  | no | no |  |
+|  | SAI_SWITCH_ATTR_NEXT_HOP_USER_META_DATA_RANGE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_FAST_LINKUP_POLLING_TIMEOUT_RANGE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_FAST_LINKUP_POLLING_TIMEOUT |  | no | no |  |
+|  | SAI_SWITCH_ATTR_FAST_LINKUP_GUARD_TIMEOUT_RANGE |  | no | no |  |
+|  | SAI_SWITCH_ATTR_FAST_LINKUP_GUARD_TIMEOUT |  | no | no |  |
+|  | SAI_SWITCH_ATTR_FAST_LINKUP_BER_THRESHOLD |  | no | no |  |
+|  | SAI_SWITCH_ATTR_CUSTOM_FDB_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_USED_FDB_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_HOST_ROUTE_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_HOST_ROUTE_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_HOST_ROUTE_USED_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_HOST_ROUTE_USED_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_ARP_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_ARP_USED_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_ROUTE_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV4_ROUTE_USED_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_IPV6_ROUTE_USED_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_NEXTHOP_USED_ENTRIES |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_ND_MAC_CHECK_ENABLE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SNP4_ENTRY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SNP6_ENTRY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_SELECTED_SYNCE_PORT |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FDB_SECURE_BREACH_EVENT_NOTIFY |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_MAC2ME_TABLE_SIZE |  | yes | no | yes |
+|  | SAI_SWITCH_ATTR_CUSTOM_FWD_ERR_IP_HEADER_PACKET |  | yes | no | yes |
+| get_switch_stats |  |  | no | yes |  |
+| get_switch_stats_ext |  |  | no | yes |  |
+| clear_switch_stats |  |  | no | yes |  |
+| switch_mdio_read |  |  | no | no |  |
+| switch_mdio_write |  |  | no | no |  |
+| create_switch_tunnel |  |  | no | yes |  |
+| remove_switch_tunnel |  |  | no | yes |  |
+| set_switch_tunnel_attribute |  |  | no | yes |  |
+| get_switch_tunnel_attribute |  |  | no | yes |  |
+| switch_mdio_cl22_read |  |  | no | yes |  |
+| switch_mdio_cl22_write |  |  | no | yes |  |

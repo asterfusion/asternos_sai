@@ -1,29 +1,29 @@
-| Api | Sai Attribute | Enums | Support | Private |
-| --- | --- | --- | --- | --- |
-| create_vlan_stack | SAI_VLAN_STACK_ATTR_STAGE | SAI_VLAN_STACK_STAGE_INGRESS | yes | yes |
-|  |  | SAI_VLAN_STACK_STAGE_EGRESS | no | yes |
-|  | SAI_VLAN_STACK_ATTR_ACTION | SAI_VLAN_STACK_ACTION_SWAP | no | yes |
-|  |  | SAI_VLAN_STACK_ACTION_PUSH | yes | yes |
-|  |  | SAI_VLAN_STACK_ACTION_POP | no | yes |
-|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_INNER |  | no | yes |
-|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_OUTER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_PORT |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_VLAN_APPLIED_PRI |  | no | yes |
-|  | SAI_VLAN_STACK_ATTR_CUSTOM_UPSTREAM_PORT_LIST| | yes | yes|
-| remove_vlan_stack |  |  | yes | yes |
-| set_vlan_stack_attribute | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_INNER |  | no | yes |
-|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_OUTER |  | no | yes |
-|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER |  | no | yes |
-|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER |  | no | yes |
-|  | SAI_VLAN_STACK_ATTR_VLAN_APPLIED_PRI |  | no | yes |
-| get_vlan_stack_attribute | SAI_VLAN_STACK_ATTR_STAGE |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_ACTION |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_INNER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_OUTER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_PORT |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_VLAN_APPLIED_PRI |  | yes | yes |
-|  | SAI_VLAN_STACK_ATTR_CUSTOM_UPSTREAM_PORT_LIST |  | yes | yes | 
+| Api | Sai Attribute | Enums | Marvell Support | Clonix Support | Private |
+| --- | --- | --- | --- | --- | --- |
+| create_vlan_stack | SAI_VLAN_STACK_ATTR_STAGE | SAI_VLAN_STACK_STAGE_INGRESS | yes | no | yes |
+|  |  | SAI_VLAN_STACK_STAGE_EGRESS | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ACTION | SAI_VLAN_STACK_ACTION_SWAP | no | no | yes |
+|  |  | SAI_VLAN_STACK_ACTION_PUSH | yes | no | yes |
+|  |  | SAI_VLAN_STACK_ACTION_POP | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_INNER |  | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_OUTER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_PORT |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_VLAN_APPLIED_PRI |  | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_CUSTOM_UPSTREAM_PORT_LIST |  | yes | no | yes |
+| remove_vlan_stack |  |  | yes | no | yes |
+| set_vlan_stack_attribute | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_INNER |  | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_OUTER |  | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER |  | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER |  | no | no | yes |
+|  | SAI_VLAN_STACK_ATTR_VLAN_APPLIED_PRI |  | no | no | yes |
+| get_vlan_stack_attribute | SAI_VLAN_STACK_ATTR_STAGE |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ACTION |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_INNER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_ORIGINAL_VLAN_ID_OUTER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_PORT |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_INNER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_APPLIED_VLAN_ID_OUTER |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_VLAN_APPLIED_PRI |  | yes | no | yes |
+|  | SAI_VLAN_STACK_ATTR_CUSTOM_UPSTREAM_PORT_LIST |  | yes | no | yes |
