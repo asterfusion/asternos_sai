@@ -584,6 +584,18 @@ typedef enum _sai_twamp_session_attr_t
     /** Custom range base value */
     SAI_TWAMP_SESSION_ATTR_CUSTOM_RANGE_START = 0x10000000,
 
+    /**
+     * @brief TWAMP SDMA TX queue (derived from HW_OFFLOAD tx_level)
+     *
+     * Maps directly to the SDMA generator queue number (1..7).
+     * When not set (0), defaults to XPS_TWAMP_SDMA_TX_QUEUE (3).
+     *
+     * @type sai_uint8_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_TWAMP_SESSION_ATTR_CUSTOM_TX_LEVEL,
+
     /** End of custom range base */
     SAI_TWAMP_SESSION_ATTR_CUSTOM_RANGE_END
 

@@ -23,8 +23,10 @@ CAUI - 100 Gigabit Attachment Unit Interface
 CB - Callback
 CBS - Committed Burst Size
 CCITT - Comite Consultatif International de Telegraphique et Telephonique
+CCM - Continuity Check Message
 CDP - Cisco Discovery Protocol
 CFI - Canonical Format Indicator
+CFM - Connectivity Fault Management
 CIDR - Classless Inter Domain Routing
 CIR - Committed Information Rate
 CMIS - Common Management Interface Specification
@@ -40,7 +42,10 @@ DLD - Dead Lock Detection
 DLDR - Dead Lock Detection and Recovery
 DLL - Dynamic Link Library
 DLR - Dead Lock Recovery
+DM - Delay Measurement
 DMA - Direct Memory Access
+DMM - Delay Measurement Message
+DMR - Delay Measurement Reply
 DNAPT - Destination Network Address Port Translation
 DNAT - Destination Network Address Translation
 DPU - Data Processing Unit
@@ -106,12 +111,15 @@ LBDT - Loopback Detection
 LDP - Label Distribution Protocol
 LLDP - Link Layer Discovery Protocol
 LLR - Link Layer Retry
+LM - Loss Measurement
 LPM - Longest Prefix Match
 LSP - Label Switched Path
 MAC - Medium Access Control
 MDIO - Management Data Input/Output
 MDIX - Medium Dependent Interface Crossover
+MEP - Maintenance Endpoint
 MILLI - milli (1/1000)
+MIP - Maintenance Intermediate Point
 MLD  - Multicast Listener Discover
 MMU - Memory Management Unit
 MPLS - Multi Protocol Label Switching
@@ -162,6 +170,7 @@ SAVI - test
 SC - Secure Channel
 SCI - Secure Channel Identifier
 SDK - Software Development Kit
+SDMA - Shared Direct Memory Access
 SER - Soft Error Rate
 SFI - SerDes Framer Interface
 SFLOW - Sampled Flow

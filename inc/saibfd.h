@@ -144,11 +144,17 @@ typedef struct _sai_bfd_session_state_notification_t
 
     uint32_t required_echo_rx;
 
-    uint32_t  detection_multiplier;
+    uint32_t detection_multiplier;
 
-    uint32_t  remote_flags;
+    uint32_t remote_flags;
 
-    uint32_t  diagnostics;
+    uint32_t diagnostics;
+
+    /** BFD RX level (used as OAM agingPeriodIndex) */
+    uint32_t rx_level;
+
+    /** BFD TX level (used as SDMA TX queue) */
+    uint32_t tx_level;
 
 } sai_bfd_session_state_notification_t;
 
@@ -583,6 +589,40 @@ typedef enum _sai_bfd_session_attr_t
      * @objects SAI_OBJECT_TYPE_ROUTER_INTERFACE
      */
     SAI_BFD_SESSION_ATTR_CUSTOM_RIF,
+
+    /**
+     * @brief BFD OAM agingPeriodIndex
+     *
+     * @type sai_uint8_t
+     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_RX_LEVEL,
+
+    /**
+     * @brief BFD SDMA TX queue
+     *
+     * @type sai_uint8_t
+     * @flags MANDATORY_ON_CREATE | CREATE_AND_SET
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_TX_LEVEL,
+
+    /**
+     * @brief BFD data-plane receive interval in milliseconds
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_RX_INTERVAL,
+
+    /**
+     * @brief BFD data-plane transmit interval in milliseconds
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_BFD_SESSION_ATTR_CUSTOM_TX_INTERVAL,
 
     /** End of custom range base */
     SAI_BFD_SESSION_ATTR_CUSTOM_RANGE_END

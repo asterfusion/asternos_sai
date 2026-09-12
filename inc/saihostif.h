@@ -563,6 +563,12 @@ typedef enum _sai_hostif_trap_type_t
     SAI_HOSTIF_TRAP_TYPE_CUSTOM_LBDT = 0x00009007,
 
     /**
+     * @brief COPP for TWAMP Light (UDP destination port 862)
+     * (default packet action is trap)
+     */
+    SAI_HOSTIF_TRAP_TYPE_CUSTOM_TWAMP = 0x00009008,
+
+    /**
      * @brief End of trap types
      */
     SAI_HOSTIF_TRAP_TYPE_END = 0x0000a000
