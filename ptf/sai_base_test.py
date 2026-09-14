@@ -266,7 +266,7 @@ class ThriftInterface(BaseTest):
             server = 'localhost'
 
         socket = TSocket.TSocket(server, THRIFT_PORT)
-        socket.setTimeout(30000)  # 30-second fail-safe timeout
+        socket.setTimeout(60000)  # 60-second fail-safe timeout (ASIC cold init needs ~30-40s)
         self.transport = TTransport.TBufferedTransport(socket)
         self.protocol = TBinaryProtocol.TBinaryProtocol(self.transport)
 
