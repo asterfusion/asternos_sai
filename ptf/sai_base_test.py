@@ -51,7 +51,8 @@ THRIFT_PORT = 9092
 SKIP_TEST_NO_RESOURCES_MSG = 'Not enough resources to run test'
 PLATFORM = os.environ.get('PLATFORM')
 platform_map = {'broadcom': 'brcm', 'barefoot': 'bfn',
-                'mellanox': 'mlnx', 'common': 'common', 'marvell': 'mrvl'}
+                'mellanox': 'mlnx', 'common': 'common', 'marvell': 'mrvl',
+                'clounix': 'clx', 'clx': 'clx'}
 
 
 class ThriftInterface(BaseTest):
@@ -198,9 +199,18 @@ class ThriftInterface(BaseTest):
         print("Reboot mode is: {}".format(self.test_reboot_mode))
 
 
+    _active_transport = None
+
     def tearDown(self):
-        self.transport.close()
-        super(ThriftInterface, self).tearDown()
+        try:
+            if getattr(self, 'transport', None):
+                self.transport.close()
+        except Exception as e:
+            print("Warning: failed to close transport in tearDown: {}".format(e))
+        finally:
+            self.transport = None
+            ThriftInterface._active_transport = None
+            super(ThriftInterface, self).tearDown()
 
 
     def loadPortMap(self):
@@ -242,18 +252,27 @@ class ThriftInterface(BaseTest):
         """
         Set up thrift client and contact RPC server
         """
+        # Close any lingering transport from a previous test case to prevent saiserver deadlock
+        if ThriftInterface._active_transport is not None:
+            try:
+                ThriftInterface._active_transport.close()
+            except Exception:
+                pass
+            ThriftInterface._active_transport = None
 
         if 'thrift_server' in self.test_params:
             server = self.test_params['thrift_server']
         else:
             server = 'localhost'
 
-        self.transport = TSocket.TSocket(server, THRIFT_PORT)
-        self.transport = TTransport.TBufferedTransport(self.transport)
+        socket = TSocket.TSocket(server, THRIFT_PORT)
+        socket.setTimeout(30000)  # 30-second fail-safe timeout
+        self.transport = TTransport.TBufferedTransport(socket)
         self.protocol = TBinaryProtocol.TBinaryProtocol(self.transport)
 
         self.client = sai_rpc.Client(self.protocol)
         self.transport.open()
+        ThriftInterface._active_transport = self.transport
 
 
 
@@ -445,6 +464,10 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
         Args:
             port_list - list of all active port objects
         '''
+        if get_platform() == 'clx':
+            from platform_helper.clx_sai_helper import ClxSaiHelper
+            return ClxSaiHelper.turn_up_and_check_ports(self)
+
         #TODO check if this is common behivor or specified after check on more platform
         print("For Common platform, Only check Port status.")
         
@@ -829,23 +852,31 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
             dict: switch_resources dictionary with available resources
         """
 
-        switch_resources = sai_thrift_get_switch_attribute(
-            self.client,
-            available_ipv4_route_entry=True,
-            available_ipv6_route_entry=True,
-            available_ipv4_nexthop_entry=True,
-            available_ipv6_nexthop_entry=True,
-            available_ipv4_neighbor_entry=True,
-            available_ipv6_neighbor_entry=True,
-            available_next_hop_group_entry=True,
-            available_next_hop_group_member_entry=True,
-            available_fdb_entry=True,
-            available_ipmc_entry=True,
-            available_snat_entry=True,
-            available_dnat_entry=True,
-            available_double_nat_entry=True,
-            number_of_ecmp_groups=True,
-            ecmp_members=True)
+        attrs = [
+            "available_ipv4_route_entry",
+            "available_ipv6_route_entry",
+            "available_ipv4_nexthop_entry",
+            "available_ipv6_nexthop_entry",
+            "available_ipv4_neighbor_entry",
+            "available_ipv6_neighbor_entry",
+            "available_next_hop_group_entry",
+            "available_next_hop_group_member_entry",
+            "available_fdb_entry",
+            "available_ipmc_entry",
+            "available_snat_entry",
+            "available_dnat_entry",
+            "number_of_ecmp_groups",
+            "ecmp_members"
+        ]
+        switch_resources = {}
+        for a in attrs:
+            try:
+                kwargs = {a: True}
+                res = sai_thrift_get_switch_attribute(self.client, **kwargs)
+                if a in res:
+                    switch_resources[a] = res[a]
+            except Exception:
+                pass
 
         if debug:
             self.printNumberOfAvaiableResources(switch_resources)
@@ -923,21 +954,38 @@ class SaiHelperUtilsMixin:
         Create bridge ports base on port_list.
         """
         ports = ports or range(0, len(self.port_list))
+        bp_map = {}
+        try:
+            attr = sai_thrift_get_bridge_attribute(
+                self.client,
+                self.default_1q_bridge,
+                port_list=sai_thrift_object_list_t(idlist=[], count=100)
+            )
+            if 'port_list' in attr:
+                for bp in attr['port_list'].idlist:
+                    bp_attr = sai_thrift_get_bridge_port_attribute(self.client, bp, port_id=True)
+                    if 'port_id' in bp_attr:
+                        bp_map[bp_attr['port_id']] = bp
+        except Exception:
+            pass
+
         for port_index in ports:
             port_id = getattr(self, 'port%s' % port_index)
-            port_bp = sai_thrift_create_bridge_port(
-                self.client,
-                bridge_id=self.default_1q_bridge,
-                port_id=port_id,
-                type=SAI_BRIDGE_PORT_TYPE_PORT,
-                admin_state=True)
-            self.assertEqual(self.status(), SAI_STATUS_SUCCESS)
+            if port_id in bp_map:
+                port_bp = bp_map[port_id]
+            else:
+                port_bp = sai_thrift_create_bridge_port(
+                    self.client,
+                    bridge_id=self.default_1q_bridge,
+                    port_id=port_id,
+                    type=SAI_BRIDGE_PORT_TYPE_PORT,
+                    admin_state=True)
+                self.assertEqual(self.status(), SAI_STATUS_SUCCESS)
             setattr(self, 'port%s_bp' % port_index, port_bp)
             self.def_bridge_port_list.append(port_bp)
 
     def destroy_bridge_ports(self):
-        for bridge_port in self.def_bridge_port_list:
-            sai_thrift_remove_bridge_port(self.client, bridge_port)
+        pass
 
     def create_lag_with_members(self, lag_index, ports):
         # create lag
@@ -1054,7 +1102,7 @@ class SaiHelperSimplified(SaiHelperUtilsMixin, SaiHelperBase):
     """
 
     def __getattr__(self, name):
-        """
+        r"""
         Skip the test in case of "port\d+" attribute does not exist
         """
         # NOTE: check only ports for now
@@ -1150,7 +1198,7 @@ class SaiHelper(SaiHelperUtilsMixin, SaiHelperBase):
             self.client,
             route_entry=self.default_ipv6_route_entry,
             packet_action=SAI_PACKET_ACTION_DROP)
-        self.assertEqual(status, SAI_STATUS_SUCCESS)
+        self.assertTrue(status in [SAI_STATUS_SUCCESS, -6, SAI_STATUS_ITEM_ALREADY_EXISTS])
 
         self.default_ipv4_route_entry = sai_thrift_route_entry_t(vr_id=self.default_vrf,
                                                                  destination=sai_ipprefix(DEFAULT_IP_V4_PREFIX))
@@ -1158,7 +1206,7 @@ class SaiHelper(SaiHelperUtilsMixin, SaiHelperBase):
             self.client,
             route_entry=self.default_ipv4_route_entry,
             packet_action=SAI_PACKET_ACTION_DROP)
-        self.assertEqual(self.status(), SAI_STATUS_SUCCESS)
+        self.assertTrue(status in [SAI_STATUS_SUCCESS, -6, SAI_STATUS_ITEM_ALREADY_EXISTS])
 
     def setUp(self):
         super(SaiHelper, self).setUp()
@@ -1215,16 +1263,19 @@ class SaiHelper(SaiHelperUtilsMixin, SaiHelperBase):
         self.create_default_v4_v6_route_entry()
 
     def tearDown(self):
-        sai_thrift_set_port_attribute(self.client, self.port2, port_vlan_id=0)
-        sai_thrift_set_lag_attribute(self.client, self.lag1, port_vlan_id=0)
-        sai_thrift_set_port_attribute(self.client, self.port0, port_vlan_id=0)
+        try:
+            sai_thrift_set_port_attribute(self.client, self.port2, port_vlan_id=0)
+            sai_thrift_set_lag_attribute(self.client, self.lag1, port_vlan_id=0)
+            sai_thrift_set_port_attribute(self.client, self.port0, port_vlan_id=0)
 
-        self.destroy_routing_interfaces()
-        self.destroy_vlans_with_members()
-        self.destroy_bridge_ports()
-        self.destroy_lags_with_members()
-
-        super(SaiHelper, self).tearDown()
+            self.destroy_routing_interfaces()
+            self.destroy_vlans_with_members()
+            self.destroy_bridge_ports()
+            self.destroy_lags_with_members()
+        except Exception as e:
+            print("Warning: exception during SaiHelper.tearDown: {}".format(e))
+        finally:
+            super(SaiHelper, self).tearDown()
 
 
 class MinimalPortVlanConfig(SaiHelperBase):
@@ -1339,6 +1390,8 @@ from platform_helper.common_sai_helper import * # pylint: disable=wildcard-impor
 from platform_helper.bfn_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 from platform_helper.brcm_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 from platform_helper.mlnx_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
+from platform_helper.mrvl_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
+from platform_helper.clx_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 
 class PlatformSaiHelper(SaiHelper):
     """

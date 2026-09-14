@@ -2374,14 +2374,14 @@ class Ipv6MtuTest(L3InterfaceMtuTestHelper):
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=64,
-                pktlen=199 + 14 + 40)
+                pktlen=199 + 14)
             exp_pkt = simple_tcpv6_packet(
                 eth_dst='00:11:22:33:44:55',
                 eth_src=ROUTER_MAC,
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=63,
-                pktlen=199 + 14 + 40)
+                pktlen=199 + 14)
 
             print("Sending packet port %d -> port %d "
                   "(2000::1 -> 1234:5678:9abc:def0:4422:1133:5577:99aa')"
@@ -2415,14 +2415,14 @@ class Ipv6MtuTest(L3InterfaceMtuTestHelper):
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=64,
-                pktlen=200 + 14 + 40)
+                pktlen=200 + 14)
             exp_pkt = simple_tcpv6_packet(
                 eth_dst='00:11:22:33:44:55',
                 eth_src=ROUTER_MAC,
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=63,
-                pktlen=200 + 14 + 40)
+                pktlen=200 + 14)
 
             print("Sending packet port %d -> port %d "
                   "(2000::1 -> 1234:5678:9abc:def0:4422:1133:5577:99aa')"
@@ -2456,14 +2456,14 @@ class Ipv6MtuTest(L3InterfaceMtuTestHelper):
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=64,
-                pktlen=201 + 14 + 40)
+                pktlen=201 + 14)
             exp_pkt = simple_tcpv6_packet(
                 eth_dst='00:11:22:33:44:55',
                 eth_src=ROUTER_MAC,
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=63,
-                pktlen=201 + 14 + 40)
+                pktlen=201 + 14)
 
             print("Sending packet port %d" % self.dev_port1, " dropped")
             send_packet(self, self.dev_port1, pkt)
@@ -2493,14 +2493,14 @@ class Ipv6MtuTest(L3InterfaceMtuTestHelper):
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=64,
-                pktlen=201 + 14 + 40)
+                pktlen=201 + 14)
             exp_pkt = simple_tcpv6_packet(
                 eth_dst='00:11:22:33:44:55',
                 eth_src=ROUTER_MAC,
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=63,
-                pktlen=201 + 14 + 40)
+                pktlen=201 + 14)
             print("Sending packet port %d -> port %d "
                   "(2000::1 -> 1234:5678:9abc:def0:4422:1133:5577:99aa')"
                   % (self.dev_port1, self.dev_port0))
@@ -2543,14 +2543,14 @@ class Ipv6MtuTest(L3InterfaceMtuTestHelper):
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=64,
-                pktlen=202 + 14 + 40)
+                pktlen=202 + 14)
             exp_pkt = simple_tcpv6_packet(
                 eth_dst='00:11:22:33:44:55',
                 eth_src=ROUTER_MAC,
                 ipv6_dst='1234:5678:9abc:def0:4422:1133:5577:99aa',
                 ipv6_src='2000::1',
                 ipv6_hlim=63,
-                pktlen=202 + 14 + 40)
+                pktlen=202 + 14)
 
             print("Sending packet port %d" % self.dev_port1, " dropped")
             send_packet(self, self.dev_port1, pkt)

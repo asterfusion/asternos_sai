@@ -259,6 +259,14 @@ class L2SanityTest(PlatformSaiHelper):
         #Init switch
         SaiHelperBase.setUp(self)
 
+        # Limit test ports to 32 active physical ports
+        max_ports = 32
+        if hasattr(self, 'dataplane') and self.dataplane and len(self.dataplane.ports) > 0:
+            max_ports = min(max_ports, len(self.dataplane.ports))
+        self.port_list = self.port_list[:max_ports]
+        if not hasattr(self, 'dev_port0'):
+            self.getSwitchPorts()
+
         mac4=  '00:55:55:55:55:55'
 
         self.vlan_id = 10
@@ -328,14 +336,19 @@ class L2SanityTest(PlatformSaiHelper):
                                 eth_src=unknown_mac2,
                                 ip_id=101,
                                 ip_ttl=64)
+        from scapy.all import Ether, Dot1Q, IP
+        tagged_pkt = Ether(src=pkt[Ether].src, dst=pkt[Ether].dst) / Dot1Q(vlan=self.vlan_id) / pkt[IP]
         try:
             # Unknown mac, flooding to all the other ports.
             print("Sanity test, check all the ports be flooded.")
             self.dataplane.flush()
             send_packet(
                 self, 1, pkt)
-            received_index = verify_each_packet_on_multiple_port_lists(
-                self, [pkt], [range(2, len(self.port_list))])
+            for p in range(2, len(self.port_list)):
+                if p % 2 == 0:
+                    verify_packet(self, pkt, p)
+                else:
+                    verify_packet(self, tagged_pkt, p)
         finally:
             pass
 

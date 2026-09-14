@@ -4471,6 +4471,7 @@ class AclPreIngressTest(AclTableTypeTest):
         print("testPreIngressAcl")
         acl_table_oid = None
         acl_entry_oid = None
+        acl_counter_ingress = None
         try:
             table_stage = SAI_ACL_STAGE_PRE_INGRESS
             table_bind_points = [SAI_ACL_BIND_POINT_TYPE_SWITCH]
@@ -4579,19 +4580,21 @@ class AclPreIngressTest(AclTableTypeTest):
 
         finally:
             # cleanup ACL
-            action_counter_ingress = sai_thrift_acl_action_data_t(
-                parameter=sai_thrift_acl_action_parameter_t(
-                    oid=0),
-                enable=True)
-            sai_thrift_set_acl_entry_attribute(
-                self.client, acl_entry_oid,
-                action_counter=action_counter_ingress)
-            sai_thrift_set_acl_counter_attribute(
-                self.client, acl_counter_ingress, packets=None)
-            packets = sai_thrift_get_acl_counter_attribute(
-                self.client, acl_counter_ingress, packets=True)
-            self.assertEqual(packets['packets'], 0)
-            sai_thrift_remove_acl_counter(self.client, acl_counter_ingress)
+            if acl_entry_oid and acl_counter_ingress:
+                action_counter_ingress = sai_thrift_acl_action_data_t(
+                    parameter=sai_thrift_acl_action_parameter_t(
+                        oid=0),
+                    enable=True)
+                sai_thrift_set_acl_entry_attribute(
+                    self.client, acl_entry_oid,
+                    action_counter=action_counter_ingress)
+            if acl_counter_ingress:
+                sai_thrift_set_acl_counter_attribute(
+                    self.client, acl_counter_ingress, packets=None)
+                packets = sai_thrift_get_acl_counter_attribute(
+                    self.client, acl_counter_ingress, packets=True)
+                self.assertEqual(packets['packets'], 0)
+                sai_thrift_remove_acl_counter(self.client, acl_counter_ingress)
             sai_thrift_set_switch_attribute(self.client, pre_ingress_acl=0)
 
             if acl_entry_oid:
