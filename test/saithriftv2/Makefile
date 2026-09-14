@@ -1,4 +1,6 @@
-CXX=g++
+CXX = $(CROSS_COMPILE)g++
+CC = $(CROSS_COMPILE)gcc
+AR = $(CROSS_COMPILE)ar
 ODIR = ./obj
 THRIFT = /usr/bin/thrift
 
@@ -97,14 +99,14 @@ $(METADIR)saimetadata.h:
 $(ODIR)/%.o: gen-cpp/%.cpp
 	$(CXX) $(CPPFLAGS) -c $< -o $@
 
-$(ODIR)/sai_rpc_server.o: $(METADIR)sai_rpc_frontend.cpp $(METADIR)saimetadata.h
+$(ODIR)/sai_rpc_server.o: $(METADIR)sai_rpc_frontend.cpp $(METADIR)saimetadata.h $(CPP_SOURCES)
 	$(CXX) $(CPPFLAGS) -c $(METADIR)sai_rpc_frontend.cpp -o $@ -I$(METADIR) -I./gen-cpp -I../../inc -I../../experimental -I../../custom
 
 $(ODIR)/saiserver.o: src/saiserver.cpp src/switch_sai_rpc_server.h $(CPP_SOURCES)
 	$(CXX) $(CPPFLAGS) -c src/saiserver.cpp -o $@ $(CDEFS) -I./gen-cpp -I../../inc -I../../experimental -I../../custom
 
 $(ODIR)/librpcserver.a: $(ODIR)/sai_rpc.o $(ODIR)/sai_types.o $(ODIR)/sai_rpc_server.o
-	ar rcs $(ODIR)/librpcserver.a $^
+	$(AR) rcs $(ODIR)/librpcserver.a $^
 
 VER=$(shell cat setup.py |grep version | awk -F "'" '{print $$2}')
 
