@@ -162,6 +162,7 @@ SAVI - test
 SC - Secure Channel
 SCI - Secure Channel Identifier
 SDK - Software Development Kit
+SDMA - Shared Direct Memory Access
 SER - Soft Error Rate
 SFI - SerDes Framer Interface
 SFLOW - Sampled Flow
