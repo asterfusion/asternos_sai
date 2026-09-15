@@ -3374,15 +3374,6 @@ typedef enum _sai_port_attr_t
      */
     SAI_PORT_ATTR_CUSTOM_LOOPBACK_BINDING_SRV6,
 
-    /**
-     * @brief MIP level configured on the port
-     *
-     * @type sai_uint8_t
-     * @flags CREATE_AND_SET
-     * @default 0
-     */
-    SAI_PORT_ATTR_CUSTOM_MIP_LEVEL,
-
     /** End of custom range base */
     SAI_PORT_ATTR_CUSTOM_RANGE_END,
 
