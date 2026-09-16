@@ -9,10 +9,11 @@ PTF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export PLATFORM="clx"
 export PYTHONPATH="${PTF_DIR}"
 
-# Build 32-port interface list: 0@nic7.101 ... 31@nic7.132
+# Build 32-port interface list: 0@nic0.101 ... 31@nic0.132
+IFACE_PREFIX="${IFACE_PREFIX:-nic0}"
 IFACE_ARGS=()
 for i in {0..31}; do
-    IFACE_ARGS+=("-i" "${i}@nic7.$((101 + i))")
+    IFACE_ARGS+=("-i" "${i}@${IFACE_PREFIX}.$((101 + i))")
 done
 
 # Predefined passed cases
