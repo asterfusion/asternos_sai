@@ -41,7 +41,7 @@ from data_module.port import Port
 from sai_utils import *
 import sai_thrift.sai_adapter as adapter
 
-from config.port_configer import PortConfiger
+from config.port_configer import PortConfiger, get_ptf_dataplane_ports
 from config.config_db_loader import ConfigDBLoader
 from config.port_config_ini_loader import PortConfigInILoader
 
@@ -797,10 +797,10 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
 
     def getSwitchPorts(self):
         """
-        Get device port numbers
+        Get device port numbers from PTF --interface or --device-socket port_map.
         """
         dev_no = 0
-        for _, port, _ in config['interfaces']:
+        for _, port, _ in get_ptf_dataplane_ports():
             # remove after DASH will be introduced as confuses with "dev" prefix
             # added tg as a shortcut for "traffic generator"
             setattr(self, 'dev_port%d' % dev_no, port)
