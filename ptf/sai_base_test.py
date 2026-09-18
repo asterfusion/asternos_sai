@@ -51,7 +51,8 @@ THRIFT_PORT = 9092
 SKIP_TEST_NO_RESOURCES_MSG = 'Not enough resources to run test'
 PLATFORM = os.environ.get('PLATFORM')
 platform_map = {'broadcom': 'brcm', 'barefoot': 'bfn',
-                'mellanox': 'mlnx', 'common': 'common', 'marvell': 'mrvl'}
+                'mellanox': 'mlnx', 'common': 'common', 'marvell': 'mrvl',
+                'clounix': 'clx', 'clx': 'clx'}
 
 
 class ThriftInterface(BaseTest):
@@ -829,23 +830,31 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
             dict: switch_resources dictionary with available resources
         """
 
-        switch_resources = sai_thrift_get_switch_attribute(
-            self.client,
-            available_ipv4_route_entry=True,
-            available_ipv6_route_entry=True,
-            available_ipv4_nexthop_entry=True,
-            available_ipv6_nexthop_entry=True,
-            available_ipv4_neighbor_entry=True,
-            available_ipv6_neighbor_entry=True,
-            available_next_hop_group_entry=True,
-            available_next_hop_group_member_entry=True,
-            available_fdb_entry=True,
-            available_ipmc_entry=True,
-            available_snat_entry=True,
-            available_dnat_entry=True,
-            available_double_nat_entry=True,
-            number_of_ecmp_groups=True,
-            ecmp_members=True)
+        attrs = [
+            "available_ipv4_route_entry",
+            "available_ipv6_route_entry",
+            "available_ipv4_nexthop_entry",
+            "available_ipv6_nexthop_entry",
+            "available_ipv4_neighbor_entry",
+            "available_ipv6_neighbor_entry",
+            "available_next_hop_group_entry",
+            "available_next_hop_group_member_entry",
+            "available_fdb_entry",
+            "available_ipmc_entry",
+            "available_snat_entry",
+            "available_dnat_entry",
+            "number_of_ecmp_groups",
+            "ecmp_members"
+        ]
+        switch_resources = {}
+        for a in attrs:
+            try:
+                kwargs = {a: True}
+                res = sai_thrift_get_switch_attribute(self.client, **kwargs)
+                if a in res:
+                    switch_resources[a] = res[a]
+            except Exception:
+                pass
 
         if debug:
             self.printNumberOfAvaiableResources(switch_resources)
@@ -1339,6 +1348,7 @@ from platform_helper.common_sai_helper import * # pylint: disable=wildcard-impor
 from platform_helper.bfn_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 from platform_helper.brcm_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 from platform_helper.mlnx_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
+from platform_helper.clx_sai_helper import * # pylint: disable=wildcard-import; lgtm[py/polluting-import]
 
 class PlatformSaiHelper(SaiHelper):
     """
