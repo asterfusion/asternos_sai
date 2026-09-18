@@ -11,6 +11,24 @@ from data_module.port_config import PortConfig
 if TYPE_CHECKING:
     from sai_test_base import SaiHelperBase
 
+def get_ptf_dataplane_ports():
+    """
+    Yield (device, port, iface) for PTF dataplane ports.
+
+    --interface fills config['interfaces'] as (device, port, iface).
+    nn platform ignores --interface; --device-socket fills
+    config['port_map'] as {(device, port): socket_addr}.
+    """
+    interfaces = config.get('interfaces') or []
+    if interfaces:
+        for device, port, iface in interfaces:
+            yield device, port, iface
+        return
+
+    port_map = config.get('port_map') or {}
+    for (device, port), iface in sorted(
+            port_map.items(), key=lambda item: (item[0][0], item[0][1])):
+        yield device, port, iface
 
 class PortConfiger(object):
     """
@@ -325,15 +343,18 @@ class PortConfiger(object):
         Following the sequence of the parameters: --interface '0-16@eth0' --interface '0-18@eth1'
         item[0]=16, item[1]=18
 
+        When --interface is omitted (nn + --device-socket), ports come from
+        config['port_map'] in (device, port) order.
+
         Returns:
             list: port numbers
         """
         dev_port_list = []
-        for index, item in enumerate(config['interfaces']):
+        for index, item in enumerate(get_ptf_dataplane_ports()):
             device, port, eth = item
             # device, the device index, will be used in multi devices
             # Port, local port index
-            # eth, eth name
+            # eth, eth name or nanomsg socket addr
             self.test_obj.active_port_obj_list[index].dev_port_index = port
             self.test_obj.active_port_obj_list[index].dev_port_eth = eth
             dev_port_list.append(port)
