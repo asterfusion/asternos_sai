@@ -14,6 +14,7 @@ class PortConfig(object):
         mtu: mtu
         pfc_asym: pfc_asym
         tpid: tpid
+        interface_type: SAI port interface type token, e.g. LR
     """
 
     def __init__(self,
@@ -25,7 +26,8 @@ class PortConfig(object):
     index=None,
     mtu=None,
     pfc_asym=None,
-    tpid=None):
+    tpid=None,
+    interface_type=None):
         self.name = name
         self.lanes = lanes
         self.alias = alias
@@ -35,3 +37,4 @@ class PortConfig(object):
         self.speed = speed
         self.fec = fec
         self.tpid = tpid
+        self.interface_type = interface_type

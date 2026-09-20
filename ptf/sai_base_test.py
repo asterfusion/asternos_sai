@@ -40,6 +40,7 @@ from data_module.port import Port
 
 from sai_utils import *
 import sai_thrift.sai_adapter as adapter
+import sai_thrift.sai_headers as sai_headers
 
 from config.port_configer import PortConfiger, get_ptf_dataplane_ports
 from config.config_db_loader import ConfigDBLoader
@@ -740,6 +741,29 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
             }
             return fec_dict.get(fec, SAI_PORT_FEC_MODE_NONE)
 
+        def interface_type_str_to_int(iface_type):
+            """
+            Convert port_config.ini interface_type token to sai_port_interface_type_t.
+
+            Args:
+                iface_type: short name such as LR
+
+            Returns:
+                int SAI enum, or None if iface_type is empty
+            """
+            if iface_type is None:
+                return None
+            token = str(iface_type).strip()
+            if not token:
+                return None
+            token = token.upper()
+            token = "SAI_PORT_INTERFACE_TYPE_" + token
+            if not hasattr(sai_headers, token):
+                raise ValueError(
+                    "Unknown SAI port interface type '{}'. Expected a "
+                    "sai_port_interface_type_t name such as LR.".format(iface_type))
+            return getattr(sai_headers, token)
+
         # delete the existing ports
         attr = sai_thrift_get_switch_attribute(
             self.client, number_of_active_ports=True)
@@ -754,6 +778,7 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
 
         # add new ports from port config file
         self.ports_config = self.port_config_ini_loader.ports_config
+        oids = []
         for name, port in self.ports_config.items():
             print("Creating port: %s" % name)
             fec_mode = fec_str_to_int(port.get('fec', None))
@@ -761,12 +786,20 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
                 'autoneg', "").lower() == "on" else False
             sai_list = sai_thrift_u32_list_t(
                 count=len(port['lanes']), uint32list=port['lanes'])
-            sai_thrift_create_port(self.client,
+            oid = sai_thrift_create_port(self.client,
                                    hw_lane_list=sai_list,
                                    fec_mode=fec_mode,
                                    auto_neg_mode=auto_neg_mode,
                                    speed=port['speed'],
-                                   admin_state=True)
+                                   admin_state=False)
+            interface_type = interface_type_str_to_int(port.get('interface_type', None))
+            if (interface_type is not None):
+                sai_thrift_set_port_attribute(self.client, port_oid=oid, interface_type=interface_type)
+            oids.append(oid)
+
+        for oid in oids:
+            sai_thrift_set_port_attribute(self.client, port_oid=oid, admin_state=True)
+            print("Set port: %s admin_state: %d" % (name, True))
 
 
     def checkPortsUp(self, timeout=30):
@@ -1169,6 +1202,29 @@ class SaiHelper(SaiHelperUtilsMixin, SaiHelperBase):
             packet_action=SAI_PACKET_ACTION_DROP)
         self.assertEqual(self.status(), SAI_STATUS_SUCCESS)
 
+    def remove_default_v4_v6_route_entry(self):
+        """
+        Remove default v4 and v6 route entry.
+        """
+        DEFAULT_IP_V4_PREFIX = '0.0.0.0/0'
+        DEFAULT_IP_V6_PREFIX = '0000:0000:0000:0000:0000:0000:0000:0000'
+        print("Remove default v4&v6 route entry...")
+        v6_default = sai_thrift_ip_prefix_t(addr_family=1,
+                                            addr=sai_thrift_ip_addr_t(
+                                                ip6=DEFAULT_IP_V6_PREFIX),
+                                            mask=sai_thrift_ip_addr_t(ip6=DEFAULT_IP_V6_PREFIX))
+        self.default_ipv6_route_entry = sai_thrift_route_entry_t(vr_id=self.default_vrf,
+                                                                 destination=v6_default)
+        status = sai_thrift_remove_route_entry(
+            self.client,
+            route_entry=self.default_ipv6_route_entry)
+
+        self.default_ipv4_route_entry = sai_thrift_route_entry_t(vr_id=self.default_vrf,
+                                                                 destination=sai_ipprefix(DEFAULT_IP_V4_PREFIX))
+        status = sai_thrift_remove_route_entry(
+            self.client,
+            route_entry=self.default_ipv4_route_entry)
+
     def setUp(self):
         super(SaiHelper, self).setUp()
 
@@ -1224,6 +1280,7 @@ class SaiHelper(SaiHelperUtilsMixin, SaiHelperBase):
         self.create_default_v4_v6_route_entry()
 
     def tearDown(self):
+        self.remove_default_v4_v6_route_entry()
         sai_thrift_set_port_attribute(self.client, self.port2, port_vlan_id=0)
         sai_thrift_set_lag_attribute(self.client, self.lag1, port_vlan_id=0)
         sai_thrift_set_port_attribute(self.client, self.port0, port_vlan_id=0)

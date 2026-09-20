@@ -81,19 +81,19 @@ class PortConfigInILoader():
         Parse port_config.ini file
 
         Example of supported format for port_config.ini:
-        # name        lanes       alias       index    speed    autoneg   fec
-        Ethernet0       0         Ethernet0     1      25000      off     none
-        Ethernet1       1         Ethernet1     1      25000      off     none
-        Ethernet2       2         Ethernet2     1      25000      off     none
-        Ethernet3       3         Ethernet3     1      25000      off     none
-        Ethernet4       4         Ethernet4     2      25000      off     none
-        Ethernet5       5         Ethernet5     2      25000      off     none
-        Ethernet6       6         Ethernet6     2      25000      off     none
-        Ethernet7       7         Ethernet7     2      25000      off     none
-        Ethernet8       8         Ethernet8     3      25000      off     none
-        Ethernet9       9         Ethernet9     3      25000      off     none
-        Ethernet10      10        Ethernet10    3      25000      off     none
-        Ethernet11      11        Ethernet11    3      25000      off     none
+        # name        lanes       alias       index    speed    autoneg   fec    interface_type
+        Ethernet0       0         Ethernet0     1      25000      off     none   LR
+        Ethernet1       1         Ethernet1     1      25000      off     none   LR
+        Ethernet2       2         Ethernet2     1      25000      off     none   LR
+        Ethernet3       3         Ethernet3     1      25000      off     none   LR
+        Ethernet4       4         Ethernet4     2      25000      off     none   LR
+        Ethernet5       5         Ethernet5     2      25000      off     none   LR
+        Ethernet6       6         Ethernet6     2      25000      off     none   LR
+        Ethernet7       7         Ethernet7     2      25000      off     none   LR
+        Ethernet8       8         Ethernet8     3      25000      off     none   LR
+        Ethernet9       9         Ethernet9     3      25000      off     none   LR
+        Ethernet10      10        Ethernet10    3      25000      off     none   LR
+        Ethernet11      11        Ethernet11    3      25000      off     none   LR
         etc
 
         Returns:
@@ -131,6 +131,7 @@ class PortConfigInILoader():
                     portConfig.lanes = data['lanes']
                     portConfig.speed = data['speed']
                     portConfig.name = name
+                    portConfig.interface_type = data.get('interface_type', None)
                     portConfigs[index] = portConfig
                     index = index + 1
                     index = index + 1
