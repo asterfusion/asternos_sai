@@ -1,5 +1,4 @@
 {
-  "ptf": "ptf",
   "qlen": 10000,
   "platform": "nn",
   "sai_platform_env": "clx",
