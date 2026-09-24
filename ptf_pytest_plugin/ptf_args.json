@@ -1,0 +1,8 @@
+{
+  "ptf": "ptf",
+  "qlen": 10000,
+  "platform": "nn",
+  "sai_platform_env": "clx",
+  "test_params": "thrift_server='192.168.15.191';port_config_ini='ptf/resources/port_config-clx8424.ini'",
+  "device_socket": "0-{0-31}@tcp://192.168.15.9:10001"
+}
