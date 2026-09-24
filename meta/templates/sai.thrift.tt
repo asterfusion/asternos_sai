@@ -101,6 +101,9 @@ struct [% struct.thrift_name %] {
         [%- IF struct.thrift_name == 'sai_thrift_attr_condition_t' AND member.type.thrift_name == 'sai_thrift_attribute_value_t' AND member.name == 'condition' -%]
 
     [% id; id = id + 1 %]: i64 [% member.thrift_name %];
+        [%- ELSIF (struct.thrift_name == 'sai_thrift_acl_action_data_t' OR struct.thrift_name == 'sai_thrift_acl_field_data_t') AND member.thrift_name == 'enable' -%]
+
+    [% id; id = id + 1 %]: [% member.type.thrift_name %] [% member.thrift_name %] = true;
         [%- ELSE -%]
 
     [% id; id = id + 1 %]: [% member.type.thrift_name %] [% member.thrift_name %];
