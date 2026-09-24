@@ -189,9 +189,14 @@ def _setup_ptf_runtime():
         ptf.testutils.MINSIZE = config["minsize"]
 
         ptf.dataplane_instance = ptf.dataplane.DataPlane(config)
-        for port_id, ifname in config["port_map"].items():
-            device, port = port_id
-            ptf.dataplane_instance.port_add(ifname, device, port)
+        try:
+            for port_id, ifname in config["port_map"].items():
+                device, port = port_id
+                ptf.dataplane_instance.port_add(ifname, device, port)
+        except Exception as exc:
+            ptf.dataplane_instance.kill()
+            ptf.dataplane_instance = None
+            pytest.exit("PTF nn agent is not reachable: %s" % exc)
 
         _ptf_ready = True
 
