@@ -306,6 +306,8 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_VLAN_STACK               = 116,
     SAI_OBJECT_TYPE_OBJECT_GROUP             = 117,
     SAI_OBJECT_TYPE_PTP_DOMAIN_ENTRY         = 118,
+    SAI_OBJECT_TYPE_CFM_MP                   = 119,
+    SAI_OBJECT_TYPE_CFM_PEER                 = 120,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,
