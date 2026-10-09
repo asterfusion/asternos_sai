@@ -6355,3 +6355,208 @@ class IngressL3AclDscpTest(SaiHelperSimplified):
             sai_thrift_remove_acl_table(self.client, acl_table_id)
 
 
+@group("draft")
+class IngressL3AclFlowLabelTest(SaiHelperSimplified):
+    """
+    Verify ACL test case with the IPv6 flow label field
+    Configuration
+    +----------+-----------+
+    | port0    | port0_rif |
+    +----------+-----------+
+    | port1    | port1_rif |
+    +----------+-----------+
+    """
+    def setUp(self):
+        super(IngressL3AclFlowLabelTest, self).setUp()
+
+        self.create_routing_interfaces(ports=[0, 1])
+
+        self.ip_addr1 = '2001:db8:10::1'
+        self.ip_addr2 = '2001:db8:20::1'
+        self.dmac = '00:11:22:33:44:55'
+        self.smac = '00:22:22:22:22:22'
+        self.flow_label = 0x12345
+        self.diff_flow_label = 0x54321
+
+        self.neighbor_entry = sai_thrift_neighbor_entry_t(
+            rif_id=self.port0_rif, ip_address=sai_ipaddress(self.ip_addr1))
+        sai_thrift_create_neighbor_entry(
+            self.client,
+            self.neighbor_entry,
+            dst_mac_address=self.dmac)
+
+        self.nhop = sai_thrift_create_next_hop(
+            self.client,
+            ip=sai_ipaddress(self.ip_addr1),
+            router_interface_id=self.port0_rif,
+            type=SAI_NEXT_HOP_TYPE_IP)
+
+        # Matched packet (flow_label = 0x12345)
+        self.pkt_match = simple_tcpv6_packet(
+            eth_dst=ROUTER_MAC,
+            eth_src=self.smac,
+            ipv6_dst=self.ip_addr1,
+            ipv6_src=self.ip_addr2,
+            ipv6_fl=self.flow_label,
+            ipv6_hlim=64)
+        self.exp_pkt_match = simple_tcpv6_packet(
+            eth_dst=self.dmac,
+            eth_src=ROUTER_MAC,
+            ipv6_dst=self.ip_addr1,
+            ipv6_src=self.ip_addr2,
+            ipv6_fl=self.flow_label,
+            ipv6_hlim=63)
+
+        # Non-matched packet (flow_label = 0x54321)
+        self.pkt_non_match = simple_tcpv6_packet(
+            eth_dst=ROUTER_MAC,
+            eth_src=self.smac,
+            ipv6_dst=self.ip_addr1,
+            ipv6_src=self.ip_addr2,
+            ipv6_fl=self.diff_flow_label,
+            ipv6_hlim=64)
+        self.exp_pkt_non_match = simple_tcpv6_packet(
+            eth_dst=self.dmac,
+            eth_src=ROUTER_MAC,
+            ipv6_dst=self.ip_addr1,
+            ipv6_src=self.ip_addr2,
+            ipv6_fl=self.diff_flow_label,
+            ipv6_hlim=63)
+
+    def runTest(self):
+        self.routingTest()
+        self.ingressL3AclFlowLabelTest()
+
+    def tearDown(self):
+        sai_thrift_remove_next_hop(self.client, self.nhop)
+        sai_thrift_remove_neighbor_entry(self.client, self.neighbor_entry)
+
+        self.destroy_routing_interfaces()
+
+        super(IngressL3AclFlowLabelTest, self).tearDown()
+
+    def routingTest(self):
+        """
+        Verify basic IPv6 routing
+        """
+        print('--------------------------------------------------------------')
+        print("Sending packet ptf_intf 2 -> ptf_intf 1 ({} ---> {})".format(
+            self.ip_addr2, self.ip_addr1))
+        try:
+            print('#### NO ACL Applied ####')
+            print('#### Sending  ', ROUTER_MAC, '|', self.smac, '|',
+                  self.ip_addr1, '|', self.ip_addr2, '| flow_label', hex(self.flow_label), '@ ptf_intf 2')
+            send_packet(self, self.dev_port1, self.pkt_match)
+            print('#### Expecting', self.dmac, '|', ROUTER_MAC, '|',
+                  self.ip_addr1, '|', self.ip_addr2, '| flow_label', hex(self.flow_label), '@ ptf_intf 1')
+            verify_packets(self, self.exp_pkt_match, [self.dev_port0])
+        finally:
+            print('----------------------------------------------------------')
+
+    def ingressL3AclFlowLabelTest(self):
+        """
+        Verify ACL with the IPv6 flow label field
+        """
+        print("Sending packet ptf_intf 2 -[ACL]-> ptf_intf 1")
+        table_stage = SAI_ACL_STAGE_INGRESS
+        table_bind_point_list = [SAI_ACL_BIND_POINT_TYPE_ROUTER_INTF]
+        entry_priority = 1
+        action = SAI_PACKET_ACTION_DROP
+        acl_mask = 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff'
+
+        table_bind_point_type_list = sai_thrift_s32_list_t(
+            count=len(table_bind_point_list),
+            int32list=table_bind_point_list)
+
+        packet_action = sai_thrift_acl_action_data_t(
+            parameter=sai_thrift_acl_action_parameter_t(
+                s32=action))
+
+        src_ipv6_t = sai_thrift_acl_field_data_t(
+            data=sai_thrift_acl_field_data_data_t(ip6=self.ip_addr2),
+            mask=sai_thrift_acl_field_data_mask_t(ip6=acl_mask))
+
+        field_flow_label = sai_thrift_acl_field_data_t(
+            data=sai_thrift_acl_field_data_data_t(u32=self.flow_label),
+            mask=sai_thrift_acl_field_data_mask_t(u32=0xFFFFF))
+
+        acl_table_id = sai_thrift_create_acl_table(
+            self.client,
+            acl_stage=table_stage,
+            acl_bind_point_type_list=table_bind_point_type_list,
+            field_src_ipv6=True,
+            field_ipv6_flow_label=True)
+        print("ACL Table created 0x%lx" % (acl_table_id))
+
+        acl_entry_id = sai_thrift_create_acl_entry(
+            self.client,
+            table_id=acl_table_id,
+            priority=entry_priority,
+            field_src_ipv6=src_ipv6_t,
+            action_packet_action=packet_action,
+            field_ipv6_flow_label=field_flow_label)
+
+        # create ACL counter
+        acl_counter_ingress = sai_thrift_create_acl_counter(
+            self.client, table_id=acl_table_id)
+
+        # attach ACL counter to ACL entry
+        action_counter_ingress = sai_thrift_acl_action_data_t(
+            parameter=sai_thrift_acl_action_parameter_t(
+                oid=acl_counter_ingress),
+            enable=True)
+        sai_thrift_set_acl_entry_attribute(
+            self.client, acl_entry_id,
+            action_counter=action_counter_ingress)
+
+        # bind this ACL table to port1_rif
+        sai_thrift_set_router_interface_attribute(
+            self.client, self.port1_rif, ingress_acl=acl_table_id)
+
+        try:
+            self.assertNotEqual(acl_table_id, 0)
+            self.assertNotEqual(acl_entry_id, 0)
+
+            print('#### ACL DROP matching flow_label applied ####')
+
+            # 1. Test non-matching packet: flow_label does not match, should be forwarded
+            print('#### Sending packet with non-matching flow label', hex(self.diff_flow_label), '####')
+            send_packet(self, self.dev_port1, self.pkt_non_match)
+            verify_packets(self, self.exp_pkt_non_match, [self.dev_port0])
+
+            packets = sai_thrift_get_acl_counter_attribute(
+                self.client, acl_counter_ingress, packets=True)
+            self.assertEqual(packets['packets'], 0)
+
+            # 2. Test matching packet: flow_label matches, should be dropped
+            print('#### Sending packet with matching flow label', hex(self.flow_label), '####')
+            send_packet(self, self.dev_port1, self.pkt_match)
+            verify_no_other_packets(self, timeout=1)
+
+            packets = sai_thrift_get_acl_counter_attribute(
+                self.client, acl_counter_ingress, packets=True)
+            self.assertEqual(packets['packets'], 1)
+
+        finally:
+            # unbind this ACL table from router interface
+            sai_thrift_set_router_interface_attribute(
+                self.client, self.port1_rif, ingress_acl=0)
+
+            # cleanup ACL
+            action_counter_ingress = sai_thrift_acl_action_data_t(
+                parameter=sai_thrift_acl_action_parameter_t(
+                    oid=0),
+                enable=True)
+            sai_thrift_set_acl_entry_attribute(
+                self.client, acl_entry_id,
+                action_counter=action_counter_ingress)
+            sai_thrift_set_acl_counter_attribute(
+                self.client, acl_counter_ingress, packets=None)
+            packets = sai_thrift_get_acl_counter_attribute(
+                self.client, acl_counter_ingress, packets=True)
+            self.assertEqual(packets['packets'], 0)
+            sai_thrift_remove_acl_counter(self.client, acl_counter_ingress)
+
+            sai_thrift_remove_acl_entry(self.client, acl_entry_id)
+            sai_thrift_remove_acl_table(self.client, acl_table_id)
+
