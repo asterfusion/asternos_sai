@@ -797,6 +797,7 @@ class SaiHelperBase(ThriftInterfaceDataPlane):
                 sai_thrift_set_port_attribute(self.client, port_oid=oid, interface_type=interface_type)
             oids.append(oid)
 
+        time.sleep(2)
         for oid in oids:
             sai_thrift_set_port_attribute(self.client, port_oid=oid, admin_state=True)
             print("Set port: %s admin_state: %d" % (name, True))
