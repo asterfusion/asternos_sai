@@ -743,6 +743,13 @@ class McastDisableTest(L3InterfaceTestHelper):
                                           ip_id=105,
                                           ip_ttl=64)
 
+            exp_mcast_pkt = simple_tcp_packet(eth_dst='01:00:5e:11:22:33',
+                                              eth_src=ROUTER_MAC,
+                                              ip_dst=dst_mcast_ip,
+                                              ip_src=src_ip,
+                                              ip_id=105,
+                                              ip_ttl=63)
+
             print("Enabling IPv4 multicast on port %d" % self.dev_port11)
             sai_thrift_set_router_interface_attribute(
                 self.client, self.port11_rif, v4_mcast_enable=True)
@@ -751,8 +758,9 @@ class McastDisableTest(L3InterfaceTestHelper):
                   "%d, %d, %d" % (self.dev_port11, self.dev_port10,
                                   self.dev_port12, self.dev_port13))
             send_packet(self, self.dev_port11, mcast_pkt)
-            verify_packets(self, mcast_pkt, [self.dev_port10, self.dev_port12,
-                                             self.dev_port13])
+
+            verify_packets(self, exp_mcast_pkt, [self.dev_port10, self.dev_port12,
+                                                 self.dev_port13])
             print("\tOK")
             self.port11_rif_counter_in += 1
             self.port10_rif_counter_out += 1
@@ -779,6 +787,12 @@ class McastDisableTest(L3InterfaceTestHelper):
                                                ipv6_src=src_ipv6,
                                                ipv6_hlim=64)
 
+            exp_mcast_pkt_v6 = simple_tcpv6_packet(eth_dst='33:33:00:11:22:33',
+                                                   eth_src=ROUTER_MAC,
+                                                   ipv6_dst=dst_mcast_ipv6,
+                                                   ipv6_src=src_ipv6,
+                                                   ipv6_hlim=63)
+
             print("Enabling IPv6 multicast on port %d" % self.dev_port11)
             sai_thrift_set_router_interface_attribute(
                 self.client, self.port11_rif, v6_mcast_enable=True)
@@ -787,9 +801,9 @@ class McastDisableTest(L3InterfaceTestHelper):
                   "%d, %d, %d" % (self.dev_port11, self.dev_port10,
                                   self.dev_port12, self.dev_port13))
             send_packet(self, self.dev_port11, mcast_pkt_v6)
-            verify_packets(self, mcast_pkt_v6, [self.dev_port10,
-                                                self.dev_port12,
-                                                self.dev_port13])
+            verify_packets(self, exp_mcast_pkt_v6, [self.dev_port10,
+                                                    self.dev_port12,
+                                                    self.dev_port13])
             print("\tOK")
             self.port11_rif_counter_in += 1
             self.port10_rif_counter_out += 1
